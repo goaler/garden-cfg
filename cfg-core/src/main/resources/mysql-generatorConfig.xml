@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<classPathEntry
+		location="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\mysql\mysql-connector-java\8.0.11\2c3d25fe1dfdd6496e0bbe47d67809f67487cfba\mysql-connector-java-8.0.11.jar" />
+	<context id="context1">
+
+		<!-- 需写前面 -->
+		<commentGenerator>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+		
+		<jdbcConnection connectionURL="jdbc:mysql://localhost:3306"
+			driverClass="com.mysql.jdbc.Driver" userId="root" password="root" />
+
+		<!-- entity位置 -->
+		<javaModelGenerator targetPackage="org.garden.cfg.core.repository.entity"
+			targetProject="cfg-core/src/main/java" />
+
+		<!-- mapper对应xml位置 -->
+		<sqlMapGenerator targetPackage="org.garden.cfg.core.repository"
+			targetProject="cfg-core/src/main/resources" />
+
+		<!-- mapper位置 -->
+		<javaClientGenerator targetPackage="org.garden.cfg.core.repository"
+			targetProject="cfg-core/src/main/java" type="XMLMAPPER" />
+		
+
+		<table schema="garden_cfg" tableName="cfg_app">
+			<generatedKey column="app_id" sqlStatement="MySql" identity="true" />
+		</table>
+		
+		<table schema="garden_cfg" tableName="cfg_cluster">
+			<generatedKey column="cluster_id" sqlStatement="MySql" identity="true" />
+		</table>
+		
+		<table schema="garden_cfg" tableName="cfg_doc">
+			<generatedKey column="doc_id" sqlStatement="MySql" identity="true" />
+		</table>
+		
+		<table schema="garden_cfg" tableName="cfg_env">
+			<generatedKey column="env_id" sqlStatement="MySql" identity="true" />
+		</table>
+		
+		<table schema="garden_cfg" tableName="cfg_group">
+			<generatedKey column="group_id" sqlStatement="MySql" identity="true" />
+		</table>
+		
+		<table schema="garden_cfg" tableName="cfg_item">
+			<generatedKey column="item_id" sqlStatement="MySql" identity="true" />
+		</table>
+
+	</context>
+</generatorConfiguration>

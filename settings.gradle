@@ -1,1 +1,2 @@
+include "cfg-core"
 include "cfg-portal"
