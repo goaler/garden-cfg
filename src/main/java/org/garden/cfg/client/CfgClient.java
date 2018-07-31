@@ -1,4 +1,4 @@
-package org.garden.cfg;
+package org.garden.cfg.client;
 
 public interface CfgClient {
 
