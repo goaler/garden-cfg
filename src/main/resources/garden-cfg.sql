@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 80011
+Source Server Version : 80012
 Source Host           : localhost:3306
 Source Database       : garden-cfg
 
 Target Server Type    : MYSQL
-Target Server Version : 80011
+Target Server Version : 80012
 File Encoding         : 65001
 
-Date: 2018-07-31 17:48:01
+Date: 2018-07-31 21:07:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,11 +20,11 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `cfg_app`;
 CREATE TABLE `cfg_app` (
-  `cfg_app_id` int(11) NOT NULL COMMENT '主键',
+  `app_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `app_name` varchar(45) NOT NULL COMMENT 'app名称',
   `comment` varchar(255) DEFAULT NULL COMMENT '描述',
   `status` int(11) NOT NULL DEFAULT '1' COMMENT '状态:0-删除,1-正常',
-  PRIMARY KEY (`cfg_app_id`)
+  PRIMARY KEY (`app_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='应用';
 
 -- ----------------------------
@@ -32,11 +32,11 @@ CREATE TABLE `cfg_app` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cfg_cluster`;
 CREATE TABLE `cfg_cluster` (
-  `cfg_cluster_id` int(11) NOT NULL COMMENT '主键',
+  `cluster_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `cluster_name` varchar(45) NOT NULL COMMENT '集群名称',
   `comment` varchar(255) DEFAULT NULL COMMENT '描述',
   `status` int(11) NOT NULL DEFAULT '1' COMMENT '状态:0-删除,1-正常',
-  PRIMARY KEY (`cfg_cluster_id`)
+  PRIMARY KEY (`cluster_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='集群';
 
 -- ----------------------------
@@ -44,14 +44,14 @@ CREATE TABLE `cfg_cluster` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cfg_doc`;
 CREATE TABLE `cfg_doc` (
-  `cfg_doc_id` int(11) NOT NULL COMMENT '主键',
+  `doc_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `app_id` int(11) NOT NULL COMMENT '应用',
   `env_id` int(11) NOT NULL COMMENT '所属环境',
   `cluster_id` int(11) NOT NULL COMMENT '所属集群',
   `group_id` int(11) DEFAULT NULL COMMENT '配置组id',
   `comment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '描述',
   `status` int(11) NOT NULL DEFAULT '1' COMMENT '状态:0-删除,1-正常',
-  PRIMARY KEY (`cfg_doc_id`)
+  PRIMARY KEY (`doc_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='配置文档';
 
 -- ----------------------------
@@ -59,11 +59,11 @@ CREATE TABLE `cfg_doc` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cfg_env`;
 CREATE TABLE `cfg_env` (
-  `cfg_env_id` int(11) NOT NULL COMMENT '主键',
+  `env_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `env_name` varchar(45) NOT NULL,
   `comment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '描述',
   `status` int(11) NOT NULL DEFAULT '1' COMMENT '状态:0-删除,1-正常',
-  PRIMARY KEY (`cfg_env_id`)
+  PRIMARY KEY (`env_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
@@ -71,10 +71,10 @@ CREATE TABLE `cfg_env` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cfg_group`;
 CREATE TABLE `cfg_group` (
-  `cfg_group_id` int(11) NOT NULL COMMENT '配置组id',
+  `group_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '配置组id',
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '组描述',
   `status` int(11) NOT NULL DEFAULT '1' COMMENT '状态:0-删除,1-正常',
-  PRIMARY KEY (`cfg_group_id`)
+  PRIMARY KEY (`group_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='一组配置项';
 
 -- ----------------------------
