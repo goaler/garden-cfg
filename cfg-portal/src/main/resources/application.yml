@@ -7,3 +7,9 @@ spring.datasource:
 
 # mybatis.config= classpath:mybatis-config.xml
 # mybatis.mapperLocations: classpath:mappers/*.xml
+
+spring:
+  mvc:
+    view:
+      suffix: .html
+      prefix: /

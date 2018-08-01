@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>登录CFG配置中心</title>
+<script src="./js/common/app.js"></script>
+<script src="./js/vue/vue.js"></script>
+<script src="./js/vue/axios.min.js"></script>
+</head>
+<body>
+  <div id='login'>
+    <div><input v-model="userCode" placeholder="用户名" type="text"/></div>
+    <div><input v-model="password" placeholder="密码" type="text"/></div>
+    <div><input type="button" value="登录" v-on:click="login()"/></div>
+  </div>  
+<script>
+  Vue.component()
+  var login = new Vue({
+    el:'#login',
+    data:{
+      userCode:"",
+      password:"",
+    },
+    methods:{
+      login:function(){
+        axios
+        .get('/login')
+        .then(resp => {
+          if(resp.data){
+            cacheToken(resp.data)
+            window.location.href="homePage.html" 
+          }
+        })
+      }
+    }
+  })
+</script>
+</body>
+</html>

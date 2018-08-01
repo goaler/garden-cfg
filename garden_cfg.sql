@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 80012
+Source Server Version : 80011
 Source Host           : localhost:3306
-Source Database       : garden-cfg
+Source Database       : garden_cfg
 
 Target Server Type    : MYSQL
-Target Server Version : 80012
+Target Server Version : 80011
 File Encoding         : 65001
 
-Date: 2018-07-31 21:07:45
+Date: 2018-08-01 16:51:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -92,3 +92,29 @@ CREATE TABLE `cfg_item` (
   `status` int(11) NOT NULL DEFAULT '1' COMMENT '状态:0-删除,1-正常',
   PRIMARY KEY (`item_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='配置项';
+
+-- ----------------------------
+-- Table structure for cfg_user
+-- ----------------------------
+DROP TABLE IF EXISTS `cfg_user`;
+CREATE TABLE `cfg_user` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户id',
+  `user_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '账号',
+  `name` varchar(255) DEFAULT NULL COMMENT '用户名',
+  `password` varchar(255) DEFAULT NULL COMMENT '密码',
+  `status` varchar(255) NOT NULL COMMENT '状态:0-删除,1-正常',
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户';
+
+-- ----------------------------
+-- Table structure for cfg_user_hold
+-- ----------------------------
+DROP TABLE IF EXISTS `cfg_user_hold`;
+CREATE TABLE `cfg_user_hold` (
+  `id` int(11) NOT NULL COMMENT '主键',
+  `user_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '用户编码',
+  `cfg_id` int(11) NOT NULL COMMENT '拥有',
+  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '类型',
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态:0-删除,1-正常',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
