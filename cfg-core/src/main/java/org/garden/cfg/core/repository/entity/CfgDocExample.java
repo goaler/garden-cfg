@@ -164,183 +164,213 @@ public class CfgDocExample {
             return (Criteria) this;
         }
 
-        public Criteria andAppIdIsNull() {
-            addCriterion("app_id is null");
+        public Criteria andAppCodeIsNull() {
+            addCriterion("app_code is null");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdIsNotNull() {
-            addCriterion("app_id is not null");
+        public Criteria andAppCodeIsNotNull() {
+            addCriterion("app_code is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdEqualTo(Integer value) {
-            addCriterion("app_id =", value, "appId");
+        public Criteria andAppCodeEqualTo(String value) {
+            addCriterion("app_code =", value, "appCode");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdNotEqualTo(Integer value) {
-            addCriterion("app_id <>", value, "appId");
+        public Criteria andAppCodeNotEqualTo(String value) {
+            addCriterion("app_code <>", value, "appCode");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdGreaterThan(Integer value) {
-            addCriterion("app_id >", value, "appId");
+        public Criteria andAppCodeGreaterThan(String value) {
+            addCriterion("app_code >", value, "appCode");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("app_id >=", value, "appId");
+        public Criteria andAppCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("app_code >=", value, "appCode");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdLessThan(Integer value) {
-            addCriterion("app_id <", value, "appId");
+        public Criteria andAppCodeLessThan(String value) {
+            addCriterion("app_code <", value, "appCode");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdLessThanOrEqualTo(Integer value) {
-            addCriterion("app_id <=", value, "appId");
+        public Criteria andAppCodeLessThanOrEqualTo(String value) {
+            addCriterion("app_code <=", value, "appCode");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdIn(List<Integer> values) {
-            addCriterion("app_id in", values, "appId");
+        public Criteria andAppCodeLike(String value) {
+            addCriterion("app_code like", value, "appCode");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdNotIn(List<Integer> values) {
-            addCriterion("app_id not in", values, "appId");
+        public Criteria andAppCodeNotLike(String value) {
+            addCriterion("app_code not like", value, "appCode");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdBetween(Integer value1, Integer value2) {
-            addCriterion("app_id between", value1, value2, "appId");
+        public Criteria andAppCodeIn(List<String> values) {
+            addCriterion("app_code in", values, "appCode");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("app_id not between", value1, value2, "appId");
+        public Criteria andAppCodeNotIn(List<String> values) {
+            addCriterion("app_code not in", values, "appCode");
             return (Criteria) this;
         }
 
-        public Criteria andEnvIdIsNull() {
-            addCriterion("env_id is null");
+        public Criteria andAppCodeBetween(String value1, String value2) {
+            addCriterion("app_code between", value1, value2, "appCode");
             return (Criteria) this;
         }
 
-        public Criteria andEnvIdIsNotNull() {
-            addCriterion("env_id is not null");
+        public Criteria andAppCodeNotBetween(String value1, String value2) {
+            addCriterion("app_code not between", value1, value2, "appCode");
             return (Criteria) this;
         }
 
-        public Criteria andEnvIdEqualTo(Integer value) {
-            addCriterion("env_id =", value, "envId");
+        public Criteria andEnvCodeIsNull() {
+            addCriterion("env_code is null");
             return (Criteria) this;
         }
 
-        public Criteria andEnvIdNotEqualTo(Integer value) {
-            addCriterion("env_id <>", value, "envId");
+        public Criteria andEnvCodeIsNotNull() {
+            addCriterion("env_code is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEnvIdGreaterThan(Integer value) {
-            addCriterion("env_id >", value, "envId");
+        public Criteria andEnvCodeEqualTo(String value) {
+            addCriterion("env_code =", value, "envCode");
             return (Criteria) this;
         }
 
-        public Criteria andEnvIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("env_id >=", value, "envId");
+        public Criteria andEnvCodeNotEqualTo(String value) {
+            addCriterion("env_code <>", value, "envCode");
             return (Criteria) this;
         }
 
-        public Criteria andEnvIdLessThan(Integer value) {
-            addCriterion("env_id <", value, "envId");
+        public Criteria andEnvCodeGreaterThan(String value) {
+            addCriterion("env_code >", value, "envCode");
             return (Criteria) this;
         }
 
-        public Criteria andEnvIdLessThanOrEqualTo(Integer value) {
-            addCriterion("env_id <=", value, "envId");
+        public Criteria andEnvCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("env_code >=", value, "envCode");
             return (Criteria) this;
         }
 
-        public Criteria andEnvIdIn(List<Integer> values) {
-            addCriterion("env_id in", values, "envId");
+        public Criteria andEnvCodeLessThan(String value) {
+            addCriterion("env_code <", value, "envCode");
             return (Criteria) this;
         }
 
-        public Criteria andEnvIdNotIn(List<Integer> values) {
-            addCriterion("env_id not in", values, "envId");
+        public Criteria andEnvCodeLessThanOrEqualTo(String value) {
+            addCriterion("env_code <=", value, "envCode");
             return (Criteria) this;
         }
 
-        public Criteria andEnvIdBetween(Integer value1, Integer value2) {
-            addCriterion("env_id between", value1, value2, "envId");
+        public Criteria andEnvCodeLike(String value) {
+            addCriterion("env_code like", value, "envCode");
             return (Criteria) this;
         }
 
-        public Criteria andEnvIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("env_id not between", value1, value2, "envId");
+        public Criteria andEnvCodeNotLike(String value) {
+            addCriterion("env_code not like", value, "envCode");
             return (Criteria) this;
         }
 
-        public Criteria andClusterIdIsNull() {
-            addCriterion("cluster_id is null");
+        public Criteria andEnvCodeIn(List<String> values) {
+            addCriterion("env_code in", values, "envCode");
             return (Criteria) this;
         }
 
-        public Criteria andClusterIdIsNotNull() {
-            addCriterion("cluster_id is not null");
+        public Criteria andEnvCodeNotIn(List<String> values) {
+            addCriterion("env_code not in", values, "envCode");
             return (Criteria) this;
         }
 
-        public Criteria andClusterIdEqualTo(Integer value) {
-            addCriterion("cluster_id =", value, "clusterId");
+        public Criteria andEnvCodeBetween(String value1, String value2) {
+            addCriterion("env_code between", value1, value2, "envCode");
             return (Criteria) this;
         }
 
-        public Criteria andClusterIdNotEqualTo(Integer value) {
-            addCriterion("cluster_id <>", value, "clusterId");
+        public Criteria andEnvCodeNotBetween(String value1, String value2) {
+            addCriterion("env_code not between", value1, value2, "envCode");
             return (Criteria) this;
         }
 
-        public Criteria andClusterIdGreaterThan(Integer value) {
-            addCriterion("cluster_id >", value, "clusterId");
+        public Criteria andClusterCodeIsNull() {
+            addCriterion("cluster_code is null");
             return (Criteria) this;
         }
 
-        public Criteria andClusterIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("cluster_id >=", value, "clusterId");
+        public Criteria andClusterCodeIsNotNull() {
+            addCriterion("cluster_code is not null");
             return (Criteria) this;
         }
 
-        public Criteria andClusterIdLessThan(Integer value) {
-            addCriterion("cluster_id <", value, "clusterId");
+        public Criteria andClusterCodeEqualTo(String value) {
+            addCriterion("cluster_code =", value, "clusterCode");
             return (Criteria) this;
         }
 
-        public Criteria andClusterIdLessThanOrEqualTo(Integer value) {
-            addCriterion("cluster_id <=", value, "clusterId");
+        public Criteria andClusterCodeNotEqualTo(String value) {
+            addCriterion("cluster_code <>", value, "clusterCode");
             return (Criteria) this;
         }
 
-        public Criteria andClusterIdIn(List<Integer> values) {
-            addCriterion("cluster_id in", values, "clusterId");
+        public Criteria andClusterCodeGreaterThan(String value) {
+            addCriterion("cluster_code >", value, "clusterCode");
             return (Criteria) this;
         }
 
-        public Criteria andClusterIdNotIn(List<Integer> values) {
-            addCriterion("cluster_id not in", values, "clusterId");
+        public Criteria andClusterCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("cluster_code >=", value, "clusterCode");
             return (Criteria) this;
         }
 
-        public Criteria andClusterIdBetween(Integer value1, Integer value2) {
-            addCriterion("cluster_id between", value1, value2, "clusterId");
+        public Criteria andClusterCodeLessThan(String value) {
+            addCriterion("cluster_code <", value, "clusterCode");
             return (Criteria) this;
         }
 
-        public Criteria andClusterIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("cluster_id not between", value1, value2, "clusterId");
+        public Criteria andClusterCodeLessThanOrEqualTo(String value) {
+            addCriterion("cluster_code <=", value, "clusterCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andClusterCodeLike(String value) {
+            addCriterion("cluster_code like", value, "clusterCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andClusterCodeNotLike(String value) {
+            addCriterion("cluster_code not like", value, "clusterCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andClusterCodeIn(List<String> values) {
+            addCriterion("cluster_code in", values, "clusterCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andClusterCodeNotIn(List<String> values) {
+            addCriterion("cluster_code not in", values, "clusterCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andClusterCodeBetween(String value1, String value2) {
+            addCriterion("cluster_code between", value1, value2, "clusterCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andClusterCodeNotBetween(String value1, String value2) {
+            addCriterion("cluster_code not between", value1, value2, "clusterCode");
             return (Criteria) this;
         }
 

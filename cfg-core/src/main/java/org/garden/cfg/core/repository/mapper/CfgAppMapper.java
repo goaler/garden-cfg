@@ -1,4 +1,4 @@
-package org.garden.cfg.core.repository;
+package org.garden.cfg.core.repository.mapper;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Param;

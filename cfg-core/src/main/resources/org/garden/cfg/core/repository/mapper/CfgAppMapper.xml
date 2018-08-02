@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.garden.cfg.core.repository.CfgItemMapper">
-  <resultMap id="BaseResultMap" type="org.garden.cfg.core.repository.entity.CfgItem">
-    <id column="item_id" jdbcType="INTEGER" property="itemId" />
-    <result column="group_id" jdbcType="INTEGER" property="groupId" />
-    <result column="key" jdbcType="VARCHAR" property="key" />
-    <result column="value" jdbcType="VARCHAR" property="value" />
+<mapper namespace="org.garden.cfg.core.repository.mapper.CfgAppMapper">
+  <resultMap id="BaseResultMap" type="org.garden.cfg.core.repository.entity.CfgApp">
+    <id column="app_id" jdbcType="INTEGER" property="appId" />
+    <result column="app_code" jdbcType="VARCHAR" property="appCode" />
+    <result column="app_name" jdbcType="VARCHAR" property="appName" />
     <result column="comment" jdbcType="VARCHAR" property="comment" />
-    <result column="position" jdbcType="INTEGER" property="position" />
-    <result column="type" jdbcType="TINYINT" property="type" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -70,15 +67,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    item_id, group_id, key, value, comment, position, type, status
+    app_id, app_code, app_name, comment, status
   </sql>
-  <select id="selectByExample" parameterType="org.garden.cfg.core.repository.entity.CfgItemExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="org.garden.cfg.core.repository.entity.CfgAppExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from cfg_item
+    from cfg_app
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -89,111 +86,82 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from cfg_item
-    where item_id = #{itemId,jdbcType=INTEGER}
+    from cfg_app
+    where app_id = #{appId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from cfg_item
-    where item_id = #{itemId,jdbcType=INTEGER}
+    delete from cfg_app
+    where app_id = #{appId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="org.garden.cfg.core.repository.entity.CfgItemExample">
-    delete from cfg_item
+  <delete id="deleteByExample" parameterType="org.garden.cfg.core.repository.entity.CfgAppExample">
+    delete from cfg_app
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="org.garden.cfg.core.repository.entity.CfgItem">
-    <selectKey keyProperty="itemId" order="AFTER" resultType="java.lang.Integer">
+  <insert id="insert" parameterType="org.garden.cfg.core.repository.entity.CfgApp">
+    <selectKey keyProperty="appId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into cfg_item (group_id, key, value, 
-      comment, position, type, 
+    insert into cfg_app (app_code, app_name, comment, 
       status)
-    values (#{groupId,jdbcType=INTEGER}, #{key,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
-      #{comment,jdbcType=VARCHAR}, #{position,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, 
+    values (#{appCode,jdbcType=VARCHAR}, #{appName,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="org.garden.cfg.core.repository.entity.CfgItem">
-    <selectKey keyProperty="itemId" order="AFTER" resultType="java.lang.Integer">
+  <insert id="insertSelective" parameterType="org.garden.cfg.core.repository.entity.CfgApp">
+    <selectKey keyProperty="appId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into cfg_item
+    insert into cfg_app
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="groupId != null">
-        group_id,
+      <if test="appCode != null">
+        app_code,
       </if>
-      <if test="key != null">
-        key,
-      </if>
-      <if test="value != null">
-        value,
+      <if test="appName != null">
+        app_name,
       </if>
       <if test="comment != null">
         comment,
-      </if>
-      <if test="position != null">
-        position,
-      </if>
-      <if test="type != null">
-        type,
       </if>
       <if test="status != null">
         status,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="groupId != null">
-        #{groupId,jdbcType=INTEGER},
+      <if test="appCode != null">
+        #{appCode,jdbcType=VARCHAR},
       </if>
-      <if test="key != null">
-        #{key,jdbcType=VARCHAR},
-      </if>
-      <if test="value != null">
-        #{value,jdbcType=VARCHAR},
+      <if test="appName != null">
+        #{appName,jdbcType=VARCHAR},
       </if>
       <if test="comment != null">
         #{comment,jdbcType=VARCHAR},
-      </if>
-      <if test="position != null">
-        #{position,jdbcType=INTEGER},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=TINYINT},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="org.garden.cfg.core.repository.entity.CfgItemExample" resultType="java.lang.Long">
-    select count(*) from cfg_item
+  <select id="countByExample" parameterType="org.garden.cfg.core.repository.entity.CfgAppExample" resultType="java.lang.Long">
+    select count(*) from cfg_app
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update cfg_item
+    update cfg_app
     <set>
-      <if test="record.itemId != null">
-        item_id = #{record.itemId,jdbcType=INTEGER},
+      <if test="record.appId != null">
+        app_id = #{record.appId,jdbcType=INTEGER},
       </if>
-      <if test="record.groupId != null">
-        group_id = #{record.groupId,jdbcType=INTEGER},
+      <if test="record.appCode != null">
+        app_code = #{record.appCode,jdbcType=VARCHAR},
       </if>
-      <if test="record.key != null">
-        key = #{record.key,jdbcType=VARCHAR},
-      </if>
-      <if test="record.value != null">
-        value = #{record.value,jdbcType=VARCHAR},
+      <if test="record.appName != null">
+        app_name = #{record.appName,jdbcType=VARCHAR},
       </if>
       <if test="record.comment != null">
         comment = #{record.comment,jdbcType=VARCHAR},
-      </if>
-      <if test="record.position != null">
-        position = #{record.position,jdbcType=INTEGER},
-      </if>
-      <if test="record.type != null">
-        type = #{record.type,jdbcType=TINYINT},
       </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
@@ -204,55 +172,40 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update cfg_item
-    set item_id = #{record.itemId,jdbcType=INTEGER},
-      group_id = #{record.groupId,jdbcType=INTEGER},
-      key = #{record.key,jdbcType=VARCHAR},
-      value = #{record.value,jdbcType=VARCHAR},
+    update cfg_app
+    set app_id = #{record.appId,jdbcType=INTEGER},
+      app_code = #{record.appCode,jdbcType=VARCHAR},
+      app_name = #{record.appName,jdbcType=VARCHAR},
       comment = #{record.comment,jdbcType=VARCHAR},
-      position = #{record.position,jdbcType=INTEGER},
-      type = #{record.type,jdbcType=TINYINT},
       status = #{record.status,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.garden.cfg.core.repository.entity.CfgItem">
-    update cfg_item
+  <update id="updateByPrimaryKeySelective" parameterType="org.garden.cfg.core.repository.entity.CfgApp">
+    update cfg_app
     <set>
-      <if test="groupId != null">
-        group_id = #{groupId,jdbcType=INTEGER},
+      <if test="appCode != null">
+        app_code = #{appCode,jdbcType=VARCHAR},
       </if>
-      <if test="key != null">
-        key = #{key,jdbcType=VARCHAR},
-      </if>
-      <if test="value != null">
-        value = #{value,jdbcType=VARCHAR},
+      <if test="appName != null">
+        app_name = #{appName,jdbcType=VARCHAR},
       </if>
       <if test="comment != null">
         comment = #{comment,jdbcType=VARCHAR},
-      </if>
-      <if test="position != null">
-        position = #{position,jdbcType=INTEGER},
-      </if>
-      <if test="type != null">
-        type = #{type,jdbcType=TINYINT},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
       </if>
     </set>
-    where item_id = #{itemId,jdbcType=INTEGER}
+    where app_id = #{appId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.garden.cfg.core.repository.entity.CfgItem">
-    update cfg_item
-    set group_id = #{groupId,jdbcType=INTEGER},
-      key = #{key,jdbcType=VARCHAR},
-      value = #{value,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="org.garden.cfg.core.repository.entity.CfgApp">
+    update cfg_app
+    set app_code = #{appCode,jdbcType=VARCHAR},
+      app_name = #{appName,jdbcType=VARCHAR},
       comment = #{comment,jdbcType=VARCHAR},
-      position = #{position,jdbcType=INTEGER},
-      type = #{type,jdbcType=TINYINT},
       status = #{status,jdbcType=INTEGER}
-    where item_id = #{itemId,jdbcType=INTEGER}
+    where app_id = #{appId,jdbcType=INTEGER}
   </update>
 </mapper>

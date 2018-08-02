@@ -3,14 +3,14 @@ package org.garden.cfg.core.repository.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CfgEnvExample {
+public class CfgUserHoldExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public CfgEnvExample() {
+    public CfgUserHoldExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -104,273 +104,193 @@ public class CfgEnvExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andEnvIdIsNull() {
-            addCriterion("env_id is null");
+        public Criteria andHoldIdIsNull() {
+            addCriterion("hold_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andEnvIdIsNotNull() {
-            addCriterion("env_id is not null");
+        public Criteria andHoldIdIsNotNull() {
+            addCriterion("hold_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEnvIdEqualTo(Integer value) {
-            addCriterion("env_id =", value, "envId");
+        public Criteria andHoldIdEqualTo(Integer value) {
+            addCriterion("hold_id =", value, "holdId");
             return (Criteria) this;
         }
 
-        public Criteria andEnvIdNotEqualTo(Integer value) {
-            addCriterion("env_id <>", value, "envId");
+        public Criteria andHoldIdNotEqualTo(Integer value) {
+            addCriterion("hold_id <>", value, "holdId");
             return (Criteria) this;
         }
 
-        public Criteria andEnvIdGreaterThan(Integer value) {
-            addCriterion("env_id >", value, "envId");
+        public Criteria andHoldIdGreaterThan(Integer value) {
+            addCriterion("hold_id >", value, "holdId");
             return (Criteria) this;
         }
 
-        public Criteria andEnvIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("env_id >=", value, "envId");
+        public Criteria andHoldIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("hold_id >=", value, "holdId");
             return (Criteria) this;
         }
 
-        public Criteria andEnvIdLessThan(Integer value) {
-            addCriterion("env_id <", value, "envId");
+        public Criteria andHoldIdLessThan(Integer value) {
+            addCriterion("hold_id <", value, "holdId");
             return (Criteria) this;
         }
 
-        public Criteria andEnvIdLessThanOrEqualTo(Integer value) {
-            addCriterion("env_id <=", value, "envId");
+        public Criteria andHoldIdLessThanOrEqualTo(Integer value) {
+            addCriterion("hold_id <=", value, "holdId");
             return (Criteria) this;
         }
 
-        public Criteria andEnvIdIn(List<Integer> values) {
-            addCriterion("env_id in", values, "envId");
+        public Criteria andHoldIdIn(List<Integer> values) {
+            addCriterion("hold_id in", values, "holdId");
             return (Criteria) this;
         }
 
-        public Criteria andEnvIdNotIn(List<Integer> values) {
-            addCriterion("env_id not in", values, "envId");
+        public Criteria andHoldIdNotIn(List<Integer> values) {
+            addCriterion("hold_id not in", values, "holdId");
             return (Criteria) this;
         }
 
-        public Criteria andEnvIdBetween(Integer value1, Integer value2) {
-            addCriterion("env_id between", value1, value2, "envId");
+        public Criteria andHoldIdBetween(Integer value1, Integer value2) {
+            addCriterion("hold_id between", value1, value2, "holdId");
             return (Criteria) this;
         }
 
-        public Criteria andEnvIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("env_id not between", value1, value2, "envId");
+        public Criteria andHoldIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("hold_id not between", value1, value2, "holdId");
             return (Criteria) this;
         }
 
-        public Criteria andEnvCodeIsNull() {
-            addCriterion("env_code is null");
+        public Criteria andUserCodeIsNull() {
+            addCriterion("user_code is null");
             return (Criteria) this;
         }
 
-        public Criteria andEnvCodeIsNotNull() {
-            addCriterion("env_code is not null");
+        public Criteria andUserCodeIsNotNull() {
+            addCriterion("user_code is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEnvCodeEqualTo(String value) {
-            addCriterion("env_code =", value, "envCode");
+        public Criteria andUserCodeEqualTo(String value) {
+            addCriterion("user_code =", value, "userCode");
             return (Criteria) this;
         }
 
-        public Criteria andEnvCodeNotEqualTo(String value) {
-            addCriterion("env_code <>", value, "envCode");
+        public Criteria andUserCodeNotEqualTo(String value) {
+            addCriterion("user_code <>", value, "userCode");
             return (Criteria) this;
         }
 
-        public Criteria andEnvCodeGreaterThan(String value) {
-            addCriterion("env_code >", value, "envCode");
+        public Criteria andUserCodeGreaterThan(String value) {
+            addCriterion("user_code >", value, "userCode");
             return (Criteria) this;
         }
 
-        public Criteria andEnvCodeGreaterThanOrEqualTo(String value) {
-            addCriterion("env_code >=", value, "envCode");
+        public Criteria andUserCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("user_code >=", value, "userCode");
             return (Criteria) this;
         }
 
-        public Criteria andEnvCodeLessThan(String value) {
-            addCriterion("env_code <", value, "envCode");
+        public Criteria andUserCodeLessThan(String value) {
+            addCriterion("user_code <", value, "userCode");
             return (Criteria) this;
         }
 
-        public Criteria andEnvCodeLessThanOrEqualTo(String value) {
-            addCriterion("env_code <=", value, "envCode");
+        public Criteria andUserCodeLessThanOrEqualTo(String value) {
+            addCriterion("user_code <=", value, "userCode");
             return (Criteria) this;
         }
 
-        public Criteria andEnvCodeLike(String value) {
-            addCriterion("env_code like", value, "envCode");
+        public Criteria andUserCodeLike(String value) {
+            addCriterion("user_code like", value, "userCode");
             return (Criteria) this;
         }
 
-        public Criteria andEnvCodeNotLike(String value) {
-            addCriterion("env_code not like", value, "envCode");
+        public Criteria andUserCodeNotLike(String value) {
+            addCriterion("user_code not like", value, "userCode");
             return (Criteria) this;
         }
 
-        public Criteria andEnvCodeIn(List<String> values) {
-            addCriterion("env_code in", values, "envCode");
+        public Criteria andUserCodeIn(List<String> values) {
+            addCriterion("user_code in", values, "userCode");
             return (Criteria) this;
         }
 
-        public Criteria andEnvCodeNotIn(List<String> values) {
-            addCriterion("env_code not in", values, "envCode");
+        public Criteria andUserCodeNotIn(List<String> values) {
+            addCriterion("user_code not in", values, "userCode");
             return (Criteria) this;
         }
 
-        public Criteria andEnvCodeBetween(String value1, String value2) {
-            addCriterion("env_code between", value1, value2, "envCode");
+        public Criteria andUserCodeBetween(String value1, String value2) {
+            addCriterion("user_code between", value1, value2, "userCode");
             return (Criteria) this;
         }
 
-        public Criteria andEnvCodeNotBetween(String value1, String value2) {
-            addCriterion("env_code not between", value1, value2, "envCode");
+        public Criteria andUserCodeNotBetween(String value1, String value2) {
+            addCriterion("user_code not between", value1, value2, "userCode");
             return (Criteria) this;
         }
 
-        public Criteria andEnvNameIsNull() {
-            addCriterion("env_name is null");
+        public Criteria andDocIdIsNull() {
+            addCriterion("doc_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andEnvNameIsNotNull() {
-            addCriterion("env_name is not null");
+        public Criteria andDocIdIsNotNull() {
+            addCriterion("doc_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEnvNameEqualTo(String value) {
-            addCriterion("env_name =", value, "envName");
+        public Criteria andDocIdEqualTo(Integer value) {
+            addCriterion("doc_id =", value, "docId");
             return (Criteria) this;
         }
 
-        public Criteria andEnvNameNotEqualTo(String value) {
-            addCriterion("env_name <>", value, "envName");
+        public Criteria andDocIdNotEqualTo(Integer value) {
+            addCriterion("doc_id <>", value, "docId");
             return (Criteria) this;
         }
 
-        public Criteria andEnvNameGreaterThan(String value) {
-            addCriterion("env_name >", value, "envName");
+        public Criteria andDocIdGreaterThan(Integer value) {
+            addCriterion("doc_id >", value, "docId");
             return (Criteria) this;
         }
 
-        public Criteria andEnvNameGreaterThanOrEqualTo(String value) {
-            addCriterion("env_name >=", value, "envName");
+        public Criteria andDocIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("doc_id >=", value, "docId");
             return (Criteria) this;
         }
 
-        public Criteria andEnvNameLessThan(String value) {
-            addCriterion("env_name <", value, "envName");
+        public Criteria andDocIdLessThan(Integer value) {
+            addCriterion("doc_id <", value, "docId");
             return (Criteria) this;
         }
 
-        public Criteria andEnvNameLessThanOrEqualTo(String value) {
-            addCriterion("env_name <=", value, "envName");
+        public Criteria andDocIdLessThanOrEqualTo(Integer value) {
+            addCriterion("doc_id <=", value, "docId");
             return (Criteria) this;
         }
 
-        public Criteria andEnvNameLike(String value) {
-            addCriterion("env_name like", value, "envName");
+        public Criteria andDocIdIn(List<Integer> values) {
+            addCriterion("doc_id in", values, "docId");
             return (Criteria) this;
         }
 
-        public Criteria andEnvNameNotLike(String value) {
-            addCriterion("env_name not like", value, "envName");
+        public Criteria andDocIdNotIn(List<Integer> values) {
+            addCriterion("doc_id not in", values, "docId");
             return (Criteria) this;
         }
 
-        public Criteria andEnvNameIn(List<String> values) {
-            addCriterion("env_name in", values, "envName");
+        public Criteria andDocIdBetween(Integer value1, Integer value2) {
+            addCriterion("doc_id between", value1, value2, "docId");
             return (Criteria) this;
         }
 
-        public Criteria andEnvNameNotIn(List<String> values) {
-            addCriterion("env_name not in", values, "envName");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnvNameBetween(String value1, String value2) {
-            addCriterion("env_name between", value1, value2, "envName");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnvNameNotBetween(String value1, String value2) {
-            addCriterion("env_name not between", value1, value2, "envName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommentIsNull() {
-            addCriterion("comment is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommentIsNotNull() {
-            addCriterion("comment is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommentEqualTo(String value) {
-            addCriterion("comment =", value, "comment");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommentNotEqualTo(String value) {
-            addCriterion("comment <>", value, "comment");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommentGreaterThan(String value) {
-            addCriterion("comment >", value, "comment");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommentGreaterThanOrEqualTo(String value) {
-            addCriterion("comment >=", value, "comment");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommentLessThan(String value) {
-            addCriterion("comment <", value, "comment");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommentLessThanOrEqualTo(String value) {
-            addCriterion("comment <=", value, "comment");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommentLike(String value) {
-            addCriterion("comment like", value, "comment");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommentNotLike(String value) {
-            addCriterion("comment not like", value, "comment");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommentIn(List<String> values) {
-            addCriterion("comment in", values, "comment");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommentNotIn(List<String> values) {
-            addCriterion("comment not in", values, "comment");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommentBetween(String value1, String value2) {
-            addCriterion("comment between", value1, value2, "comment");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommentNotBetween(String value1, String value2) {
-            addCriterion("comment not between", value1, value2, "comment");
+        public Criteria andDocIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("doc_id not between", value1, value2, "docId");
             return (Criteria) this;
         }
 

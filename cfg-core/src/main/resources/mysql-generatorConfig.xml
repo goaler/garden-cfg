@@ -20,11 +20,11 @@
 			targetProject="cfg-core/src/main/java" />
 
 		<!-- mapper对应xml位置 -->
-		<sqlMapGenerator targetPackage="org.garden.cfg.core.repository"
+		<sqlMapGenerator targetPackage="org.garden.cfg.core.repository.mapper"
 			targetProject="cfg-core/src/main/resources" />
 
 		<!-- mapper位置 -->
-		<javaClientGenerator targetPackage="org.garden.cfg.core.repository"
+		<javaClientGenerator targetPackage="org.garden.cfg.core.repository.mapper"
 			targetProject="cfg-core/src/main/java" type="XMLMAPPER" />
 		
 
@@ -50,6 +50,14 @@
 		
 		<table schema="garden_cfg" tableName="cfg_item">
 			<generatedKey column="item_id" sqlStatement="MySql" identity="true" />
+		</table>
+		
+		<table schema="garden_cfg" tableName="cfg_user">
+			<generatedKey column="user_id" sqlStatement="MySql" identity="true" />
+		</table>
+		
+		<table schema="garden_cfg" tableName="cfg_user_hold">
+			<generatedKey column="hold_id" sqlStatement="MySql" identity="true" />
 		</table>
 
 	</context>

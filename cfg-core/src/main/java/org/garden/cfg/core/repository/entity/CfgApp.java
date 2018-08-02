@@ -3,6 +3,8 @@ package org.garden.cfg.core.repository.entity;
 public class CfgApp {
     private Integer appId;
 
+    private String appCode;
+
     private String appName;
 
     private String comment;
@@ -15,6 +17,14 @@ public class CfgApp {
 
     public void setAppId(Integer appId) {
         this.appId = appId;
+    }
+
+    public String getAppCode() {
+        return appCode;
+    }
+
+    public void setAppCode(String appCode) {
+        this.appCode = appCode;
     }
 
     public String getAppName() {

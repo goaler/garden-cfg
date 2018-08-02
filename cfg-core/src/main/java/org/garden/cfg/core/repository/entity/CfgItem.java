@@ -13,7 +13,7 @@ public class CfgItem {
 
     private Integer position;
 
-    private Byte type;
+    private Integer type;
 
     private Integer status;
 
@@ -65,11 +65,11 @@ public class CfgItem {
         this.position = position;
     }
 
-    public Byte getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(Byte type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 

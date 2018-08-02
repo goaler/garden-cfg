@@ -3,6 +3,8 @@ package org.garden.cfg.core.repository.entity;
 public class CfgEnv {
     private Integer envId;
 
+    private String envCode;
+
     private String envName;
 
     private String comment;
@@ -15,6 +17,14 @@ public class CfgEnv {
 
     public void setEnvId(Integer envId) {
         this.envId = envId;
+    }
+
+    public String getEnvCode() {
+        return envCode;
+    }
+
+    public void setEnvCode(String envCode) {
+        this.envCode = envCode;
     }
 
     public String getEnvName() {

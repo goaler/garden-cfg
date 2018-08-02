@@ -3,11 +3,11 @@ package org.garden.cfg.core.repository.entity;
 public class CfgDoc {
     private Integer docId;
 
-    private Integer appId;
+    private String appCode;
 
-    private Integer envId;
+    private String envCode;
 
-    private Integer clusterId;
+    private String clusterCode;
 
     private Integer groupId;
 
@@ -23,28 +23,28 @@ public class CfgDoc {
         this.docId = docId;
     }
 
-    public Integer getAppId() {
-        return appId;
+    public String getAppCode() {
+        return appCode;
     }
 
-    public void setAppId(Integer appId) {
-        this.appId = appId;
+    public void setAppCode(String appCode) {
+        this.appCode = appCode;
     }
 
-    public Integer getEnvId() {
-        return envId;
+    public String getEnvCode() {
+        return envCode;
     }
 
-    public void setEnvId(Integer envId) {
-        this.envId = envId;
+    public void setEnvCode(String envCode) {
+        this.envCode = envCode;
     }
 
-    public Integer getClusterId() {
-        return clusterId;
+    public String getClusterCode() {
+        return clusterCode;
     }
 
-    public void setClusterId(Integer clusterId) {
-        this.clusterId = clusterId;
+    public void setClusterCode(String clusterCode) {
+        this.clusterCode = clusterCode;
     }
 
     public Integer getGroupId() {

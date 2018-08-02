@@ -1,12 +1,12 @@
 # 数据库配置
 spring.datasource:
-    url: jdbc:mysql://localhost:3306/test?useUnicode=yes&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/garden_cfg?useUnicode=yes&characterEncoding=UTF-8
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
 
 # mybatis.config= classpath:mybatis-config.xml
-# mybatis.mapperLocations: classpath:mappers/*.xml
+mybatis.mapperLocations: classpath:org/garden/cfg/core/repository/mapper/*.xml
 
 spring:
   mvc:

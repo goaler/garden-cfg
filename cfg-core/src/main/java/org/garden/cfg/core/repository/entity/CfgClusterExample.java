@@ -164,6 +164,76 @@ public class CfgClusterExample {
             return (Criteria) this;
         }
 
+        public Criteria andClusterCodeIsNull() {
+            addCriterion("cluster_code is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andClusterCodeIsNotNull() {
+            addCriterion("cluster_code is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andClusterCodeEqualTo(String value) {
+            addCriterion("cluster_code =", value, "clusterCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andClusterCodeNotEqualTo(String value) {
+            addCriterion("cluster_code <>", value, "clusterCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andClusterCodeGreaterThan(String value) {
+            addCriterion("cluster_code >", value, "clusterCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andClusterCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("cluster_code >=", value, "clusterCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andClusterCodeLessThan(String value) {
+            addCriterion("cluster_code <", value, "clusterCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andClusterCodeLessThanOrEqualTo(String value) {
+            addCriterion("cluster_code <=", value, "clusterCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andClusterCodeLike(String value) {
+            addCriterion("cluster_code like", value, "clusterCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andClusterCodeNotLike(String value) {
+            addCriterion("cluster_code not like", value, "clusterCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andClusterCodeIn(List<String> values) {
+            addCriterion("cluster_code in", values, "clusterCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andClusterCodeNotIn(List<String> values) {
+            addCriterion("cluster_code not in", values, "clusterCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andClusterCodeBetween(String value1, String value2) {
+            addCriterion("cluster_code between", value1, value2, "clusterCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andClusterCodeNotBetween(String value1, String value2) {
+            addCriterion("cluster_code not between", value1, value2, "clusterCode");
+            return (Criteria) this;
+        }
+
         public Criteria andClusterNameIsNull() {
             addCriterion("cluster_name is null");
             return (Criteria) this;

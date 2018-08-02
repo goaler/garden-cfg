@@ -3,6 +3,8 @@ package org.garden.cfg.core.repository.entity;
 public class CfgCluster {
     private Integer clusterId;
 
+    private String clusterCode;
+
     private String clusterName;
 
     private String comment;
@@ -15,6 +17,14 @@ public class CfgCluster {
 
     public void setClusterId(Integer clusterId) {
         this.clusterId = clusterId;
+    }
+
+    public String getClusterCode() {
+        return clusterCode;
+    }
+
+    public void setClusterCode(String clusterCode) {
+        this.clusterCode = clusterCode;
     }
 
     public String getClusterName() {
