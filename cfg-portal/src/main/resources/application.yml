@@ -1,6 +1,6 @@
 # 数据库配置
 spring.datasource:
-    url: jdbc:mysql://localhost:3306/garden_cfg?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/garden_cfg?serverTimezone=UTC&useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -12,4 +12,4 @@ spring:
   mvc:
     view:
       suffix: .html
-      prefix: /
+      prefix: /public
