@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80011
 File Encoding         : 65001
 
-Date: 2018-08-02 18:04:31
+Date: 2018-08-06 17:49:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,12 +27,14 @@ CREATE TABLE `cfg_app` (
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '状态:0-删除,1-正常',
   PRIMARY KEY (`app_id`),
   UNIQUE KEY `un_idx_app_code` (`app_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='应用';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='应用';
 
 -- ----------------------------
 -- Records of cfg_app
 -- ----------------------------
-INSERT INTO `cfg_app` VALUES ('0', 'all', 'all', '所有应用', '1');
+INSERT INTO `cfg_app` VALUES ('0', 'app_all', '所有应用', '所有应用', '1');
+INSERT INTO `cfg_app` VALUES ('1', 'test3', '测试应用', '测试应用', '1');
+INSERT INTO `cfg_app` VALUES ('2', 'test4', '测试应用2', null, '1');
 
 -- ----------------------------
 -- Table structure for cfg_cluster
@@ -46,12 +48,13 @@ CREATE TABLE `cfg_cluster` (
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '状态:0-删除,1-正常',
   PRIMARY KEY (`cluster_id`),
   UNIQUE KEY `un_idx_cluster_code` (`cluster_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='集群';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='集群';
 
 -- ----------------------------
 -- Records of cfg_cluster
 -- ----------------------------
-INSERT INTO `cfg_cluster` VALUES ('0', 'all', 'all', '所有集群', '1');
+INSERT INTO `cfg_cluster` VALUES ('0', 'cluster_all', '所有', null, '1');
+INSERT INTO `cfg_cluster` VALUES ('1', 'dev', '开发集群', '开发集群', '1');
 
 -- ----------------------------
 -- Table structure for cfg_doc
@@ -67,12 +70,13 @@ CREATE TABLE `cfg_doc` (
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '状态:0-删除,1-正常',
   PRIMARY KEY (`doc_id`),
   KEY `foreign_app_code` (`app_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='配置文档';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='配置文档';
 
 -- ----------------------------
 -- Records of cfg_doc
 -- ----------------------------
-INSERT INTO `cfg_doc` VALUES ('1', 'all', 'all', 'all', null, null, '1');
+INSERT INTO `cfg_doc` VALUES ('1', 'test', 'dev', 'dev', null, null, '1');
+INSERT INTO `cfg_doc` VALUES ('2', 'test2', 'dev', 'dev', null, null, '1');
 
 -- ----------------------------
 -- Table structure for cfg_env
@@ -91,8 +95,8 @@ CREATE TABLE `cfg_env` (
 -- ----------------------------
 -- Records of cfg_env
 -- ----------------------------
-INSERT INTO `cfg_env` VALUES ('0', 'all', 'all', '全部环境', '1');
-INSERT INTO `cfg_env` VALUES ('1', 'default', 'default', '默认', '1');
+INSERT INTO `cfg_env` VALUES ('0', 'env_all', 'all', '全部环境', '1');
+INSERT INTO `cfg_env` VALUES ('1', 'dev', '开发环境', '开发环境', '1');
 
 -- ----------------------------
 -- Table structure for cfg_group
@@ -162,4 +166,4 @@ CREATE TABLE `cfg_user_hold` (
 -- ----------------------------
 -- Records of cfg_user_hold
 -- ----------------------------
-INSERT INTO `cfg_user_hold` VALUES ('0', 'admin', '0', '1');
+INSERT INTO `cfg_user_hold` VALUES ('0', 'admin', '1', '1');
