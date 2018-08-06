@@ -41,7 +41,8 @@ public class ManagerController {
 	}
 	
 	@GetMapping("owns")
-	public List<AppInfo> getOwnAppList(){
+	public List<AppInfo> getOwnAppList(String userCode){
+		System.out.println(userCode);
 		List<AppInfo> list = new ArrayList<>();
 		managerService.getOwnAppList();
 		return list;

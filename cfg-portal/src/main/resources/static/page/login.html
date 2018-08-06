@@ -4,9 +4,8 @@
 <head>
   <meta charset="utf-8">
   <title>登录CFG配置中心</title>
-  <script src="./js/common/app.js"></script>
-  <script src="./js/vue/vue.js"></script>
-  <script src="./js/vue/axios.min.js"></script>
+  <script src="../js/vue/vue.js"></script>
+  <script src="../js/vue/axios.min.js"></script>
 </head>
 
 <body>
@@ -38,7 +37,7 @@
             .post('/cfg/login',this.$data)
             .then(resp => {
               if (resp.data == true) {
-                window.location.href = "homePage.html"
+                window.location.href = "/page/homePage.html"
               } else {
                 this.tips = "账号或密码错误！"
               }

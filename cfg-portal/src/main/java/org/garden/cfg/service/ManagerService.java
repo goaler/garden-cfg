@@ -26,7 +26,6 @@ public class ManagerService {
 	}
 
 	public void getOwnAppList() {
-		// TODO Auto-generated method stub
 		
 	}
 
