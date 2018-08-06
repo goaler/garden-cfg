@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CFG配置中心</title>
+    <script src="./js/common/app.js"></script>
+    <script src="./js/vue/vue.js"></script>
+    <script src="./js/vue/axios.min.js"></script>
+
+    <style>
+        .clearfix {
+            zoom: 1;
+        }
+
+        .clearfix:after {
+            display: block;
+            content: '';
+            clear: both;
+            height: 0;
+            visibility: hidden;
+        }
+
+        .header,
+        .footer {
+            height: 50px;
+            background: #0094ff;
+            text-align: center;
+        }
+
+        .content {
+            margin: 0 auto;
+            width: 1000px;
+            background: #000000;
+        }
+
+        .side {
+            float: left;
+            height: 500px;
+            width: 280px;
+            background: #ff006e;
+        }
+
+        .main {
+            float: right;
+            height: 500px;
+            width: 700px;
+            background: #fbcfcf;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="header">
+        我是头部
+    </div>
+    <div class="content clearfix">
+        <div class="side">左侧</div>
+        <div class="main">
+            右侧
+        </div>
+    </div>
+    <div class="footer">
+        我是底部
+    </div>
+</body>
+
+</html>
