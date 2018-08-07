@@ -2,6 +2,8 @@ package org.garden.cfg.service;
 
 import java.util.List;
 
+import org.garden.cfg.core.repository.CfgDao;
+import org.garden.cfg.core.repository.entity.CfgApp;
 import org.garden.cfg.core.repository.entity.CfgUser;
 import org.garden.cfg.core.repository.entity.CfgUserExample;
 import org.garden.cfg.core.repository.mapper.CfgUserMapper;
@@ -14,6 +16,9 @@ public class ManagerService {
 
 	@Autowired
 	private CfgUserMapper cfgUserMapper;
+	
+	@Autowired
+	private CfgDao cfgDao;
 
 	public boolean login(String userCode, String password) {
 		CfgUserExample example = new CfgUserExample();
@@ -25,8 +30,9 @@ public class ManagerService {
 		return true;
 	}
 
-	public void getOwnAppList() {
-		
+	public List<CfgApp> getOwnAppList(String userCode) {
+		List<CfgApp> apps = cfgDao.getApps(userCode);
+		return apps;
 	}
 
 }

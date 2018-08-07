@@ -40,6 +40,9 @@ body {
 </head>
 
 <body>
+
+	<div></div>
+	
 	<section id="own-apps" style="" class="item-table">
 		<aside class="item-title">
 			<h3>我的项目</h3>
@@ -55,16 +58,7 @@ body {
 		new Vue({
 			el: '#own-apps',
 			data: {
-				appList: [
-					{
-						name: "qwe",
-						code: "ewq"
-					},
-					{
-						name: "qwe",
-						code: "ewq"
-					}
-				]
+				appList: []
 			},
 			mounted:function() {
 				this.loadAppList()

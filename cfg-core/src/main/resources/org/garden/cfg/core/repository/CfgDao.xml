@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.garden.cfg.core.repository.CfgDao">
+
+	<select id="getDocs" resultMap="org.garden.cfg.core.repository.mapper.CfgDocMapper.BaseResultMap">
+		SELECT
+			d.*
+		FROM
+			cfg_user_hold uh
+		LEFT JOIN cfg_doc d ON uh.doc_id = d.doc_id
+		WHERE
+			uh.`status` = 1
+		AND d.`status` = 1
+		<if test="userCode != null">
+			AND uh.user_code = #{userCode}
+		</if>
+	</select>
+	
+	<select id="getApps" resultMap="org.garden.cfg.core.repository.mapper.CfgAppMapper.BaseResultMap">
+		SELECT
+			a.*
+		FROM
+			cfg_user_hold uh
+		LEFT JOIN cfg_doc d ON uh.doc_id = d.doc_id
+		LEFT JOIN cfg_app a ON a.app_code = d.app_code
+		WHERE
+			uh.`status` = 1
+		AND d.`status` = 1
+		AND a.`status` = 1
+		<if test="userCode != null">
+			AND uh.user_code = #{userCode}
+		</if>
+		GROUP BY
+			a.app_code
+	</select>
+
+</mapper>

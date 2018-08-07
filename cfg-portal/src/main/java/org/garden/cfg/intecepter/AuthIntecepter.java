@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.garden.cfg.constant.CfgSysConstant;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class AuthIntecepter extends HandlerInterceptorAdapter {
@@ -13,7 +14,7 @@ public class AuthIntecepter extends HandlerInterceptorAdapter {
 			throws Exception {
 		Object userCode = request.getSession().getAttribute(CfgSysConstant.user_code_key);
 		if (userCode == null) {
-			//登录页
+		    response.sendRedirect("/page/login.html");
 			return false;
 		}
 		request.setAttribute(CfgSysConstant.user_code_key, userCode);

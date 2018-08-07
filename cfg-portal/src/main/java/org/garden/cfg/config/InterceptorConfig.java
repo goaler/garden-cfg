@@ -15,9 +15,11 @@ public class InterceptorConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		List<String> patterns = new ArrayList<>();
 		patterns.add("/img/**");
-		patterns.add("/page/**");
 		patterns.add("/js/**");
+		patterns.add("/page/**");
+		patterns.add("/page/login.html");
 		patterns.add("/cfg/login");
+		patterns.add("/cfg/logout");
 		registry.addInterceptor(new AuthIntecepter()).excludePathPatterns(patterns);
 		WebMvcConfigurer.super.addInterceptors(registry);
 	}
