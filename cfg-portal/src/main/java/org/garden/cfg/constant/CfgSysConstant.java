@@ -8,6 +8,16 @@ public class CfgSysConstant {
 	public static final String user_code_key  = "userCode";
 	
 	/**
+	 * request请求头中表示请求来源
+	 */
+	public static final String req_source_key = "req-source";
+	
+	/**
+	 * request请求头中表示请求来自axios
+	 */
+	public static final String req_source_axios = "axios";
+	
+	/**
 	 * 代表所有应用的应用编号（app_code）
 	 */
 	public static final String app_all = "app_all";
