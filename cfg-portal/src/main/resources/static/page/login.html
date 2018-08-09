@@ -6,22 +6,56 @@
   <title>登录CFG配置中心</title>
   <script src="../js/vue/vue.js"></script>
   <script src="../js/vue/axios.js"></script>
-  <script src="../js/common/app.js"></script>
+  <script src="../js/app.js"></script>
+  
+  <link rel="stylesheet" type="text/css" href="../css/common-style.css">
+
+  <style>
+    .loginPanel {
+      margin: auto;
+      width: 400px;
+      height: 350px;
+      text-align: center;
+      border: solid 1px #ddd;
+      border-radius : 25px;
+    }
+
+    .loginPanel div {
+      padding: 10px 20px 10px 20px;
+    }
+
+    .loginPanel input {
+      font-size: 20px;
+      height: auto;
+      width: 100%;
+    }
+
+    .btn-login {
+      font-weight: bold;
+      background-color: #E8E9EC;
+      color: #2D3B55;
+      padding: 6px 12px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
-  <div id='login'>
+  <div style="height: 100px;"></div>
+  <div id='login' class="loginPanel">
+    <div style="height:60px">
+      <h1>cfg配置中心</h1>
+    </div>
     <div>
       <input v-model="userCode" placeholder="用户名" type="text" />
     </div>
     <div>
       <input v-model="password" placeholder="密码" type="password" />
     </div>
-    <div style="color:red">
-      {{tips}}
-    </div>
+    <div style="color: red">{{tips}}</div>
     <div>
-      <input type="button" value="登录" v-on:click="login()" />
+      <input type="button" value="登    录" v-on:click="login()" class="btn-login" />
     </div>
   </div>
   <script>
@@ -35,7 +69,7 @@
       methods: {
         login: function () {
           axios
-            .post('/cfg/login',this.$data)
+            .post('/cfg/login', this.$data)
             .then(resp => {
               if (resp.data == true) {
                 window.location.href = "/page/homePage.html"
