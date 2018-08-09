@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import junit.framework.Test;
-
 @RestController
 @RequestMapping("cfg")
 public class ManagerController {
@@ -31,12 +29,6 @@ public class ManagerController {
 	@Autowired
 	private HttpServletRequest request;
 	
-	@GetMapping("test")
-	public String test() {
-		String str = null;
-		return str.toString();
-	}
-
 	@PostMapping("login")
 	public boolean login(@RequestBody LoginReq req) {
 		if (StringUtils.isEmpty(req.getUserCode()) || StringUtils.isEmpty(req.getPassword())) {
