@@ -41,6 +41,10 @@
       border: none;
       cursor: pointer;
     }
+    
+    .btn:hover {
+    	background-color: #608ebe;
+	}
   </style>
 </head>
 
@@ -58,11 +62,11 @@
     </div>
     <div style="color: red">{{tips}}</div>
     <div>
-      <input type="button" value="登    录" v-on:click="login()" class="btn-login" />
+      <input type="button" value="登    录" v-on:click="login()" class="btn btn-login" />
     </div>
   </div>
   <script>
-    var login = new Vue({
+    new Vue({
       el: '#login',
       data: {
         userCode: "",

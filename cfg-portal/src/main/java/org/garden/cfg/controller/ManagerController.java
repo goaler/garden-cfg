@@ -1,20 +1,14 @@
 package org.garden.cfg.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.garden.cfg.constant.CfgSysConstant;
-import org.garden.cfg.controller.obj.AppInfo;
 import org.garden.cfg.controller.obj.LoginReq;
-import org.garden.cfg.core.repository.entity.CfgApp;
 import org.garden.cfg.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,17 +42,4 @@ public class ManagerController {
 		return true;
 	}
 	
-	@GetMapping("owns")
-	public List<AppInfo> getOwnAppList(@RequestAttribute String userCode){
-		List<AppInfo> list = new ArrayList<>();
-		List<CfgApp> apps = managerService.getOwnAppList(userCode);
-		for(CfgApp app:apps) {
-			AppInfo info = new AppInfo();
-			info.setName(app.getAppName());
-			info.setCode(app.getAppCode());
-			list.add(info);
-		}
-		return list;
-	}
-
 }

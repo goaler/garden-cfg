@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>CFG配置中心</title>
+
+<script src="../js/vue/vue.js"></script>
+<script src="../js/vue/axios.js"></script>
+<script src="../js/app.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/common-style.css">
+<style>
+	.app-info-panel{
+		border: solid 1px rgb(168, 157, 157);
+		width: 20%;
+		float: left;
+	}
+	
+	.app-config-panel{
+		border: solid 1px rgb(168, 157, 157);
+		width: 79%;
+		float: left;
+	}
+	
+	.app-info{
+		margin:10px;
+		padding:5px;
+		background-color: rgb(187, 244, 248);
+	}
+	
+	.app-info div {
+		font-size: 15px;
+		overflow:hidden; 
+		text-overflow:ellipsis;
+	}
+	
+	.item-title{
+		font-weight: bold;
+		font-size: 18px;
+	}
+	
+</style>
+</head>
+
+<body>
+	<div>
+		<div class="app-info-panel">
+			<div id="app-info" class="app-info">
+				<span class="item-title">项目信息</span>
+				<div v-bind:title="app.name">项目名称：{{app.name}}</div>
+				<div v-bind:title="app.code">项目编号：{{app.code}}</div>
+				<div v-bind:title="app.comment">项目描述：{{app.comment}}</div>
+			</div>
+		</div>
+		<div class="app-config-panel">
+			<h4>配置管理</h4>
+			<table></table>
+		</div>
+	</div>
+	<script>
+		new Vue({
+			el:'#app-info',
+			data: {
+				app: {
+					name: '',
+					code: '',
+					comment: ''
+				}
+			},
+			mounted:function() {
+				this.initPage()
+				this.fetchAppInfo()
+			},
+			methods: {
+				initPage: function () {
+					document.title += "-"+getUrlKey("appCode")
+				},
+				fetchAppInfo(){
+					axios
+					.get('/app/info'+window.location.search)
+					.then(resp => {
+						if (resp.data) {
+							this.app = resp.data
+						}
+					})
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>

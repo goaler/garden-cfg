@@ -11,5 +11,5 @@ public interface CfgDao {
 	public List<CfgDoc> getDocs(@Param("userCode") String userCode);
 	
 	public List<CfgApp> getApps(@Param("userCode") String userCode);
-	
+
 }

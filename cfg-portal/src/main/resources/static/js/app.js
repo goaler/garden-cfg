@@ -8,6 +8,10 @@ function getToken(){
     localStorage.getItem(tokenKey);
 }
 
+function getUrlKey(name) {
+    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.href) || [, ""])[1].replace(/\+/g, '%20')) || null
+}
+
 axios.interceptors.request.use(function (config) {
 	config.headers["req-source"] = "axios"
     return config;

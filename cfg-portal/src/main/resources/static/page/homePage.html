@@ -35,7 +35,13 @@
 	border-radius : 25px;
 	margin: 10px;
 	float: left;
+	cursor: pointer;
 }
+
+.item-default:hover {
+	background-color: #608ebe;
+}
+
 </style>
 
 </head>
@@ -49,7 +55,7 @@
 			<h3>我的项目</h3>
 		</aside>
 		<aside>
-			<div v-for="app in appList" class="item-default">
+			<div v-for="app in appList" class="item-default" v-on:click="visitAppDetail(app.code)">
 				<h4 style="margin-bottom: 0;">{{app.name}}</h4>
 				<h6 style="margin-top: 0;">{{app.code}}</h6>
 			</div>
@@ -67,12 +73,15 @@
 			methods: {
 				loadAppList: function () {
 					axios
-						.get('/cfg/owns')
+						.get('/app/list')
 						.then(resp => {
 							if (resp.data) {
 								this.appList = resp.data
 							}
 						})
+				},
+				visitAppDetail: function (appCode) {
+					window.open("/page/appDetail.html?appCode="+appCode)
 				}
 			}
 		})
