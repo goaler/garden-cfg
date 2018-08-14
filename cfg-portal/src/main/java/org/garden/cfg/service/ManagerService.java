@@ -2,15 +2,17 @@ package org.garden.cfg.service;
 
 import java.text.MessageFormat;
 import java.util.List;
-import java.util.logging.Formatter;
 
 import org.garden.cfg.core.exception.DataException;
 import org.garden.cfg.core.repository.CfgDao;
 import org.garden.cfg.core.repository.entity.CfgApp;
 import org.garden.cfg.core.repository.entity.CfgAppExample;
+import org.garden.cfg.core.repository.entity.CfgEnv;
+import org.garden.cfg.core.repository.entity.CfgEnvExample;
 import org.garden.cfg.core.repository.entity.CfgUser;
 import org.garden.cfg.core.repository.entity.CfgUserExample;
 import org.garden.cfg.core.repository.mapper.CfgAppMapper;
+import org.garden.cfg.core.repository.mapper.CfgEnvMapper;
 import org.garden.cfg.core.repository.mapper.CfgUserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +30,9 @@ public class ManagerService {
 	
 	@Autowired
 	private CfgAppMapper cfgAppMapper;
+	
+	@Autowired
+	private CfgEnvMapper cfgEnvMapper;
 	
 	@Autowired
 	private CfgDao cfgDao;
@@ -57,6 +62,13 @@ public class ManagerService {
 			throw new DataException(msg);
 		}
 		return apps.get(0);
+	}
+
+	public List<CfgEnv> findEnvs() {
+		CfgEnvExample example = new CfgEnvExample();
+		example.createCriteria().andStatusEqualTo(1);
+		List<CfgEnv> envs = cfgEnvMapper.selectByExample(example);
+		return envs;
 	}
 
 }

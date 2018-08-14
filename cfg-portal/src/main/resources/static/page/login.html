@@ -2,70 +2,71 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <title>登录CFG配置中心</title>
-  <script src="../js/vue/vue.js"></script>
-  <script src="../js/vue/axios.js"></script>
-  <script src="../js/app.js"></script>
-  
-  <link rel="stylesheet" type="text/css" href="../css/common-style.css">
+<meta charset="utf-8">
+<title>登录CFG配置中心</title>
 
-  <style>
-    .loginPanel {
-      margin: auto;
-      width: 400px;
-      height: 350px;
-      text-align: center;
-      border: solid 1px rgb(168, 157, 157);
-      border-radius : 25px;
-    }
+<link rel="stylesheet" type="text/css" href="../css/common-style.css">
 
-    .loginPanel div {
-      padding: 10px 20px 10px 20px;
-    }
+<style>
+.loginPanel {
+	margin: auto;
+	width: 400px;
+	height: 350px;
+	text-align: center;
+	border: solid 1px rgb(168, 157, 157);
+	border-radius: 25px;
+}
 
-    .loginPanel input {
-      padding-left: 10px;
-      padding-right: 10px;
-      font-size: 20px;
-      height: auto;
-      width: 90%;
-      border-radius : 10px;
-    }
+.loginPanel div {
+	padding: 10px 20px 10px 20px;
+}
 
-    .btn-login {
-      font-weight: bold;
-      background-color: rgb(195, 195, 197);
-      color: #2D3B55;
-      padding: 6px 12px;
-      border: none;
-      cursor: pointer;
-    }
-    
-    .btn:hover {
-    	background-color: #608ebe;
-	}
-  </style>
+.loginPanel input {
+	padding-left: 10px;
+	padding-right: 10px;
+	font-size: 20px;
+	height: auto;
+	width: 90%;
+	border-radius: 10px;
+}
+
+.btn-login {
+	font-weight: bold;
+	background-color: rgb(195, 195, 197);
+	color: #2D3B55;
+	padding: 6px 12px;
+	border: none;
+	cursor: pointer;
+}
+
+.btn:hover {
+	background-color: #608ebe;
+}
+</style>
 </head>
 
 <body>
-  <div style="height: 100px;"></div>
-  <div id='login' class="loginPanel">
-    <div style="height:60px">
-      <h1>cfg配置中心</h1>
-    </div>
-    <div>
-      <input v-model="userCode" placeholder="用户名" type="text" />
-    </div>
-    <div>
-      <input v-model="password" placeholder="密码" type="password" />
-    </div>
-    <div style="color: red">{{tips}}</div>
-    <div>
-      <input type="button" value="登    录" v-on:click="login()" class="btn btn-login" />
-    </div>
-  </div>
-  <script>
+	<div style="height: 100px;"></div>
+	<div id='login' class="loginPanel">
+		<div style="height: 60px">
+			<h1>cfg配置中心</h1>
+		</div>
+		<div>
+			<input v-model="userCode" placeholder="用户名" type="text" />
+		</div>
+		<div>
+			<input v-model="password" placeholder="密码" type="password" />
+		</div>
+		<div style="color: red">{{tips}}</div>
+		<div>
+			<input type="button" value="登    录" v-on:click="login()"
+				class="btn btn-login" />
+		</div>
+	</div>
+	<script src="../js/vue.js"></script>
+	<script src="../js/axios.js"></script>
+	<script src="../js/app.js"></script>
+	<script>
     new Vue({
       el: '#login',
       data: {

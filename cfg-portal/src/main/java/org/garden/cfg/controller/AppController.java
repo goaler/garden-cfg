@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("app")
-public class AppConfigController {
+public class AppController {
 	
 	@Autowired
 	private ManagerService managerService;
