@@ -91,10 +91,10 @@
 			</ul>
 			<div>
 				<div v-show="editorType == 'text'">
-					<div id="text-editor" class="form-control" style="height: 600px">name = "some_name"</div>
+					<text-editor></text-editor>
 				</div>
 				<div v-show="editorType == 'other'">
-					<div >
+					<div>
 						<h1>我是另一个view</h1>
 					</div>
 				</div>
@@ -108,26 +108,30 @@
 	<script src="../js/ace.js"></script>
 	<script src="../js/mode-properties.js"></script>
 	<script src="../js/theme-iplastic.js"></script>
-
 	<script src="../js/app.js"></script>
+	<template id="template-editor">
+		<div>
+		<div id="editor" class="form-control" style="height: 400px">
+		</div>
+		<textarea style="height: 200px">{{content}}</textarea>
+		</div>
+	</template>
 	<script>
-		new Vue({
-			el: '#config',
-			data: {
-				editorType: "text"
-			}
-		})
-		new Vue({
-			el: '#text-editor',
-			data: {
-				editor: null
+		Vue.component('text-editor', {
+			data: function () {
+				return {
+					editor: null,
+					content : 'name = hb age = 18'
+				}
 			},
 			mounted: function () {
-				this.textEditorInit()
+				this.configTextEditor()
+				this.initEditorValue()
 			},
 			methods: {
-				textEditorInit:function(){
-					editor = ace.edit("text-editor")
+				configTextEditor: function () {
+					var vm = this
+					editor = ace.edit("editor")
 					editor.$blockScrolling = Infinity
 					editor.setFontSize(16)
 					editor.setTheme("ace/theme/iplastic")
@@ -137,9 +141,26 @@
 						enableSnippets: true,
 						enableLiveAutocompletion: true
 					})
+					editor.on('change',function () {
+						vm.content = editor.getValue();
+				        
+				    });
+				},
+				initEditorValue: function(){
+					editor.setValue(this.content)
 				}
+			},
+			template: '#template-editor'
+		})
+	</script>
+	<script>
+		new Vue({
+			el: '#config',
+			data: {
+				editorType: "text"
 			}
 		})
+
 		new Vue({
 			el: '#info',
 			data: {
