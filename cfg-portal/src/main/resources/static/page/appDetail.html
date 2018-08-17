@@ -98,17 +98,17 @@
 		</div>
 		<div id="config" class="config-panel" v-cloak>
 			<h4>配置管理</h4>
-			<transition name="custom-classes-transition" enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
 				<ul class="menu">
 					<li v-on:click="editorType='text'" class="menu-item">列表</li>
 					<li v-on:click="editorType='other'" class="menu-item">文本</li>
 				</ul>
-			</transition>
-			<transition name="custom-classes-transition" enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
 				<div style="height: 200px">
+				<transition name="custom-classes-transition" enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
 					<div v-show="editorType == 'text'">
 						<text-editor v-model="content"></text-editor>
 					</div>
+				</transition>
+				<transition name="custom-classes-transition" enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
 					<div v-show="editorType == 'other'">
 						<table>
 							<tr>
@@ -120,8 +120,8 @@
 							</tr>
 						</table>
 					</div>
+					</transition>
 				</div>
-			</transition>
 		</div>
 	</div>
 
