@@ -7,18 +7,18 @@
 	<script src="../js/vue.js"></script>
 
 	<link rel="stylesheet" href="../css/common-style.css">
+	<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
 
 	<style>
 		.info-panel {
 			/* border: solid 1px rgb(168, 157, 157); */
-			width: 15%;
-			float: left;
+			position: absolute;
+			width: 250px;
 		}
 
 		.config-panel {
 			/* border: solid 1px rgb(168, 157, 157); */
-			width: 79%;
-			float: left;
+			margin-left: 255px;
 		}
 
 		.info-item {
@@ -57,50 +57,71 @@
 		.menu-item:hover {
 			background-color: #608ebe;
 		}
+
+		[v-cloak] {
+			display: none;
+		}
 	</style>
 </head>
 
 <body>
 	<div>
-		<div id="info" class="info-panel">
-			<div class="info-item">
-				<div class="item-title">项目信息</div>
-				<div v-bind:title="app.name">项目名称：{{app.name}}</div>
-				<div v-bind:title="app.code">项目编号：{{app.code}}</div>
-				<div v-bind:title="app.comment">项目描述：{{app.comment}}</div>
-			</div>
-			<div class="info-item">
-				<div class="item-title">所属环境</div>
-				<select v-model="currentEnv">
-					<option v-for="env in envs" v-bind:value="env.envCode">{{ env.envName }}({{env.envCode}})</option>
-				</select>
-			</div>
-			<div class="info-item">
-				<div class="item-title">所属集群</div>
-				<select v-model="currentCluster">
-					<option v-for="cluster in clusters" v-bind:value="cluster.clusterCode">{{ cluster.clusterName }}({{cluster.clusterCode}})
-					</option>
-				</select>
-			</div>
-		</div>
-		<div id="config" class="config-panel">
-			<h4>配置管理</h4>
-			<ul class="menu">
-				<li v-on:click="editorType='text'" class="menu-item">列表</li>
-				<li v-on:click="editorType='other'" class="menu-item">文本</li>
-			</ul>
-			<div>
-				<div v-show="editorType == 'text'">
-					<text-editor></text-editor>
+		<h1>主页</h1>
+	</div>
+	<div>
+		<div id="info" class="info-panel" v-cloak>
+			<transition name="custom-classes-transition" enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
+				<div v-show="show" class="info-item">
+					<div class="item-title">项目信息</div>
+					<div v-bind:title="app.name">项目名称：{{app.name}}</div>
+					<div v-bind:title="app.code">项目编号：{{app.code}}</div>
+					<div v-bind:title="app.comment">项目描述：{{app.comment}}</div>
 				</div>
-				<div v-show="editorType == 'other'">
-					<div>
-						<h1>我是另一个view</h1>
+			</transition>
+			<transition name="custom-classes-transition" enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
+				<div v-show="show" class="info-item">
+					<div class="item-title">所属环境</div>
+					<select v-model="currentEnv">
+						<option v-for="env in envs" v-bind:value="env.envCode">{{ env.envName }}({{env.envCode}})</option>
+					</select>
+				</div>
+			</transition>
+			<transition name="custom-classes-transition" enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
+				<div v-show="show" class="info-item">
+					<div class="item-title">所属集群</div>
+					<select v-model="currentCluster">
+						<option v-for="cluster in clusters" v-bind:value="cluster.clusterCode">{{ cluster.clusterName }}({{cluster.clusterCode}})
+						</option>
+					</select>
+				</div>
+			</transition>
+		</div>
+		<div id="config" class="config-panel" v-cloak>
+			<h4>配置管理</h4>
+			<transition name="custom-classes-transition" enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
+				<ul class="menu">
+					<li v-on:click="editorType='text'" class="menu-item">列表</li>
+					<li v-on:click="editorType='other'" class="menu-item">文本</li>
+				</ul>
+			</transition>
+			<transition name="custom-classes-transition" enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
+				<div style="height: 200px">
+					<div v-show="editorType == 'text'">
+						<text-editor v-model="content"></text-editor>
+					</div>
+					<div v-show="editorType == 'other'">
+						<table>
+							<tr>
+								<th>状态</th>
+								<th>Key</th>
+								<th>Value</th>
+								<th>备注</th>
+								<th>操作</th>
+							</tr>
+						</table>
 					</div>
 				</div>
-			</div>
-
-
+			</transition>
 		</div>
 	</div>
 
@@ -110,23 +131,21 @@
 	<script src="../js/theme-iplastic.js"></script>
 	<script src="../js/app.js"></script>
 	<template id="template-editor">
-		<div>
 		<div id="editor" class="form-control" style="height: 400px">
-		</div>
-		<textarea style="height: 200px">{{content}}</textarea>
 		</div>
 	</template>
 	<script>
 		Vue.component('text-editor', {
+			props: {
+				value: null
+			},
 			data: function () {
 				return {
-					editor: null,
-					content : 'name = hb age = 18'
+					editor: null
 				}
 			},
 			mounted: function () {
 				this.configTextEditor()
-				this.initEditorValue()
 			},
 			methods: {
 				configTextEditor: function () {
@@ -141,13 +160,16 @@
 						enableSnippets: true,
 						enableLiveAutocompletion: true
 					})
-					editor.on('change',function () {
-						vm.content = editor.getValue();
-				        
-				    });
-				},
-				initEditorValue: function(){
-					editor.setValue(this.content)
+					editor.on('change', function () {
+						vm.$emit('input', editor.getValue());
+					});
+				}
+			},
+			watch: {
+				value: function (newVal, oldVal) {
+					if (newVal != editor.getValue()) {
+						editor.setValue(newVal, 1)
+					}
 				}
 			},
 			template: '#template-editor'
@@ -157,32 +179,30 @@
 		new Vue({
 			el: '#config',
 			data: {
-				editorType: "text"
+				editorType: "text",
+				content: "age = yy"
 			}
 		})
 
 		new Vue({
 			el: '#info',
 			data: {
+				show: false,
 				app: {
 					name: '',
 					code: '',
 					comment: ''
 				},
 				currentEnv: '',
-				envs: [
-					{
-						envCode: '',
-						envName: ''
-					}
-				],
+				envs: [{
+					envCode: '',
+					envName: ''
+				}],
 				currentCluster: '',
-				clusters: [
-					{
-						clusterCode: '',
-						clusterName: ''
-					}
-				]
+				clusters: [{
+					clusterCode: '',
+					clusterName: ''
+				}]
 			},
 			mounted: function () {
 				this.initPage()
@@ -193,6 +213,7 @@
 			methods: {
 				initPage: function () {
 					document.title += "-" + getUrlKey("appCode")
+					this.show = true
 				},
 				getAppInfo() {
 					axios
@@ -225,7 +246,6 @@
 				}
 			}
 		})
-
 	</script>
 </body>
 
