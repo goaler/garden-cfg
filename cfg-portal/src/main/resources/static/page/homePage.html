@@ -2,72 +2,69 @@
 <html>
 
 <head>
-<meta charset="utf-8">
-<title>CFG配置中心</title>
-<script src="../js/vue.js"></script>
-<script src="../js/axios.js"></script>
-<script src="../js/app.js"></script>
+	<meta charset="utf-8">
+	<title>CFG配置中心</title>
+	<script src="../js/vue.js"></script>
+	<script src="../js/axios.js"></script>
+	<script src="../js/app.js"></script>
 
-<link rel="stylesheet" type="text/css" href="../css/common-style.css">
+	<link rel="stylesheet" type="text/css" href="../css/common-style.css">
 
-<style>
-.item-table {
-	width: 100%;
-	display: table;
-}
+	<style>
+		.item-table {
+			width: 100%;
+			display: table;
+		}
 
-.item-title {
-	display: table-cell;
-	width: 20%;
-	text-align: center;
-	vertical-align: middle;
-	color: #fff;
-	background-color: #a9d96c;
-}
+		.item-title {
+			display: table-cell;
+			width: 20%;
+			text-align: center;
+			vertical-align: middle;
+			color: #fff;
+			background-color: #a9d96c;
+		}
 
-.item-default {
-	display: table-cell;
-	width: 20%;
-	text-align: center;
-	vertical-align: middle;
-	border: solid 1px rgb(168, 157, 157);
-	border-radius: 25px;
-	margin: 10px;
-	float: left;
-	cursor: pointer;
-}
+		.item-default {
+			display: table-cell;
+			width: 20%;
+			text-align: center;
+			vertical-align: middle;
+			border: solid 1px rgb(168, 157, 157);
+			border-radius: 25px;
+			margin: 10px;
+			float: left;
+			cursor: pointer;
+		}
 
-.item-default:hover {
-	background-color: #608ebe;
-}
-</style>
+		.item-default:hover {
+			background-color: #608ebe;
+		}
+	</style>
 
 </head>
 
 <body>
-
-	<div></div>
-
-	<section id="own-apps" style="" class="item-table">
+	<div id="body-panel">
+	<section id="own-apps" class="item-table">
 		<aside class="item-title">
 			<h3>我的项目</h3>
 		</aside>
 		<aside>
-			<div v-for="app in appList" class="item-default"
-				v-on:click="visitAppDetail(app.code)">
+			<div v-for="app in appList" class="item-default" v-on:click="visitAppDetail(app.code)">
 				<h4 style="margin-bottom: 0;">{{app.name}}</h4>
 				<h6 style="margin-top: 0;">{{app.code}}</h6>
 			</div>
 		</aside>
 	</section>
-	
+	</div>
 	<script>
 		new Vue({
 			el: '#own-apps',
 			data: {
 				appList: []
 			},
-			mounted:function() {
+			mounted: function () {
 				this.loadAppList()
 			},
 			methods: {
@@ -81,7 +78,7 @@
 						})
 				},
 				visitAppDetail: function (appCode) {
-					window.open("/page/appDetail.html?appCode="+appCode)
+					window.open("/page/appDetail.html?appCode=" + appCode)
 				}
 			}
 		})
