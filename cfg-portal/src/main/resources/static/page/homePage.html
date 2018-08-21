@@ -46,17 +46,17 @@
 
 <body>
 	<div id="body-panel">
-	<section id="own-apps" class="item-table">
-		<aside class="item-title">
-			<h3>我的项目</h3>
-		</aside>
-		<aside>
-			<div v-for="app in appList" class="item-default" v-on:click="visitAppDetail(app.code)">
-				<h4 style="margin-bottom: 0;">{{app.name}}</h4>
-				<h6 style="margin-top: 0;">{{app.code}}</h6>
-			</div>
-		</aside>
-	</section>
+		<section id="own-apps" class="item-table">
+			<aside class="item-title">
+				<h3>我的项目</h3>
+			</aside>
+			<aside>
+				<div v-for="app in appList" class="item-default" v-on:click="visitAppDetail(app.code)">
+					<h4 style="margin-bottom: 0;">{{app.name}}</h4>
+					<h6 style="margin-top: 0;">{{app.code}}</h6>
+				</div>
+			</aside>
+		</section>
 	</div>
 	<script>
 		new Vue({
@@ -72,9 +72,7 @@
 					axios
 						.get('/app/list')
 						.then(resp => {
-							if (resp.data) {
-								this.appList = resp.data
-							}
+							this.appList = resp.data
 						})
 				},
 				visitAppDetail: function (appCode) {

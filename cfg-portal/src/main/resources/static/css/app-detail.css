@@ -1,0 +1,83 @@
+.info-panel {
+	position: absolute;
+	width: 250px;
+}
+
+.config-panel {
+	margin-left: 255px;
+	min-width: 900px;
+}
+
+.info-item {
+	margin: 20px;
+	padding: 15px;
+	background-color: rgb(187, 244, 248);
+	border: solid 1px #ddd;
+}
+
+.info-item div {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.item-title {
+	font-weight: bold;
+	font-size: 18px;
+	padding-bottom: 10px;
+}
+
+/* tab选项卡 */
+
+.menu {
+	list-style: none;
+	padding: 0px 20px;
+	margin: 0px;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+}
+
+.menu-item {
+	display: inline-block;
+	cursor: pointer;
+	padding: 10px 35px;
+	margin: 0px 5px;
+}
+
+.menu-item-cur {
+	background: rgb(187, 244, 248);
+}
+
+.menu-item:hover {
+	background-color: #a1c6ee;
+}
+
+.tab-panel {
+	padding: 20px 0px;
+}
+
+/* 表格 */
+
+.table-editor {
+	width: 100%;
+	text-align: left;
+	border: 1px solid #ddd;
+	color: #666;
+}
+
+.table-editor thead {
+	background-color: #a1eeea;
+}
+
+.table-editor td,
+.table-editor th {
+	border: 1px solid #ddd;
+	padding: 10px 15px;
+}
+
+.table-editor tbody tr {
+	cursor: pointer;
+}
+
+.table-editor tbody tr:hover {
+	background-color: #a1c6ee;
+}
