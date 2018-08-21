@@ -66,35 +66,64 @@ var info = new Vue({
 var config = new Vue({
     el: '#config',
     data: {
-        currentPanel: "table",
-        props: [{
-            key: null,
-            value: null,
-            comment: null,
-            status: null
+        docs: [{
+            docId: 456,
+            docName: 456,
+            props: [{
+                key: 456,
+                value: 456,
+                comment: 456,
+                status: 456
+            }],
+            comment: 456,
+            status: 456
         }],
-        content: ""
-
     },
     mounted: function () {
+        this.init()
         this.fetchProps()
     },
     methods: {
+        init: function () {
+            this.docs = null
+        },
         fetchProps: function () {
-            var url = '/doc/props?appCode=' + info.app.code + '&envCode=' + info.currentEnv + '&clusterCode' + info.currentCluster
+            this.docs = [{
+                docId: 123,
+                docName: 123,
+                props: [{
+                    key: 123,
+                    value: 123,
+                    comment: 123,
+                    status: 233
+                }],
+                comment: 123,
+                status: 123
+            }]
+            // var url = '/doc/list?appCode=' + info.app.code + '&envCode=' + info.currentEnv + '&clusterCode' + info.currentCluster
+            // axios
+            //     .get(url)
+            //     .then(resp => {
+            //         this.docs = resp.data
+            //     })
+        },
+        fetchDocProp: function (docId) {
+            var url = '/doc/' + docId
             axios
                 .get(url)
                 .then(resp => {
-                    this.props = resp.data
+                    return resp.data
                 })
+        },
+        computeContent: function (props) {
             var ret = ""
-            if (this.props && this.props.length > 0) {
-                for (let p of this.props) {
+            if (props && props.length > 0) {
+                for (let p of props) {
                     ret += p.key + " = " + p.value + "\r\n"
                 }
             }
-            this.content = ret
-        },
+            return ret
+        }
     }
 
 })

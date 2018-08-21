@@ -46,42 +46,50 @@
 			</div>
 			<div id="config" class="config-panel" v-cloak>
 				<h4>配置管理</h4>
-				<ul class="menu">
-					<li v-on:click="currentPanel = 'table'" v-bind:class="['menu-item', currentPanel=='table'?'menu-item-cur':'']">列表</li>
-					<li v-on:click="currentPanel = 'text'" v-bind:class="['menu-item', currentPanel=='text'?'menu-item-cur':'']">文本</li>
-				</ul>
-				<div class="tab-panel">
-					<div v-show="currentPanel == 'text'">
-						<text-editor v-model="content"></text-editor>
-					</div>
-					<div v-show="currentPanel == 'table'">
-						<table class="table-editor">
-							<thead>
-								<th style="width:10%">状态</th>
-								<th style="width:20%">Key</th>
-								<th style="width:20%">Value</th>
-								<th style="width:30%">备注</th>
-								<th style="width:15%">操作</th>
-							</thead>
-							<tbody>
-								<tr v-for="p in props">
-									<td>{{p.status}}</td>
-									<td>{{p.key}}</td>
-									<td>{{p.value}}</td>
-									<td>{{p.comment}}</td>
-									<td></td>
-								</tr>
-							</tbody>
-							<tfoot>
-							</tfoot>
-						</table>
-					</div>
-				</div>
+				<doc-config v-for="doc in docs" :doc="doc"></doc-config>
 			</div>
 		</div>
 	</div>
 	<template id="text-editor">
 		<div id="editor" class="form-control" style="height: 400px"> </div>
+	</template>
+	<template id="table-editor">
+		<table class="table-editor">
+			<thead>
+				<th style="width:10%">状态</th>
+				<th style="width:20%">Key</th>
+				<th style="width:20%">Value</th>
+				<th style="width:30%">备注</th>
+				<th style="width:15%">操作</th>
+			</thead>
+			<tbody>
+				<tr v-for="p in value">
+					<td>{{p.status}}</td>
+					<td>{{p.key}}</td>
+					<td>{{p.value}}</td>
+					<td>{{p.comment}}</td>
+					<td></td>
+				</tr>
+			</tbody>
+			<tfoot>
+			</tfoot>
+		</table>
+	</template>
+	<template id="doc-config">
+		<div>
+			<ul class="menu">
+				<li v-on:click="currentPanel = 'table'" v-bind:class="['menu-item', currentPanel=='table'?'menu-item-cur':'']">列表</li>
+				<li v-on:click="currentPanel = 'text'" v-bind:class="['menu-item', currentPanel=='text'?'menu-item-cur':'']">文本</li>
+			</ul>
+			<div class="tab-panel">
+				<div v-show="currentPanel == 'text'">
+					<text-editor v-model="content"></text-editor>
+				</div>
+				<div v-show="currentPanel == 'table'">
+					<table-editor v-model="docBackUp.props"></table-editor>
+				</div>
+			</div>
+		</div>
 	</template>
 
 	<script src="../js/vue.js"></script>
@@ -132,6 +140,63 @@
 				}
 			},
 			template: '#text-editor'
+		})
+		/* table编辑框 */
+		Vue.component('table-editor', {
+			props: {
+				/* 存放属性列表 */
+				value: null
+			},
+			data: function () {
+				return {
+
+				}
+			},
+			mounted: function () {
+
+			},
+			methods: {
+
+			},
+			watch: {
+
+			},
+			template: '#table-editor'
+		})
+		/* 文件配置 */
+		Vue.component('doc-config', {
+			props: {
+				doc: {
+					require: true
+				}
+			},
+			data: function () {
+				return {
+					currentPanel: "table",
+					docBackUp: this.doc,
+					content: ""
+				}
+			},
+			mounted: function () {
+				this.content = this.computeContent(doc.props)
+			},
+			methods: {
+				computeContent: function (props) {
+					var ret = ""
+					if (props && props.length > 0) {
+						for (let p of props) {
+							ret += p.key + " = " + p.value + "\r\n"
+						}
+					}
+					return ret
+				}
+			},
+			watch: {
+				docBackUp:function (newVal, oldVal) {
+					this.content = computeContent(newVal.props)
+				}
+			},
+			template: '#doc-config'
 		})
 	</script>
 	<script src="../js/app-detail.js">
