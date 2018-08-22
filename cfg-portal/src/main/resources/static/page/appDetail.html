@@ -46,13 +46,15 @@
 			</div>
 			<div id="config" class="config-panel" v-cloak>
 				<h4>配置管理</h4>
-				<doc-config v-for="doc in docs" :doc="doc"></doc-config>
+				<doc-config v-for="doc in docs" :doc-id="doc.docId"></doc-config>
 			</div>
 		</div>
 	</div>
+
 	<template id="text-editor">
-		<div id="editor" class="form-control" style="height: 400px"> </div>
+		<div class="form-control" style="height: 400px"> </div>
 	</template>
+
 	<template id="table-editor">
 		<table class="table-editor">
 			<thead>
@@ -76,7 +78,7 @@
 		</table>
 	</template>
 	<template id="doc-config">
-		<div>
+		<div class="doc-config">
 			<ul class="menu">
 				<li v-on:click="currentPanel = 'table'" v-bind:class="['menu-item', currentPanel=='table'?'menu-item-cur':'']">列表</li>
 				<li v-on:click="currentPanel = 'text'" v-bind:class="['menu-item', currentPanel=='text'?'menu-item-cur':'']">文本</li>
@@ -86,7 +88,7 @@
 					<text-editor v-model="content"></text-editor>
 				</div>
 				<div v-show="currentPanel == 'table'">
-					<table-editor v-model="docBackUp.props"></table-editor>
+					<table-editor v-model="props"></table-editor>
 				</div>
 			</div>
 		</div>
@@ -117,7 +119,7 @@
 			methods: {
 				configTextEditor: function () {
 					var vm = this
-					editor = ace.edit("editor")
+					editor = ace.edit(this.$el)
 					editor.$blockScrolling = Infinity
 					editor.setFontSize(16)
 					editor.setTheme("ace/theme/iplastic")
@@ -163,22 +165,36 @@
 			},
 			template: '#table-editor'
 		})
+		
 		/* 文件配置 */
 		Vue.component('doc-config', {
 			props: {
-				doc: {
+				docId: {
 					require: true
 				}
 			},
 			data: function () {
 				return {
 					currentPanel: "table",
-					docBackUp: this.doc,
+					doc: null,
 					content: ""
 				}
 			},
+			computed: {
+				props:{
+					get:function(){
+						if(this.doc){
+							return this.doc.props
+						}
+						return []
+					},
+					set:function(newVal){
+						this.doc.props = newVal
+					}
+				}
+			},
 			mounted: function () {
-				this.content = this.computeContent(doc.props)
+				
 			},
 			methods: {
 				computeContent: function (props) {
@@ -189,11 +205,21 @@
 						}
 					}
 					return ret
+				},
+				fetchDocProps: function (docId) {
+					var url = '/doc/' + docId
+					axios
+						.get(url)
+						.then(resp => {
+							this.doc = resp.data
+						})
 				}
 			},
 			watch: {
-				docBackUp:function (newVal, oldVal) {
-					this.content = computeContent(newVal.props)
+				doc: function (newVal, oldVal) {
+					if(newVal){
+						this.content = this.computeContent(newVal.props)
+					}
 				}
 			},
 			template: '#doc-config'

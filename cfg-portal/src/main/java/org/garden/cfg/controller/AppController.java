@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.garden.cfg.controller.obj.AppInfo;
+import org.garden.cfg.controller.obj.DocInfo;
 import org.garden.cfg.core.repository.entity.CfgApp;
+import org.garden.cfg.core.repository.entity.CfgDoc;
 import org.garden.cfg.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,6 +37,16 @@ public class AppController {
 			list.add(new AppInfo(app));
 		}
 		return list;
+	}
+	
+	@GetMapping("docs")
+	public List<DocInfo> findDocs(String appCode, String envCode, String clusterCode){
+		List<CfgDoc> docs = managerService.findDocs(appCode, envCode, clusterCode);
+		List<DocInfo> rets = new ArrayList<>();
+		for(CfgDoc doc:docs) {
+			rets.add(new DocInfo(doc));
+		}
+		return rets; 
 	}
 	
 }

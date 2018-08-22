@@ -59,6 +59,17 @@ var info = new Vue({
                     }
                 })
         }
+    },
+    watch: {
+        app: function(){
+            config.fetchDocs()
+        },
+        currentEnv: function(){
+            config.fetchDocs()
+        },
+        currentCluster: function(){
+            config.fetchDocs()
+        }
     }
 })
 
@@ -66,63 +77,20 @@ var info = new Vue({
 var config = new Vue({
     el: '#config',
     data: {
-        docs: [{
-            docId: 456,
-            docName: 456,
-            props: [{
-                key: 456,
-                value: 456,
-                comment: 456,
-                status: 456
-            }],
-            comment: 456,
-            status: 456
-        }],
+        docs: []
     },
     mounted: function () {
-        this.init()
-        this.fetchProps()
     },
     methods: {
-        init: function () {
-            this.docs = null
-        },
-        fetchProps: function () {
-            this.docs = [{
-                docId: 123,
-                docName: 123,
-                props: [{
-                    key: 123,
-                    value: 123,
-                    comment: 123,
-                    status: 233
-                }],
-                comment: 123,
-                status: 123
-            }]
-            // var url = '/doc/list?appCode=' + info.app.code + '&envCode=' + info.currentEnv + '&clusterCode' + info.currentCluster
-            // axios
-            //     .get(url)
-            //     .then(resp => {
-            //         this.docs = resp.data
-            //     })
-        },
-        fetchDocProp: function (docId) {
-            var url = '/doc/' + docId
-            axios
-                .get(url)
-                .then(resp => {
-                    return resp.data
-                })
-        },
-        computeContent: function (props) {
-            var ret = ""
-            if (props && props.length > 0) {
-                for (let p of props) {
-                    ret += p.key + " = " + p.value + "\r\n"
-                }
+        fetchDocs: function () {
+            if (info.app.code && info.currentEnv && info.currentCluster) {
+                var url = '/app/docs?appCode=' + info.app.code + '&envCode=' + info.currentEnv + '&clusterCode=' + info.currentCluster
+                axios
+                    .get(url)
+                    .then(resp => {
+                        config.docs = resp.data
+                    })
             }
-            return ret
         }
     }
 

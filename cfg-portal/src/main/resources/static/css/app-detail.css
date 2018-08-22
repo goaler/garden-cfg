@@ -26,6 +26,15 @@
 	padding-bottom: 10px;
 }
 
+/* 单个文件配置面板 */
+.doc-config {
+	background-color: #ddfafc;
+	margin: 20px 0px;
+	padding: 20px 10px;
+	border: solid 1px #ddd;
+	border-radius: 25px;
+}
+
 /* tab选项卡 */
 
 .menu {

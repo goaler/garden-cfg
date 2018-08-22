@@ -7,11 +7,14 @@ import org.garden.cfg.core.exception.DataException;
 import org.garden.cfg.core.repository.CfgDao;
 import org.garden.cfg.core.repository.entity.CfgApp;
 import org.garden.cfg.core.repository.entity.CfgAppExample;
+import org.garden.cfg.core.repository.entity.CfgDoc;
+import org.garden.cfg.core.repository.entity.CfgDocExample;
 import org.garden.cfg.core.repository.entity.CfgEnv;
 import org.garden.cfg.core.repository.entity.CfgEnvExample;
 import org.garden.cfg.core.repository.entity.CfgUser;
 import org.garden.cfg.core.repository.entity.CfgUserExample;
 import org.garden.cfg.core.repository.mapper.CfgAppMapper;
+import org.garden.cfg.core.repository.mapper.CfgDocMapper;
 import org.garden.cfg.core.repository.mapper.CfgEnvMapper;
 import org.garden.cfg.core.repository.mapper.CfgUserMapper;
 import org.slf4j.Logger;
@@ -22,18 +25,21 @@ import org.springframework.util.CollectionUtils;
 
 @Service
 public class ManagerService {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(ManagerService.class);
 
 	@Autowired
 	private CfgUserMapper cfgUserMapper;
-	
+
 	@Autowired
 	private CfgAppMapper cfgAppMapper;
-	
+
 	@Autowired
 	private CfgEnvMapper cfgEnvMapper;
-	
+
+	@Autowired
+	private CfgDocMapper cfgDocMapper;
+
 	@Autowired
 	private CfgDao cfgDao;
 
@@ -69,6 +75,14 @@ public class ManagerService {
 		example.createCriteria().andStatusEqualTo(1);
 		List<CfgEnv> envs = cfgEnvMapper.selectByExample(example);
 		return envs;
+	}
+
+	public List<CfgDoc> findDocs(String appCode, String envCode, String clusterCode) {
+		CfgDocExample example = new CfgDocExample();
+		example.createCriteria().andStatusEqualTo(1).andAppCodeEqualTo(appCode).andEnvCodeEqualTo(envCode)
+				.andClusterCodeEqualTo(clusterCode);
+		List<CfgDoc> docs = cfgDocMapper.selectByExample(example);
+		return docs;
 	}
 
 }

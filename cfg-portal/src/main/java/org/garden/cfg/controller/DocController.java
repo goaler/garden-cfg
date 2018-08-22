@@ -19,13 +19,6 @@ public class DocController {
 	@Autowired
 	private ManagerService managerService;
 	
-	@GetMapping("info")
-	public AppInfo getAppInfo(String appCode) {
-		
-		CfgApp app = managerService.getApp(appCode);
-		AppInfo info = new AppInfo(app);
-		return info;
-	}
 	
 	@GetMapping("list")
 	public List<AppInfo> getOwnAppList(@RequestAttribute String userCode){
