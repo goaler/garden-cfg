@@ -3,6 +3,8 @@ package org.garden.cfg.core.repository.entity;
 public class CfgDoc {
     private Integer docId;
 
+    private String docName;
+
     private String appCode;
 
     private String envCode;
@@ -21,6 +23,14 @@ public class CfgDoc {
 
     public void setDocId(Integer docId) {
         this.docId = docId;
+    }
+
+    public String getDocName() {
+        return docName;
+    }
+
+    public void setDocName(String docName) {
+        this.docName = docName;
     }
 
     public String getAppCode() {

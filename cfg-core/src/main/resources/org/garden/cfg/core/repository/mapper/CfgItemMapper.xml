@@ -8,7 +8,7 @@
     <result column="value" jdbcType="VARCHAR" property="value" />
     <result column="comment" jdbcType="VARCHAR" property="comment" />
     <result column="position" jdbcType="INTEGER" property="position" />
-    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="text" jdbcType="VARCHAR" property="text" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    item_id, group_id, key, value, comment, position, type, status
+    item_id, group_id, key, value, comment, position, text, status
   </sql>
   <select id="selectByExample" parameterType="org.garden.cfg.core.repository.entity.CfgItemExample" resultMap="BaseResultMap">
     select
@@ -107,10 +107,10 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into cfg_item (group_id, key, value, 
-      comment, position, type, 
+      comment, position, text, 
       status)
     values (#{groupId,jdbcType=INTEGER}, #{key,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
-      #{comment,jdbcType=VARCHAR}, #{position,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{comment,jdbcType=VARCHAR}, #{position,jdbcType=INTEGER}, #{text,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="org.garden.cfg.core.repository.entity.CfgItem">
@@ -134,8 +134,8 @@
       <if test="position != null">
         position,
       </if>
-      <if test="type != null">
-        type,
+      <if test="text != null">
+        text,
       </if>
       <if test="status != null">
         status,
@@ -157,8 +157,8 @@
       <if test="position != null">
         #{position,jdbcType=INTEGER},
       </if>
-      <if test="type != null">
-        #{type,jdbcType=INTEGER},
+      <if test="text != null">
+        #{text,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -192,8 +192,8 @@
       <if test="record.position != null">
         position = #{record.position,jdbcType=INTEGER},
       </if>
-      <if test="record.type != null">
-        type = #{record.type,jdbcType=INTEGER},
+      <if test="record.text != null">
+        text = #{record.text,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
@@ -211,7 +211,7 @@
       value = #{record.value,jdbcType=VARCHAR},
       comment = #{record.comment,jdbcType=VARCHAR},
       position = #{record.position,jdbcType=INTEGER},
-      type = #{record.type,jdbcType=INTEGER},
+      text = #{record.text,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -235,8 +235,8 @@
       <if test="position != null">
         position = #{position,jdbcType=INTEGER},
       </if>
-      <if test="type != null">
-        type = #{type,jdbcType=INTEGER},
+      <if test="text != null">
+        text = #{text,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
@@ -251,7 +251,7 @@
       value = #{value,jdbcType=VARCHAR},
       comment = #{comment,jdbcType=VARCHAR},
       position = #{position,jdbcType=INTEGER},
-      type = #{type,jdbcType=INTEGER},
+      text = #{text,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER}
     where item_id = #{itemId,jdbcType=INTEGER}
   </update>

@@ -13,7 +13,7 @@ public class CfgItem {
 
     private Integer position;
 
-    private Integer type;
+    private String text;
 
     private Integer status;
 
@@ -65,12 +65,12 @@ public class CfgItem {
         this.position = position;
     }
 
-    public Integer getType() {
-        return type;
+    public String getText() {
+        return text;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setText(String text) {
+        this.text = text;
     }
 
     public Integer getStatus() {

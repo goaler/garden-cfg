@@ -33,5 +33,20 @@
 		GROUP BY
 			a.app_code
 	</select>
+	
+	<select id="getDocProps" resultMap="org.garden.cfg.core.repository.mapper.CfgItemMapper.BaseResultMap">
+		SELECT
+			i.*
+		FROM
+			cfg_doc d,
+			cfg_item i
+		WHERE
+			d.group_id = i.group_id
+		AND d.doc_id = #{docId}
+		AND d.`status` = 1
+		AND i.`status` = 1
+		ORDER BY
+			i.position ASC
+	</select>
 
 </mapper>

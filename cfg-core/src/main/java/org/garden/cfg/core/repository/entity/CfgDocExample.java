@@ -164,6 +164,76 @@ public class CfgDocExample {
             return (Criteria) this;
         }
 
+        public Criteria andDocNameIsNull() {
+            addCriterion("doc_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocNameIsNotNull() {
+            addCriterion("doc_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocNameEqualTo(String value) {
+            addCriterion("doc_name =", value, "docName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocNameNotEqualTo(String value) {
+            addCriterion("doc_name <>", value, "docName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocNameGreaterThan(String value) {
+            addCriterion("doc_name >", value, "docName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocNameGreaterThanOrEqualTo(String value) {
+            addCriterion("doc_name >=", value, "docName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocNameLessThan(String value) {
+            addCriterion("doc_name <", value, "docName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocNameLessThanOrEqualTo(String value) {
+            addCriterion("doc_name <=", value, "docName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocNameLike(String value) {
+            addCriterion("doc_name like", value, "docName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocNameNotLike(String value) {
+            addCriterion("doc_name not like", value, "docName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocNameIn(List<String> values) {
+            addCriterion("doc_name in", values, "docName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocNameNotIn(List<String> values) {
+            addCriterion("doc_name not in", values, "docName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocNameBetween(String value1, String value2) {
+            addCriterion("doc_name between", value1, value2, "docName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocNameNotBetween(String value1, String value2) {
+            addCriterion("doc_name not between", value1, value2, "docName");
+            return (Criteria) this;
+        }
+
         public Criteria andAppCodeIsNull() {
             addCriterion("app_code is null");
             return (Criteria) this;

@@ -11,6 +11,7 @@ import org.garden.cfg.core.repository.entity.CfgDoc;
 import org.garden.cfg.core.repository.entity.CfgDocExample;
 import org.garden.cfg.core.repository.entity.CfgEnv;
 import org.garden.cfg.core.repository.entity.CfgEnvExample;
+import org.garden.cfg.core.repository.entity.CfgItem;
 import org.garden.cfg.core.repository.entity.CfgUser;
 import org.garden.cfg.core.repository.entity.CfgUserExample;
 import org.garden.cfg.core.repository.mapper.CfgAppMapper;
@@ -83,6 +84,10 @@ public class ManagerService {
 				.andClusterCodeEqualTo(clusterCode);
 		List<CfgDoc> docs = cfgDocMapper.selectByExample(example);
 		return docs;
+	}
+
+	public List<CfgItem> getDocProps(String docId) {
+		return cfgDao.getDocProps(docId);
 	}
 
 }

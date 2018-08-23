@@ -3,6 +3,7 @@
 <mapper namespace="org.garden.cfg.core.repository.mapper.CfgDocMapper">
   <resultMap id="BaseResultMap" type="org.garden.cfg.core.repository.entity.CfgDoc">
     <id column="doc_id" jdbcType="INTEGER" property="docId" />
+    <result column="doc_name" jdbcType="VARCHAR" property="docName" />
     <result column="app_code" jdbcType="VARCHAR" property="appCode" />
     <result column="env_code" jdbcType="VARCHAR" property="envCode" />
     <result column="cluster_code" jdbcType="VARCHAR" property="clusterCode" />
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    doc_id, app_code, env_code, cluster_code, group_id, comment, status
+    doc_id, doc_name, app_code, env_code, cluster_code, group_id, comment, status
   </sql>
   <select id="selectByExample" parameterType="org.garden.cfg.core.repository.entity.CfgDocExample" resultMap="BaseResultMap">
     select
@@ -105,12 +106,12 @@
     <selectKey keyProperty="docId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into cfg_doc (app_code, env_code, cluster_code, 
-      group_id, comment, status
-      )
-    values (#{appCode,jdbcType=VARCHAR}, #{envCode,jdbcType=VARCHAR}, #{clusterCode,jdbcType=VARCHAR}, 
-      #{groupId,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
-      )
+    insert into cfg_doc (doc_name, app_code, env_code, 
+      cluster_code, group_id, comment, 
+      status)
+    values (#{docName,jdbcType=VARCHAR}, #{appCode,jdbcType=VARCHAR}, #{envCode,jdbcType=VARCHAR}, 
+      #{clusterCode,jdbcType=VARCHAR}, #{groupId,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="org.garden.cfg.core.repository.entity.CfgDoc">
     <selectKey keyProperty="docId" order="AFTER" resultType="java.lang.Integer">
@@ -118,6 +119,9 @@
     </selectKey>
     insert into cfg_doc
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="docName != null">
+        doc_name,
+      </if>
       <if test="appCode != null">
         app_code,
       </if>
@@ -138,6 +142,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="docName != null">
+        #{docName,jdbcType=VARCHAR},
+      </if>
       <if test="appCode != null">
         #{appCode,jdbcType=VARCHAR},
       </if>
@@ -170,6 +177,9 @@
       <if test="record.docId != null">
         doc_id = #{record.docId,jdbcType=INTEGER},
       </if>
+      <if test="record.docName != null">
+        doc_name = #{record.docName,jdbcType=VARCHAR},
+      </if>
       <if test="record.appCode != null">
         app_code = #{record.appCode,jdbcType=VARCHAR},
       </if>
@@ -196,6 +206,7 @@
   <update id="updateByExample" parameterType="map">
     update cfg_doc
     set doc_id = #{record.docId,jdbcType=INTEGER},
+      doc_name = #{record.docName,jdbcType=VARCHAR},
       app_code = #{record.appCode,jdbcType=VARCHAR},
       env_code = #{record.envCode,jdbcType=VARCHAR},
       cluster_code = #{record.clusterCode,jdbcType=VARCHAR},
@@ -209,6 +220,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="org.garden.cfg.core.repository.entity.CfgDoc">
     update cfg_doc
     <set>
+      <if test="docName != null">
+        doc_name = #{docName,jdbcType=VARCHAR},
+      </if>
       <if test="appCode != null">
         app_code = #{appCode,jdbcType=VARCHAR},
       </if>
@@ -232,7 +246,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="org.garden.cfg.core.repository.entity.CfgDoc">
     update cfg_doc
-    set app_code = #{appCode,jdbcType=VARCHAR},
+    set doc_name = #{docName,jdbcType=VARCHAR},
+      app_code = #{appCode,jdbcType=VARCHAR},
       env_code = #{envCode,jdbcType=VARCHAR},
       cluster_code = #{clusterCode,jdbcType=VARCHAR},
       group_id = #{groupId,jdbcType=INTEGER},
