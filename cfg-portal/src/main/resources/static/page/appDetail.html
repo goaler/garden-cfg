@@ -47,9 +47,25 @@
 			<div id="config" class="config-panel" v-cloak>
 				<h4>配置管理</h4>
 				<doc-config v-for="doc in docs" :doc="doc"></doc-config>
+				<prop-dialog></prop-dialog>
 			</div>
 		</div>
 	</div>
+
+	<template id="prop-dialog">
+		<div class="dlgbg">
+			<div class="dlg-panel">
+				<div class="dialog_content">
+					<div class="dialog_content_top">提示内容</div>
+					<div class="dialog_btn">
+						<a href="javascript:;" class="btn" @click="close">确定</a>
+						<a href="javascript:;" class="btn" @click="close">取消</a>
+						<a href="javascript:;" class="btn" @click="login">去登录</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
 
 	<template id="text-editor">
 		<div class="form-control" style="height: 400px"> </div>
@@ -58,7 +74,7 @@
 	<template id="table-editor">
 		<div>
 			<div>
-				<div>新增配置</div>
+				<div class="btn">新增配置</div>
 			</div>
 			<table class="table-editor">
 				<thead>
@@ -215,6 +231,16 @@
 				}
 			},
 			template: '#doc-config'
+		})
+
+		/* 弹框 */
+		Vue.component('prop-dialog', {
+			template: '#prop-dialog',
+			data: function () {
+				return {}
+			},
+			methods: {},
+			created: function () {}
 		})
 	</script>
 	<script src="../js/app-detail.js">

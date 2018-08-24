@@ -1,3 +1,4 @@
+@import "theme.css";
 .info-panel {
 	position: absolute;
 	width: 250px;
@@ -11,8 +12,8 @@
 .info-item {
 	margin: 20px;
 	padding: 15px;
-	background-color: rgb(187, 244, 248);
-	border: solid 1px #ddd;
+	background-color: var(--panel2);
+	border: solid 1px var(--border2);
 }
 
 .info-item div {
@@ -27,11 +28,12 @@
 }
 
 /* 单个文件配置面板 */
+
 .doc-config {
-	background-color: #ddfafc;
+	background-color: var(--panel3);
 	margin: 20px 0px;
 	padding: 20px 10px;
-	border: solid 1px #ddd;
+	border: solid 1px var(--border2);
 	border-radius: 25px;
 }
 
@@ -41,8 +43,8 @@
 	list-style: none;
 	padding: 0px 20px;
 	margin: 0px;
-	border-top: 1px solid #ddd;
-	border-bottom: 1px solid #ddd;
+	border-top: 1px solid var(--border2);
+	border-bottom: 1px solid var(--border2);
 }
 
 .menu-item {
@@ -53,11 +55,11 @@
 }
 
 .menu-item-cur {
-	background: rgb(187, 244, 248);
+	background: var(--panel1);
 }
 
 .menu-item:hover {
-	background-color: #a1c6ee;
+	background-color: var(--hover2);
 }
 
 .tab-panel {
@@ -66,20 +68,34 @@
 
 /* 表格 */
 
+.btn {
+	float: right;
+	padding: 8px 15px;
+	border: solid 1px var(--border2);
+	margin: 5px;
+	background-color: var(--panel1);
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.btn:hover {
+	background-color: var(--hover2);
+}
+
 .table-editor {
 	width: 100%;
 	text-align: left;
-	border: 1px solid #ddd;
-	color: #666;
+	border: 1px solid var(--tbBorder);
+	color: var(--tbColor);
 }
 
 .table-editor thead {
-	background-color: #a1eeea;
+	background-color: var(--tbTh);
 }
 
 .table-editor td,
 .table-editor th {
-	border: 1px solid #ddd;
+	border: 1px solid var(--tbBorder);
 	padding: 10px 15px;
 }
 
@@ -88,5 +104,26 @@
 }
 
 .table-editor tbody tr:hover {
-	background-color: #a1c6ee;
+	background-color: var(--tbHover);
+}
+
+/* 弹框 */
+
+.dlgbg {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: #a9aaaa80;
+}
+
+.dlg-panel {
+	position: relative;
+	background-color: whitesmoke;
+	width: 400px;
+	height: 400px;
+	border: solid 1px var(--border1);
+	border-radius: 10px;
+	margin: 0 auto;
 }
