@@ -66,13 +66,12 @@
 	padding: 20px 0px;
 }
 
-/* 表格 */
+
 
 .btn {
-	float: right;
 	padding: 8px 15px;
 	border: solid 1px var(--border2);
-	margin: 5px;
+	margin: 10px;
 	background-color: var(--panel1);
 	border-radius: 10px;
 	cursor: pointer;
@@ -82,6 +81,7 @@
 	background-color: var(--hover2);
 }
 
+/* 表格 */
 .table-editor {
 	width: 100%;
 	text-align: left;
@@ -120,10 +120,40 @@
 
 .dlg-panel {
 	position: relative;
-	background-color: whitesmoke;
-	width: 400px;
-	height: 400px;
+	background-color: #f8f6f688;
+	width: 600px;
+	height: 300px;
 	border: solid 1px var(--border1);
 	border-radius: 10px;
-	margin: 0 auto;
+	margin: 100px auto;
 }
+
+.dlg-content {
+	margin: 30px;
+}
+
+.dlg-foot {
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	bottom: 50px;
+}
+
+.ct-line {
+	margin: 20px 0;
+	height: 30px;
+	text-align: center;
+}
+
+.ct-line label{
+	width: 30%;
+	height: 100%;
+	font-weight: bold;
+}
+.ct-line input{
+	margin-left: 10px;
+	width: 60%;
+	height: 90%;
+	border-radius: 5px;
+}
+
