@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80011
 File Encoding         : 65001
 
-Date: 2018-08-07 18:01:58
+Date: 2018-08-29 14:34:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -56,7 +56,6 @@ CREATE TABLE `cfg_cluster` (
 -- ----------------------------
 -- Records of cfg_cluster
 -- ----------------------------
-INSERT INTO `cfg_cluster` VALUES ('0', 'cluster_all', '所有', '代表所有集群', '1');
 INSERT INTO `cfg_cluster` VALUES ('1', 'default', '默认集群', '默认集群', '1');
 
 -- ----------------------------
@@ -65,6 +64,7 @@ INSERT INTO `cfg_cluster` VALUES ('1', 'default', '默认集群', '默认集群'
 DROP TABLE IF EXISTS `cfg_doc`;
 CREATE TABLE `cfg_doc` (
   `doc_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `doc_name` varchar(255) NOT NULL DEFAULT 'default' COMMENT '文档名称',
   `app_code` varchar(45) NOT NULL COMMENT '应用',
   `env_code` varchar(45) NOT NULL COMMENT '所属环境',
   `cluster_code` varchar(45) NOT NULL COMMENT '所属集群',
@@ -78,16 +78,16 @@ CREATE TABLE `cfg_doc` (
 -- ----------------------------
 -- Records of cfg_doc
 -- ----------------------------
-INSERT INTO `cfg_doc` VALUES ('1', 'test', 'dev', 'dev', null, null, '1');
-INSERT INTO `cfg_doc` VALUES ('2', 'test2', 'dev', 'dev', null, null, '1');
-INSERT INTO `cfg_doc` VALUES ('3', 'test3', 'test', 'test', null, null, '1');
-INSERT INTO `cfg_doc` VALUES ('4', 'test4', 'test', 'default', null, null, '1');
-INSERT INTO `cfg_doc` VALUES ('5', 'test5', 'test', 'default', null, null, '1');
-INSERT INTO `cfg_doc` VALUES ('6', 'test5', 'dev', 'default', null, null, '1');
-INSERT INTO `cfg_doc` VALUES ('7', 'test4', 'dev', 'default', null, null, '1');
-INSERT INTO `cfg_doc` VALUES ('8', 'test3', 'dev', 'default', null, null, '1');
-INSERT INTO `cfg_doc` VALUES ('9', 'test2', 'dev', 'default', null, null, '1');
-INSERT INTO `cfg_doc` VALUES ('10', 'test9', 'dev', 'default', null, null, '1');
+INSERT INTO `cfg_doc` VALUES ('1', 'default', 'test', 'dev', 'default', '1', null, '1');
+INSERT INTO `cfg_doc` VALUES ('2', 'default', 'test2', 'dev', 'default', null, null, '1');
+INSERT INTO `cfg_doc` VALUES ('3', 'default', 'test3', 'test', 'default', null, null, '1');
+INSERT INTO `cfg_doc` VALUES ('4', 'default', 'test4', 'test', 'default', null, null, '1');
+INSERT INTO `cfg_doc` VALUES ('5', 'default', 'test5', 'test', 'default', null, null, '1');
+INSERT INTO `cfg_doc` VALUES ('6', 'default', 'test5', 'dev', 'default', null, null, '1');
+INSERT INTO `cfg_doc` VALUES ('7', 'default', 'test4', 'dev', 'default', null, null, '1');
+INSERT INTO `cfg_doc` VALUES ('8', 'default', 'test3', 'dev', 'default', null, null, '1');
+INSERT INTO `cfg_doc` VALUES ('9', 'default', 'test2', 'dev', 'default', null, null, '1');
+INSERT INTO `cfg_doc` VALUES ('10', 'default', 'test9', 'dev', 'default', null, null, '1');
 
 -- ----------------------------
 -- Table structure for cfg_env
@@ -106,7 +106,6 @@ CREATE TABLE `cfg_env` (
 -- ----------------------------
 -- Records of cfg_env
 -- ----------------------------
-INSERT INTO `cfg_env` VALUES ('0', 'env_all', 'all', '全部环境', '1');
 INSERT INTO `cfg_env` VALUES ('1', 'dev', '开发环境', '开发环境', '1');
 INSERT INTO `cfg_env` VALUES ('2', 'test', '测试环境', '测试环境', '1');
 INSERT INTO `cfg_env` VALUES ('3', 'formal', '正式环境', '正式环境', '1');
@@ -132,19 +131,21 @@ CREATE TABLE `cfg_group` (
 DROP TABLE IF EXISTS `cfg_item`;
 CREATE TABLE `cfg_item` (
   `item_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '配置项id',
-  `group_id` int(11) NOT NULL DEFAULT '0' COMMENT '所属组id',
+  `group_id` int(11) NOT NULL COMMENT '所属组id',
   `key` varchar(45) DEFAULT NULL COMMENT '键',
   `value` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '值',
   `comment` varchar(255) DEFAULT NULL COMMENT '注释',
   `position` int(11) NOT NULL COMMENT '位置',
-  `type` int(1) NOT NULL DEFAULT '0' COMMENT '类型：0-配置项；1-配置组',
+  `text` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '原始内容',
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '状态:0-删除,1-正常',
   PRIMARY KEY (`item_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='配置项';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='配置项';
 
 -- ----------------------------
 -- Records of cfg_item
 -- ----------------------------
+INSERT INTO `cfg_item` VALUES ('1', '1', 'name', 'yy', '姓名', '1', 'name = yy', '1');
+INSERT INTO `cfg_item` VALUES ('2', '1', 'age', '25', '年龄', '2', 'age=25', '1');
 
 -- ----------------------------
 -- Table structure for cfg_user

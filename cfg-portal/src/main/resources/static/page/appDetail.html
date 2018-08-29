@@ -47,13 +47,13 @@
 			<div id="config" class="config-panel" v-cloak>
 				<h4>配置管理</h4>
 				<doc-config v-for="doc in docs" :doc="doc"></doc-config>
-				<prop-dialog v-if="dialogDisplay"></prop-dialog>
+				
 			</div>
 		</div>
 	</div>
 
 	<template id="prop-dialog">
-		<div class="dlgbg">
+		<div v-if="dlgdisplay" class="dlgbg">
 			<div class="dlg-panel">
 				<div class="dialog-top">
 				</div>
@@ -74,8 +74,8 @@
 					</div>
 				</div>
 				<div class="dlg-foot">
-					<a class="btn">提交</a>
-					<a class="btn">取消</a>
+					<button class="btn">提交</button>
+					<button class="btn" @click="cancel()">取消</button>
 				</div>
 			</div>
 		</div>
@@ -88,7 +88,7 @@
 	<template id="table-editor">
 		<div>
 			<div>
-				<div class="btn" style="float: right;">新增配置</div>
+				<button @click="addProp()" class="btn" style="float: right;">新增配置</button>
 			</div>
 			<table class="table-editor">
 				<thead>
@@ -110,6 +110,7 @@
 				<tfoot>
 				</tfoot>
 			</table>
+			<prop-dialog :dlgdisplay.sync="dialogDisplay"></prop-dialog>
 		</div>
 	</template>
 	<template id="doc-config">
@@ -186,14 +187,16 @@
 			},
 			data: function () {
 				return {
-
+					dialogDisplay: false
 				}
 			},
 			mounted: function () {
 
 			},
 			methods: {
-
+				addProp: function () {
+					this.dialogDisplay = true
+				}
 			},
 			watch: {
 
@@ -212,8 +215,7 @@
 				return {
 					currentPanel: "table",
 					docProps: null,
-					content: "",
-					dialogDisplay: false
+					content: ""
 				}
 			},
 			mounted: function () {
@@ -236,9 +238,6 @@
 						}
 					}
 					return ret
-				},
-				addProp: function () {
-					dialogDisplay = true
 				}
 			},
 			watch: {
@@ -254,12 +253,22 @@
 		/* 弹框 */
 		Vue.component('prop-dialog', {
 			template: '#prop-dialog',
-			data: function () {
-				return {
-					dialogDisplay: true
+			props:{
+				dlgdisplay: {
+					require: true,
+					type: Boolean
 				}
 			},
-			methods: {},
+			data: function () {
+				return {
+					
+				}
+			},
+			methods: {
+				cancel: function(){
+					this.$emit('update:dlgdisplay',false)
+				}
+			},
 			created: function () {}
 		})
 	</script>
