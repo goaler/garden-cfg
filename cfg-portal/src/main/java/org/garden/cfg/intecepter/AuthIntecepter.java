@@ -14,7 +14,9 @@ public class AuthIntecepter extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println(request.getRequestURI());
+		if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+			return true;
+		}
 
 		// 判断用户是否登录
 		Object userCode = request.getSession().getAttribute(CfgSysConstant.user_code_key);
@@ -26,6 +28,7 @@ public class AuthIntecepter extends HandlerInterceptorAdapter {
 
 		return true;
 	}
+	
 
 	/**
 	 * 处理未登录的请求
@@ -40,7 +43,8 @@ public class AuthIntecepter extends HandlerInterceptorAdapter {
 		if (CfgSysConstant.req_source_axios.equals(req_source)) {
 			response.setStatus(HttpStatus.UNAUTHORIZED.value());
 		} else {
-			response.sendRedirect("/page/login.html");
+			response.setStatus(HttpStatus.UNAUTHORIZED.value());
+//			response.sendRedirect("/page/login.html");
 		}
 	}
 }
