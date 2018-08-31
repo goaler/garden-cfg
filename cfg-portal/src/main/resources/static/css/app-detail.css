@@ -1,4 +1,5 @@
 @import "theme.css";
+
 .info-panel {
 	position: absolute;
 	width: 250px;
@@ -28,7 +29,6 @@
 }
 
 /* 单个文件配置面板 */
-
 .doc-config {
 	background-color: var(--panel3);
 	margin: 20px 0px;
@@ -38,7 +38,6 @@
 }
 
 /* tab选项卡 */
-
 .menu {
 	list-style: none;
 	padding: 0px 20px;
@@ -66,8 +65,6 @@
 	padding: 20px 0px;
 }
 
-
-
 .btn {
 	padding: 8px 15px;
 	border: solid 1px var(--border2);
@@ -90,6 +87,7 @@
 }
 
 .table-editor thead {
+	
 	background-color: var(--tbTh);
 }
 
@@ -108,7 +106,6 @@
 }
 
 /* 弹框 */
-
 .dlgbg {
 	position: fixed;
 	left: 0;
@@ -145,15 +142,15 @@
 	text-align: center;
 }
 
-.ct-line label{
+.ct-line label {
 	width: 30%;
 	height: 100%;
 	font-weight: bold;
 }
-.ct-line input{
+
+.ct-line input {
 	margin-left: 10px;
 	width: 60%;
 	height: 90%;
 	border-radius: 5px;
 }
-

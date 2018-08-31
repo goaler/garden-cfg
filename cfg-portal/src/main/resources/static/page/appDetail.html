@@ -38,7 +38,8 @@
 					<div v-show="show" class="info-item">
 						<div class="item-title">所属集群</div>
 						<select v-model="currentCluster">
-							<option v-for="cluster in clusters" v-bind:value="cluster.clusterCode">{{ cluster.clusterName }}({{cluster.clusterCode}})
+							<option v-for="cluster in clusters" v-bind:value="cluster.clusterCode">{{ cluster.clusterName
+								}}({{cluster.clusterCode}})
 							</option>
 						</select>
 					</div>
@@ -47,7 +48,7 @@
 			<div id="config" class="config-panel" v-cloak>
 				<h4>配置管理</h4>
 				<doc-config v-for="doc in docs" :doc="doc"></doc-config>
-				
+
 			</div>
 		</div>
 	</div>
@@ -60,21 +61,21 @@
 				<div class="dlg-content">
 					<div class="ct-line">
 						<label>Key : </label>
-						<input type="text">
+						<input v-model="p.key" type="text">
 						<span style="font-weight: bold; color:red;font-size: 18px;">*</span>
 					</div>
 					<div class="ct-line">
 						<label>Value : </label>
-						<input type="text">
+						<input v-model="p.value" type="text">
 						<span style="font-weight: bold; color:red;font-size: 18px;">*</span>
 					</div>
 					<div class="ct-line">
 						<label>注释 : </label>
-						<input type="text">
+						<input v-model="p.comment" type="text">
 					</div>
 				</div>
 				<div class="dlg-foot">
-					<button class="btn">提交</button>
+					<button class="btn" @click="ensure()">提交</button>
 					<button class="btn" @click="cancel()">取消</button>
 				</div>
 			</div>
@@ -88,7 +89,7 @@
 	<template id="table-editor">
 		<div>
 			<div>
-				<button @click="addProp()" class="btn" style="float: right;">新增配置</button>
+				<button @click="addPropDlg()" class="btn" style="float: right;">新增配置</button>
 			</div>
 			<table class="table-editor">
 				<thead>
@@ -99,7 +100,7 @@
 					<th style="width:15%">操作</th>
 				</thead>
 				<tbody>
-					<tr v-for="p in value">
+					<tr v-for="p in docProps">
 						<td>{{p.status}}</td>
 						<td>{{p.key}}</td>
 						<td>{{p.value}}</td>
@@ -110,7 +111,7 @@
 				<tfoot>
 				</tfoot>
 			</table>
-			<prop-dialog :dlgdisplay.sync="dialogDisplay"></prop-dialog>
+			<prop-dialog :dlgdisplay.sync="dialogDisplay" @ensure-click="addProp"></prop-dialog>
 		</div>
 	</template>
 	<template id="doc-config">
@@ -124,7 +125,7 @@
 					<text-editor v-model="content"></text-editor>
 				</div>
 				<div v-show="currentPanel == 'table'">
-					<table-editor v-model="docProps"></table-editor>
+					<table-editor :doc="doc" :doc-props="docProps"></table-editor>
 				</div>
 			</div>
 		</div>
@@ -182,8 +183,9 @@
 		/* table编辑框 */
 		Vue.component('table-editor', {
 			props: {
+				doc: Object,
 				/* 存放属性列表 */
-				value: Array
+				docProps: Array
 			},
 			data: function () {
 				return {
@@ -194,8 +196,19 @@
 
 			},
 			methods: {
-				addProp: function () {
+				addPropDlg: function () {
 					this.dialogDisplay = true
+				},
+				addProp: function (p) {
+					var vm = this
+					axios
+						.post('/doc/props/' + this.doc.docId, [p])
+						.then(resp => {
+							if (resp.data == true) {
+								alert("配置项添加成功！！！")
+							}
+							vm.$parent.fetchDocProps()
+						})
 				}
 			},
 			watch: {
@@ -219,11 +232,11 @@
 				}
 			},
 			mounted: function () {
-				this.fetchDocProps(this.doc.docId)
+				this.fetchDocProps()
 			},
 			methods: {
-				fetchDocProps: function (docId) {
-					var url = '/doc/props/' + docId
+				fetchDocProps: function () {
+					var url = '/doc/props/' + this.doc.docId
 					axios
 						.get(url)
 						.then(resp => {
@@ -253,7 +266,7 @@
 		/* 弹框 */
 		Vue.component('prop-dialog', {
 			template: '#prop-dialog',
-			props:{
+			props: {
 				dlgdisplay: {
 					require: true,
 					type: Boolean
@@ -261,12 +274,20 @@
 			},
 			data: function () {
 				return {
-					
+					p: {
+						key: null,
+						value: null,
+						comment: null
+					}
 				}
 			},
 			methods: {
-				cancel: function(){
-					this.$emit('update:dlgdisplay',false)
+				cancel: function () {
+					this.$emit('update:dlgdisplay', false)
+				},
+				ensure: function () {
+					this.$emit('update:dlgdisplay', false)
+					this.$emit('ensure-click', this.p)
 				}
 			},
 			created: function () {}

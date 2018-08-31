@@ -48,5 +48,41 @@
 		ORDER BY
 			i.position ASC
 	</select>
+	
+	<select id="getLastPosition" resultType="java.lang.Integer">
+		SELECT
+			MAX(position)
+		FROM
+			cfg_item t
+		WHERE
+			t.`status` = 1
+		AND t.group_id = #{groupId}
+	</select>
+	
+	<insert id="addProps" parameterType="java.util.List">
+		 <selectKey resultType ="java.lang.Integer" keyProperty= "item_id" order= "AFTER">
+                SELECT LAST_INSERT_ID()
+         </selectKey >
+ 
+		INSERT INTO `garden_cfg`.`cfg_item` (
+			`group_id`,
+			`key`,
+			`value`,
+			`comment`,
+			`position`,
+			`text`
+		)
+		VALUES
+			<foreach collection ="props" item="item" separator =",">
+				(
+				#{item.groupId},
+				#{item.key},
+				#{item.value},
+				#{item.comment},
+				#{item.position},
+				#{item.text}
+				)
+			</foreach >
+	</insert>
 
 </mapper>
