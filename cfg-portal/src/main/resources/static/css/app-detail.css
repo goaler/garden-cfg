@@ -1,4 +1,9 @@
-@import "theme.css";
+:root {
+	--btn-bg: #EBEBEC;
+	--panel-bg: #ebf2f9;
+	--border-color: #ddd;
+	--hover-color: #a1c6ee;
+}
 
 .info-panel {
 	position: absolute;
@@ -13,8 +18,8 @@
 .info-item {
 	margin: 20px;
 	padding: 15px;
-	background-color: var(--panel2);
-	border: solid 1px var(--border2);
+	background-color: var(--panel-bg);
+	border: solid 1px var(--border-color);
 }
 
 .info-item div {
@@ -30,10 +35,10 @@
 
 /* 单个文件配置面板 */
 .doc-config {
-	background-color: var(--panel3);
+	background-color: var(--panel-bg);
 	margin: 20px 0px;
 	padding: 20px 10px;
-	border: solid 1px var(--border2);
+	border: solid 1px var(--border-color);
 	border-radius: 25px;
 }
 
@@ -42,8 +47,8 @@
 	list-style: none;
 	padding: 0px 20px;
 	margin: 0px;
-	border-top: 1px solid var(--border2);
-	border-bottom: 1px solid var(--border2);
+	border-top: 1px solid var(--border-color);
+	border-bottom: 1px solid var(--border-color);
 }
 
 .menu-item {
@@ -54,11 +59,11 @@
 }
 
 .menu-item-cur {
-	background: var(--panel1);
+	background: var(--btn-bg);
 }
 
 .menu-item:hover {
-	background-color: var(--hover2);
+	background-color: var(--hover-color);
 }
 
 .tab-panel {
@@ -67,33 +72,33 @@
 
 .btn {
 	padding: 8px 15px;
-	border: solid 1px var(--border2);
+	border: solid 1px var(--border-color);
 	margin: 10px;
-	background-color: var(--panel1);
+	background-color: var(--btn-bg);
 	border-radius: 10px;
 	cursor: pointer;
 }
 
 .btn:hover {
-	background-color: var(--hover2);
+	background-color: var(--hover-color);
 }
 
 /* 表格 */
 .table-editor {
 	width: 100%;
 	text-align: left;
-	border: 1px solid var(--tbBorder);
-	color: var(--tbColor);
+	border: 1px solid var(--border-color);
+	color: #666;
 }
 
 .table-editor thead {
 	
-	background-color: var(--tbTh);
+	background-color: #EBEBEC;
 }
 
 .table-editor td,
 .table-editor th {
-	border: 1px solid var(--tbBorder);
+	border: 1px solid var(--border-color);
 	padding: 10px 15px;
 }
 
@@ -102,7 +107,7 @@
 }
 
 .table-editor tbody tr:hover {
-	background-color: var(--tbHover);
+	background-color: #a1c6ee;
 }
 
 /* 弹框 */
@@ -120,7 +125,7 @@
 	background-color: #f8f6f688;
 	width: 600px;
 	height: 300px;
-	border: solid 1px var(--border1);
+	border: solid 1px var(--border-color);
 	border-radius: 10px;
 	margin: 100px auto;
 }
