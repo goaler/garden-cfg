@@ -14,6 +14,7 @@ import org.garden.cfg.core.repository.entity.CfgDocExample;
 import org.garden.cfg.core.repository.entity.CfgEnv;
 import org.garden.cfg.core.repository.entity.CfgEnvExample;
 import org.garden.cfg.core.repository.entity.CfgItem;
+import org.garden.cfg.core.repository.entity.CfgItemExample;
 import org.garden.cfg.core.repository.entity.CfgUser;
 import org.garden.cfg.core.repository.entity.CfgUserExample;
 import org.garden.cfg.core.repository.mapper.CfgAppMapper;
@@ -43,6 +44,9 @@ public class ManagerService {
 
 	@Autowired
 	private CfgDocMapper cfgDocMapper;
+	
+	@Autowired
+	private CfgItemMapper cfgItemMapper;
 
 	@Autowired
 	private CfgDao cfgDao;
@@ -89,11 +93,29 @@ public class ManagerService {
 		return docs;
 	}
 
+	/**
+	 * 获取文档所有配置项
+	 * 
+	 * @param docId
+	 * @return
+	 */
 	public List<CfgItem> getDocProps(String docId) {
 		return cfgDao.getDocProps(docId);
 	}
 
+	/**
+	 * 文档末尾添加配置项
+	 * 
+	 * @param docId
+	 * @param props
+	 * @return
+	 */
 	public boolean addDocProps(String docId, List<PropInfo> props) {
+		CfgDoc doc = getDocById(docId);
+		return addGroupProps(doc.getGroupId(), props);
+	}
+
+	private CfgDoc getDocById(String docId) {
 		CfgDocExample example = new CfgDocExample();
 		example.createCriteria().andStatusEqualTo(1).andDocIdEqualTo(Integer.parseInt(docId));
 		List<CfgDoc> docs = cfgDocMapper.selectByExample(example);
@@ -102,44 +124,47 @@ public class ManagerService {
 			log.warn(msg);
 			throw new DataException(msg);
 		}
-		return addGroupProps(docs.get(0).getGroupId(), props);
+		return docs.get(0);
 	}
 
+	/**
+	 * 配置组末尾添加配置项
+	 * 
+	 * @param groupId
+	 * @param props
+	 * @return
+	 */
 	public boolean addGroupProps(int groupId, List<PropInfo> props) {
 
-		int retry = 3;
-		while (retry > 0) {
-			Integer lastPosition = cfgDao.getLastPosition(groupId);
-			if (lastPosition == null) {
-				lastPosition = -1;
-			}
-
-			List<CfgItem> items = new ArrayList<>();
-			for (PropInfo prop : props) {
-				CfgItem item = new CfgItem();
-				item.setGroupId(groupId);
-				item.setKey(prop.getKey());
-				item.setValue(prop.getValue());
-				item.setComment(prop.getComment());
-				item.setText(prop.getText());
-				item.setPosition(++lastPosition);
-				
-				items.add(item);
-			}
-			try {
-				cfgDao.addProps(items);
-				return true;
-			} catch (Exception e) {
-				log.warn("新增配置项出错，剩余重试次数："+retry, e);
-			}
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			--retry;
+		Integer lastPosition = cfgDao.getLastPosition(groupId);
+		if (lastPosition == null) {
+			lastPosition = -1;
 		}
-		return false;
+		List<CfgItem> items = new ArrayList<>();
+		for (PropInfo prop : props) {
+			CfgItem item = new CfgItem();
+			item.setGroupId(groupId);
+			item.setKey(prop.getKey());
+			item.setValue(prop.getValue());
+			item.setComment(prop.getComment());
+			item.setText(prop.getText());
+			item.setPosition(++lastPosition);
+
+			items.add(item);
+		}
+		cfgDao.addProps(items);
+		return true;
+	}
+
+	public boolean deleteDocProps(String docId, List<Integer> propIds) {
+		CfgDoc doc = getDocById(docId);
+
+		CfgItemExample example = new CfgItemExample();
+		example.createCriteria().andStatusEqualTo(1).andGroupIdEqualTo(doc.getGroupId()).andItemIdIn(propIds);
+		CfgItem item = new CfgItem();
+		item.setStatus(0);
+		cfgItemMapper.updateByExampleSelective(item, example);
+		return true;
 	}
 
 }

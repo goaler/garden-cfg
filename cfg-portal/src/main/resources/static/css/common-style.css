@@ -5,9 +5,6 @@
 body {
 	background: var(--mbg);
 }
-#body-panel {
-	padding: 20px 40px;
-}
 
 [v-cloak] {
 	display: none;

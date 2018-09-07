@@ -3,6 +3,8 @@ package org.garden.cfg.controller.obj;
 import org.garden.cfg.core.repository.entity.CfgItem;
 
 public class PropInfo {
+	
+	private Integer propId;
 
 	private String key;
 
@@ -21,12 +23,21 @@ public class PropInfo {
 	}
 
 	public PropInfo(CfgItem p) {
+		this.propId = p.getItemId();
 		this.key = p.getKey();
 		this.value = p.getValue();
 		this.comment = p.getComment();
 		this.position = p.getPosition();
 		this.text = p.getText();
 		this.status = p.getStatus();
+	}
+
+	public Integer getPropId() {
+		return propId;
+	}
+
+	public void setPropId(Integer propId) {
+		this.propId = propId;
 	}
 
 	public String getKey() {

@@ -13,8 +13,8 @@
 
 <body>
 	<div id="body-panel">
-		<div>
-			<h1>主页</h1>
+		<div style="line-height:60px;background-color: #00C1DE;height:60px;color:#fff;">
+			<h1 style="margin-left:50px;">主页</h1>
 		</div>
 		<div>
 			<div id="info" class="info-panel" v-cloak>
@@ -89,7 +89,7 @@
 	<template id="table-editor">
 		<div>
 			<div>
-				<button @click="addPropDlg()" class="btn" style="float: right;">新增配置</button>
+				<button @click="showAddPropDlg()" class="btn" style="float: right;">新增配置</button>
 			</div>
 			<div style="width:100%;max-height:600px;overflow:auto;">
 				<table class="table-editor">
@@ -106,14 +106,18 @@
 							<td>{{p.key}}</td>
 							<td>{{p.value}}</td>
 							<td>{{p.comment}}</td>
-							<td></td>
+							<td>
+								<button @click="deleteProp(p.propId)">删除</button>
+								<button @click="showUpdatePropDlg(p)">修改</button>
+							</td>
 						</tr>
 					</tbody>
 					<tfoot>
 					</tfoot>
 				</table>
 			</div>
-			<prop-dialog :dlgdisplay.sync="dialogDisplay" @ensure-click="addProp"></prop-dialog>
+			<prop-dialog :dlgdisplay.sync="addPropDialogDisplay" @ensure-click="addProp"></prop-dialog>
+			<prop-dialog :dlgdisplay.sync="updatePropDialogDisplay" @ensure-click="updateProp" :prop="currentUpdateProp"></prop-dialog>
 		</div>
 	</template>
 	<template id="doc-config">
@@ -191,15 +195,17 @@
 			},
 			data: function () {
 				return {
-					dialogDisplay: false
+					addPropDialogDisplay: false,
+					updatePropDialogDisplay: false,
+					currentUpdateProp: null
 				}
 			},
 			mounted: function () {
 
 			},
 			methods: {
-				addPropDlg: function () {
-					this.dialogDisplay = true
+				showAddPropDlg: function () {
+					this.addPropDialogDisplay = true
 				},
 				addProp: function (p) {
 					var vm = this
@@ -211,6 +217,29 @@
 							}
 							vm.$parent.fetchDocProps()
 						})
+				},
+				deleteProp: function (propId) {
+					var vm = this
+					var id = vm.doc.docId
+					alert(id)
+					axios
+						.delete(
+							'/doc/props/' + id, {
+								data: [propId]
+							})
+						.then(resp => {
+							if (resp.data == true) {
+								alert("配置项删除成功！！！")
+							}
+							vm.$parent.fetchDocProps()
+						})
+				},
+				showUpdatePropDlg: function(prop){
+					this.currentUpdateProp = prop
+					this.updatePropDialogDisplay = true
+				},
+				updateProp: function(){
+
 				}
 			},
 			watch: {
@@ -272,7 +301,8 @@
 				dlgdisplay: {
 					require: true,
 					type: Boolean
-				}
+				},
+				prop: Object
 			},
 			data: function () {
 				return {
@@ -292,7 +322,13 @@
 					this.$emit('ensure-click', this.p)
 				}
 			},
-			created: function () {}
+			watch: {
+				prop: function (newVal, oldVal) {
+					if(newVal){
+						this.p = newVal
+					}
+				}
+			},
 		})
 	</script>
 	<script src="../js/app-detail.js">
