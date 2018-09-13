@@ -167,4 +167,22 @@ public class ManagerService {
 		return true;
 	}
 
+	public boolean updateDocProps(String docId, List<PropInfo> props) {
+		CfgDoc doc = getDocById(docId);
+		
+		int upNum = 0;
+		for(PropInfo p: props) {
+			CfgItemExample example = new CfgItemExample();
+			example.createCriteria().andStatusEqualTo(1).andGroupIdEqualTo(doc.getGroupId()).andPositionEqualTo(p.getPosition());
+			CfgItem item = new CfgItem();
+			item.setKey(p.getKey());
+			item.setValue(p.getValue());
+			item.setComment(p.getComment());
+			int n = cfgItemMapper.updateByExampleSelective(item, example);
+			
+		}
+		
+		return false;
+	}
+
 }

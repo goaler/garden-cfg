@@ -220,11 +220,9 @@
 				},
 				deleteProp: function (propId) {
 					var vm = this
-					var id = vm.doc.docId
-					alert(id)
 					axios
 						.delete(
-							'/doc/props/' + id, {
+							'/doc/props/' + this.doc.docId, {
 								data: [propId]
 							})
 						.then(resp => {
@@ -234,12 +232,20 @@
 							vm.$parent.fetchDocProps()
 						})
 				},
-				showUpdatePropDlg: function(prop){
+				showUpdatePropDlg: function (prop) {
 					this.currentUpdateProp = prop
 					this.updatePropDialogDisplay = true
 				},
-				updateProp: function(){
-
+				updateProp: function (p) {
+					var vm = this
+					axios
+						.put('/doc/props/' + this.doc.docId, [p])
+						.then(resp => {
+							if (resp.data == true) {
+								alert("配置项修改成功！！！")
+							}
+							vm.$parent.fetchDocProps()
+						})
 				}
 			},
 			watch: {
@@ -324,7 +330,7 @@
 			},
 			watch: {
 				prop: function (newVal, oldVal) {
-					if(newVal){
+					if (newVal) {
 						this.p = newVal
 					}
 				}
