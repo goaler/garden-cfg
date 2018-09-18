@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    user_id, user_code, name, password, status
+    user_id, user_code, `name`, `password`, `status`
   </sql>
   <select id="selectByExample" parameterType="org.garden.cfg.core.repository.entity.CfgUserExample" resultMap="BaseResultMap">
     select
@@ -103,8 +103,8 @@
     <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into cfg_user (user_code, name, password, 
-      status)
+    insert into cfg_user (user_code, `name`, `password`, 
+      `status`)
     values (#{userCode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER})
   </insert>
@@ -118,13 +118,13 @@
         user_code,
       </if>
       <if test="name != null">
-        name,
+        `name`,
       </if>
       <if test="password != null">
-        password,
+        `password`,
       </if>
       <if test="status != null">
-        status,
+        `status`,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -158,13 +158,13 @@
         user_code = #{record.userCode,jdbcType=VARCHAR},
       </if>
       <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
+        `name` = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.password != null">
-        password = #{record.password,jdbcType=VARCHAR},
+        `password` = #{record.password,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null">
-        status = #{record.status,jdbcType=INTEGER},
+        `status` = #{record.status,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -175,9 +175,9 @@
     update cfg_user
     set user_id = #{record.userId,jdbcType=INTEGER},
       user_code = #{record.userCode,jdbcType=VARCHAR},
-      name = #{record.name,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=INTEGER}
+      `name` = #{record.name,jdbcType=VARCHAR},
+      `password` = #{record.password,jdbcType=VARCHAR},
+      `status` = #{record.status,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -189,13 +189,13 @@
         user_code = #{userCode,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
+        `password` = #{password,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
+        `status` = #{status,jdbcType=INTEGER},
       </if>
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
@@ -203,9 +203,9 @@
   <update id="updateByPrimaryKey" parameterType="org.garden.cfg.core.repository.entity.CfgUser">
     update cfg_user
     set user_code = #{userCode,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER}
+      `name` = #{name,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -46,7 +46,7 @@
 		AND d.`status` = 1
 		AND i.`status` = 1
 		ORDER BY
-			i.position ASC
+			i.position ASC, i.item_id
 	</select>
 	
 	<select id="getLastPosition" resultType="java.lang.Integer">

@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 80011
+Source Server Version : 80012
 Source Host           : localhost:3306
 Source Database       : garden_cfg
 
 Target Server Type    : MYSQL
-Target Server Version : 80011
+Target Server Version : 80012
 File Encoding         : 65001
 
-Date: 2018-09-13 17:59:33
+Date: 2018-09-18 21:49:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -138,47 +138,17 @@ CREATE TABLE `cfg_item` (
   `position` int(11) NOT NULL COMMENT '位置',
   `text` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '原始内容',
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '状态:0-删除,1-正常',
-  PRIMARY KEY (`item_id`),
-  UNIQUE KEY `unique_valid_position` (`group_id`,`position`,`status`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='配置项';
+  PRIMARY KEY (`item_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='配置项';
 
 -- ----------------------------
 -- Records of cfg_item
 -- ----------------------------
 INSERT INTO `cfg_item` VALUES ('1', '1', 'name', 'yy', '姓名', '1', 'name = yy', '1');
 INSERT INTO `cfg_item` VALUES ('2', '1', 'age', '25', '年龄', '2', 'age=25', '1');
-INSERT INTO `cfg_item` VALUES ('3', '1', '23', '56', '89', '3', '', '0');
-INSERT INTO `cfg_item` VALUES ('4', '1', '23', '56', '89', '4', '', '0');
-INSERT INTO `cfg_item` VALUES ('5', '1', '23', '56', '89', '5', '', '0');
-INSERT INTO `cfg_item` VALUES ('6', '1', '23', '56', '89', '6', '', '0');
-INSERT INTO `cfg_item` VALUES ('7', '1', '23', '56', '89', '7', '', '0');
-INSERT INTO `cfg_item` VALUES ('8', '1', '23', '56', '89', '8', '', '0');
-INSERT INTO `cfg_item` VALUES ('9', '1', '23', '56', '89', '9', '', '0');
-INSERT INTO `cfg_item` VALUES ('10', '1', '23', '56', '89', '10', '', '0');
-INSERT INTO `cfg_item` VALUES ('11', '1', '23', '56', '89', '11', '', '0');
-INSERT INTO `cfg_item` VALUES ('12', '1', '23', '56', '89', '12', '', '0');
-INSERT INTO `cfg_item` VALUES ('13', '1', '23', '56', '89', '13', '', '0');
-INSERT INTO `cfg_item` VALUES ('14', '1', '23', '56', '89', '14', '', '0');
-INSERT INTO `cfg_item` VALUES ('15', '1', '23', '56', '89', '15', '', '0');
-INSERT INTO `cfg_item` VALUES ('16', '1', '23', '56', '89', '16', '', '0');
-INSERT INTO `cfg_item` VALUES ('17', '1', '23', '56', '89', '17', '', '0');
-INSERT INTO `cfg_item` VALUES ('18', '1', '23', '56', '89', '18', '', '0');
-INSERT INTO `cfg_item` VALUES ('19', '1', '23', '56', '89', '19', '', '0');
-INSERT INTO `cfg_item` VALUES ('20', '1', 'qwe', 'asd', 'zxc', '20', null, '0');
-INSERT INTO `cfg_item` VALUES ('21', '1', 'zxc', 'zxc', 'zxc', '21', null, '0');
-INSERT INTO `cfg_item` VALUES ('22', '1', 'zxc', 'zxc', 'zxc', '22', null, '0');
-INSERT INTO `cfg_item` VALUES ('23', '1', 'zxc', 'zxc', 'zxc', '23', null, '0');
-INSERT INTO `cfg_item` VALUES ('24', '1', 'hjk', 'hjk', 'hjk', '24', null, '0');
-INSERT INTO `cfg_item` VALUES ('25', '1', 'hjk', 'hjk', 'hjk', '25', null, '0');
-INSERT INTO `cfg_item` VALUES ('26', '1', 'hjk', 'hjk', 'hjk', '26', null, '0');
-INSERT INTO `cfg_item` VALUES ('27', '1', 'hjk', 'hjk', 'hjk', '27', null, '0');
-INSERT INTO `cfg_item` VALUES ('28', '1', 'bnm', 'bnm', 'bnm', '28', null, '0');
-INSERT INTO `cfg_item` VALUES ('29', '1', 'zxc', 'zxc', 'zxc', '29', null, '0');
-INSERT INTO `cfg_item` VALUES ('30', '1', 'zzz', 'zzz', 'zzz', '30', null, '0');
-INSERT INTO `cfg_item` VALUES ('31', '1', 'xxx', 'xxx', 'xxx', '31', null, '0');
-INSERT INTO `cfg_item` VALUES ('32', '1', null, null, null, '32', null, '0');
-INSERT INTO `cfg_item` VALUES ('33', '1', 'sex', '男', null, '3', null, '1');
-INSERT INTO `cfg_item` VALUES ('34', '1', null, null, null, '4', null, '1');
+INSERT INTO `cfg_item` VALUES ('33', '1', 'sex', '男', '性别', '3', null, '1');
+INSERT INTO `cfg_item` VALUES ('35', '1', 'description', '帅不帅', '描述', '3', null, '1');
+INSERT INTO `cfg_item` VALUES ('36', '1', 'status', '0', '状态', '3', null, '1');
 
 -- ----------------------------
 -- Table structure for cfg_user

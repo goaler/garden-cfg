@@ -26,6 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 @Service
@@ -157,32 +158,28 @@ public class ManagerService {
 	}
 
 	public boolean deleteDocProps(String docId, List<Integer> propIds) {
-		CfgDoc doc = getDocById(docId);
 
 		CfgItemExample example = new CfgItemExample();
-		example.createCriteria().andStatusEqualTo(1).andGroupIdEqualTo(doc.getGroupId()).andItemIdIn(propIds);
-		CfgItem item = new CfgItem();
-		item.setStatus(0);
-		cfgItemMapper.updateByExampleSelective(item, example);
+		example.createCriteria().andItemIdIn(propIds);
+		cfgItemMapper.deleteByExample(example);
 		return true;
 	}
 
+	@Transactional
 	public boolean updateDocProps(String docId, List<PropInfo> props) {
-		CfgDoc doc = getDocById(docId);
-		
-		int upNum = 0;
 		for(PropInfo p: props) {
 			CfgItemExample example = new CfgItemExample();
-			example.createCriteria().andStatusEqualTo(1).andGroupIdEqualTo(doc.getGroupId()).andPositionEqualTo(p.getPosition());
+			example.createCriteria().andStatusEqualTo(1).andItemIdEqualTo(p.getPropId());
 			CfgItem item = new CfgItem();
 			item.setKey(p.getKey());
 			item.setValue(p.getValue());
 			item.setComment(p.getComment());
-			int n = cfgItemMapper.updateByExampleSelective(item, example);
-			
+			int num = cfgItemMapper.updateByExampleSelective(item, example);
+			if (num != 1) {
+				throw new DataException(MessageFormat.format("配置项{0}更新异常,更新记录数{1}", p.getPropId(), num));
+			}
 		}
 		
-		return false;
+		return true;
 	}
-
 }

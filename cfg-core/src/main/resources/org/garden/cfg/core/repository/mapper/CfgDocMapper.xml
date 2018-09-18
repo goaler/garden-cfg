@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    doc_id, doc_name, app_code, env_code, cluster_code, group_id, comment, status
+    doc_id, doc_name, app_code, env_code, cluster_code, group_id, `comment`, `status`
   </sql>
   <select id="selectByExample" parameterType="org.garden.cfg.core.repository.entity.CfgDocExample" resultMap="BaseResultMap">
     select
@@ -107,8 +107,8 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into cfg_doc (doc_name, app_code, env_code, 
-      cluster_code, group_id, comment, 
-      status)
+      cluster_code, group_id, `comment`, 
+      `status`)
     values (#{docName,jdbcType=VARCHAR}, #{appCode,jdbcType=VARCHAR}, #{envCode,jdbcType=VARCHAR}, 
       #{clusterCode,jdbcType=VARCHAR}, #{groupId,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER})
@@ -135,10 +135,10 @@
         group_id,
       </if>
       <if test="comment != null">
-        comment,
+        `comment`,
       </if>
       <if test="status != null">
-        status,
+        `status`,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -193,10 +193,10 @@
         group_id = #{record.groupId,jdbcType=INTEGER},
       </if>
       <if test="record.comment != null">
-        comment = #{record.comment,jdbcType=VARCHAR},
+        `comment` = #{record.comment,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null">
-        status = #{record.status,jdbcType=INTEGER},
+        `status` = #{record.status,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -211,8 +211,8 @@
       env_code = #{record.envCode,jdbcType=VARCHAR},
       cluster_code = #{record.clusterCode,jdbcType=VARCHAR},
       group_id = #{record.groupId,jdbcType=INTEGER},
-      comment = #{record.comment,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=INTEGER}
+      `comment` = #{record.comment,jdbcType=VARCHAR},
+      `status` = #{record.status,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -236,10 +236,10 @@
         group_id = #{groupId,jdbcType=INTEGER},
       </if>
       <if test="comment != null">
-        comment = #{comment,jdbcType=VARCHAR},
+        `comment` = #{comment,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
+        `status` = #{status,jdbcType=INTEGER},
       </if>
     </set>
     where doc_id = #{docId,jdbcType=INTEGER}
@@ -251,8 +251,8 @@
       env_code = #{envCode,jdbcType=VARCHAR},
       cluster_code = #{clusterCode,jdbcType=VARCHAR},
       group_id = #{groupId,jdbcType=INTEGER},
-      comment = #{comment,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER}
+      `comment` = #{comment,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER}
     where doc_id = #{docId,jdbcType=INTEGER}
   </update>
 </mapper>

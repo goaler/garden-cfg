@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    item_id, group_id, key, value, comment, position, text, status
+    item_id, group_id, `key`, `value`, `comment`, `position`, `text`, `status`
   </sql>
   <select id="selectByExample" parameterType="org.garden.cfg.core.repository.entity.CfgItemExample" resultMap="BaseResultMap">
     select
@@ -106,9 +106,9 @@
     <selectKey keyProperty="itemId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into cfg_item (group_id, key, value, 
-      comment, position, text, 
-      status)
+    insert into cfg_item (group_id, `key`, `value`, 
+      `comment`, `position`, `text`, 
+      `status`)
     values (#{groupId,jdbcType=INTEGER}, #{key,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
       #{comment,jdbcType=VARCHAR}, #{position,jdbcType=INTEGER}, #{text,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER})
@@ -123,22 +123,22 @@
         group_id,
       </if>
       <if test="key != null">
-        key,
+        `key`,
       </if>
       <if test="value != null">
-        value,
+        `value`,
       </if>
       <if test="comment != null">
-        comment,
+        `comment`,
       </if>
       <if test="position != null">
-        position,
+        `position`,
       </if>
       <if test="text != null">
-        text,
+        `text`,
       </if>
       <if test="status != null">
-        status,
+        `status`,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -181,22 +181,22 @@
         group_id = #{record.groupId,jdbcType=INTEGER},
       </if>
       <if test="record.key != null">
-        key = #{record.key,jdbcType=VARCHAR},
+        `key` = #{record.key,jdbcType=VARCHAR},
       </if>
       <if test="record.value != null">
-        value = #{record.value,jdbcType=VARCHAR},
+        `value` = #{record.value,jdbcType=VARCHAR},
       </if>
       <if test="record.comment != null">
-        comment = #{record.comment,jdbcType=VARCHAR},
+        `comment` = #{record.comment,jdbcType=VARCHAR},
       </if>
       <if test="record.position != null">
-        position = #{record.position,jdbcType=INTEGER},
+        `position` = #{record.position,jdbcType=INTEGER},
       </if>
       <if test="record.text != null">
-        text = #{record.text,jdbcType=VARCHAR},
+        `text` = #{record.text,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null">
-        status = #{record.status,jdbcType=INTEGER},
+        `status` = #{record.status,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -207,12 +207,12 @@
     update cfg_item
     set item_id = #{record.itemId,jdbcType=INTEGER},
       group_id = #{record.groupId,jdbcType=INTEGER},
-      key = #{record.key,jdbcType=VARCHAR},
-      value = #{record.value,jdbcType=VARCHAR},
-      comment = #{record.comment,jdbcType=VARCHAR},
-      position = #{record.position,jdbcType=INTEGER},
-      text = #{record.text,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=INTEGER}
+      `key` = #{record.key,jdbcType=VARCHAR},
+      `value` = #{record.value,jdbcType=VARCHAR},
+      `comment` = #{record.comment,jdbcType=VARCHAR},
+      `position` = #{record.position,jdbcType=INTEGER},
+      `text` = #{record.text,jdbcType=VARCHAR},
+      `status` = #{record.status,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -224,22 +224,22 @@
         group_id = #{groupId,jdbcType=INTEGER},
       </if>
       <if test="key != null">
-        key = #{key,jdbcType=VARCHAR},
+        `key` = #{key,jdbcType=VARCHAR},
       </if>
       <if test="value != null">
-        value = #{value,jdbcType=VARCHAR},
+        `value` = #{value,jdbcType=VARCHAR},
       </if>
       <if test="comment != null">
-        comment = #{comment,jdbcType=VARCHAR},
+        `comment` = #{comment,jdbcType=VARCHAR},
       </if>
       <if test="position != null">
-        position = #{position,jdbcType=INTEGER},
+        `position` = #{position,jdbcType=INTEGER},
       </if>
       <if test="text != null">
-        text = #{text,jdbcType=VARCHAR},
+        `text` = #{text,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
+        `status` = #{status,jdbcType=INTEGER},
       </if>
     </set>
     where item_id = #{itemId,jdbcType=INTEGER}
@@ -247,12 +247,12 @@
   <update id="updateByPrimaryKey" parameterType="org.garden.cfg.core.repository.entity.CfgItem">
     update cfg_item
     set group_id = #{groupId,jdbcType=INTEGER},
-      key = #{key,jdbcType=VARCHAR},
-      value = #{value,jdbcType=VARCHAR},
-      comment = #{comment,jdbcType=VARCHAR},
-      position = #{position,jdbcType=INTEGER},
-      text = #{text,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER}
+      `key` = #{key,jdbcType=VARCHAR},
+      `value` = #{value,jdbcType=VARCHAR},
+      `comment` = #{comment,jdbcType=VARCHAR},
+      `position` = #{position,jdbcType=INTEGER},
+      `text` = #{text,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER}
     where item_id = #{itemId,jdbcType=INTEGER}
   </update>
 </mapper>
