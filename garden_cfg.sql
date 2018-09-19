@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 80012
+Source Server Version : 80011
 Source Host           : localhost:3306
 Source Database       : garden_cfg
 
 Target Server Type    : MYSQL
-Target Server Version : 80012
+Target Server Version : 80011
 File Encoding         : 65001
 
-Date: 2018-09-18 21:49:19
+Date: 2018-09-19 17:39:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -99,6 +99,10 @@ CREATE TABLE `cfg_env` (
   `env_name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '环境名称',
   `comment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '描述',
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '状态:0-删除,1-正常',
+  `create_user_code` varchar(255) NOT NULL COMMENT '创建人',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_user_code` varchar(255) NOT NULL,
+  `update_time` datetime NOT NULL,
   PRIMARY KEY (`env_id`),
   UNIQUE KEY `un_idx_env_code` (`env_code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='环境';
@@ -106,9 +110,9 @@ CREATE TABLE `cfg_env` (
 -- ----------------------------
 -- Records of cfg_env
 -- ----------------------------
-INSERT INTO `cfg_env` VALUES ('1', 'dev', '开发环境', '开发环境', '1');
-INSERT INTO `cfg_env` VALUES ('2', 'test', '测试环境', '测试环境', '1');
-INSERT INTO `cfg_env` VALUES ('3', 'formal', '正式环境', '正式环境', '1');
+INSERT INTO `cfg_env` VALUES ('1', 'dev', '开发环境', '开发环境', '1', 'admin', '2018-09-19 15:19:03', 'admin', '2018-09-19 15:19:12');
+INSERT INTO `cfg_env` VALUES ('2', 'test', '测试环境', '测试环境', '1', 'admin', '2018-09-19 15:19:07', 'admin', '2018-09-19 15:19:15');
+INSERT INTO `cfg_env` VALUES ('3', 'formal', '正式环境', '正式环境', '1', 'admin', '2018-09-19 15:19:09', 'admin', '2018-09-19 15:19:19');
 
 -- ----------------------------
 -- Table structure for cfg_group
@@ -144,7 +148,6 @@ CREATE TABLE `cfg_item` (
 -- ----------------------------
 -- Records of cfg_item
 -- ----------------------------
-INSERT INTO `cfg_item` VALUES ('1', '1', 'name', 'yy', '姓名', '1', 'name = yy', '1');
 INSERT INTO `cfg_item` VALUES ('2', '1', 'age', '25', '年龄', '2', 'age=25', '1');
 INSERT INTO `cfg_item` VALUES ('33', '1', 'sex', '男', '性别', '3', null, '1');
 INSERT INTO `cfg_item` VALUES ('35', '1', 'description', '帅不帅', '描述', '3', null, '1');

@@ -1,63 +1,95 @@
 package org.garden.cfg.controller.obj;
 
-import org.garden.cfg.core.repository.entity.CfgEnv;
+import java.util.Date;
 
 public class EnvInfo {
 	private Integer envId;
 
-	private String envCode;
+    private String envCode;
 
-	private String envName;
+    private String envName;
 
-	private String comment;
+    private String comment;
 
-	public EnvInfo() {
+    private Integer status;
 
-	}
+    private String createUserCode;
 
-	public EnvInfo(CfgEnv env) {
-		this.envId = env.getEnvId();
-		this.envCode = env.getEnvCode();
-		this.envName = env.getEnvName();
-		this.comment = env.getComment();
-	}
+    private Date createTime;
 
-	public Integer getEnvId() {
-		return envId;
-	}
+    private String updateUserCode;
 
-	public void setEnvId(Integer envId) {
-		this.envId = envId;
-	}
+    private Date updateTime;
 
-	public String getEnvCode() {
-		return envCode;
-	}
+    public Integer getEnvId() {
+        return envId;
+    }
 
-	public void setEnvCode(String envCode) {
-		this.envCode = envCode;
-	}
+    public void setEnvId(Integer envId) {
+        this.envId = envId;
+    }
 
-	public String getEnvName() {
-		return envName;
-	}
+    public String getEnvCode() {
+        return envCode;
+    }
 
-	public void setEnvName(String envName) {
-		this.envName = envName;
-	}
+    public void setEnvCode(String envCode) {
+        this.envCode = envCode;
+    }
 
-	public String getComment() {
-		return comment;
-	}
+    public String getEnvName() {
+        return envName;
+    }
 
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
+    public void setEnvName(String envName) {
+        this.envName = envName;
+    }
 
-	@Override
-	public String toString() {
-		return "EnvInfo [envId=" + envId + ", envCode=" + envCode + ", envName=" + envName + ", comment=" + comment
-				+ "]";
-	}
+    public String getComment() {
+        return comment;
+    }
 
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getCreateUserCode() {
+        return createUserCode;
+    }
+
+    public void setCreateUserCode(String createUserCode) {
+        this.createUserCode = createUserCode;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getUpdateUserCode() {
+        return updateUserCode;
+    }
+
+    public void setUpdateUserCode(String updateUserCode) {
+        this.updateUserCode = updateUserCode;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 }

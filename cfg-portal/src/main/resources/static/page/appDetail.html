@@ -5,17 +5,16 @@
 	<meta charset="utf-8">
 	<title>CFG配置中心</title>
 	<link rel="stylesheet" href="../css/animate.css">
-	<link rel="stylesheet" href="../css/layui.css">
 
 	<link rel="stylesheet" href="../css/common-style.css">
 	<link rel="stylesheet" href="../css/app-detail.css">
 </head>
 
 <body>
+	<div style="line-height:60px;background-color: #00C1DE;height:60px;color:#fff;">
+		<a style="margin-left:50px;text-decoration:none" href="homePage.html"><span style="font-size: 25px;font-weight:bold">主页</span></a>
+	</div>
 	<div id="body-panel">
-		<div style="line-height:60px;background-color: #00C1DE;height:60px;color:#fff;">
-			<h1 style="margin-left:50px;">主页</h1>
-		</div>
 		<div>
 			<div id="info" class="info-panel" v-cloak>
 				<transition name="custom-classes-transition" enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
@@ -28,7 +27,7 @@
 				</transition>
 				<transition name="custom-classes-transition" enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
 					<div v-show="show" class="info-item">
-						<div class="item-title">所属环境</div>
+						<div class="item-title">所属环境<img style="margin-right:5px;width: 26px;height: 26px;background-color:paleturquoise" src="/img/plus-white.png"/></div>
 						<select v-model="currentEnv">
 							<option v-for="env in envs" v-bind:value="env.envCode">{{ env.envName }}({{env.envCode}})</option>
 						</select>
