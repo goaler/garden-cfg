@@ -1,10 +1,9 @@
-@import "theme.css";
+:root {
+	--mbg: #f1f2f7;
+}
 
 body {
 	background: var(--mbg);
-}
-#body-panel {
-	padding: 20px 40px;
 }
 
 [v-cloak] {

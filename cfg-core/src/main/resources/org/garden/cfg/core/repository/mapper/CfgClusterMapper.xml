@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    cluster_id, cluster_code, cluster_name, comment, status
+    cluster_id, cluster_code, cluster_name, `comment`, `status`
   </sql>
   <select id="selectByExample" parameterType="org.garden.cfg.core.repository.entity.CfgClusterExample" resultMap="BaseResultMap">
     select
@@ -103,8 +103,8 @@
     <selectKey keyProperty="clusterId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into cfg_cluster (cluster_code, cluster_name, comment, 
-      status)
+    insert into cfg_cluster (cluster_code, cluster_name, `comment`, 
+      `status`)
     values (#{clusterCode,jdbcType=VARCHAR}, #{clusterName,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER})
   </insert>
@@ -121,10 +121,10 @@
         cluster_name,
       </if>
       <if test="comment != null">
-        comment,
+        `comment`,
       </if>
       <if test="status != null">
-        status,
+        `status`,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -161,10 +161,10 @@
         cluster_name = #{record.clusterName,jdbcType=VARCHAR},
       </if>
       <if test="record.comment != null">
-        comment = #{record.comment,jdbcType=VARCHAR},
+        `comment` = #{record.comment,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null">
-        status = #{record.status,jdbcType=INTEGER},
+        `status` = #{record.status,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -176,8 +176,8 @@
     set cluster_id = #{record.clusterId,jdbcType=INTEGER},
       cluster_code = #{record.clusterCode,jdbcType=VARCHAR},
       cluster_name = #{record.clusterName,jdbcType=VARCHAR},
-      comment = #{record.comment,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=INTEGER}
+      `comment` = #{record.comment,jdbcType=VARCHAR},
+      `status` = #{record.status,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -192,10 +192,10 @@
         cluster_name = #{clusterName,jdbcType=VARCHAR},
       </if>
       <if test="comment != null">
-        comment = #{comment,jdbcType=VARCHAR},
+        `comment` = #{comment,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
+        `status` = #{status,jdbcType=INTEGER},
       </if>
     </set>
     where cluster_id = #{clusterId,jdbcType=INTEGER}
@@ -204,8 +204,8 @@
     update cfg_cluster
     set cluster_code = #{clusterCode,jdbcType=VARCHAR},
       cluster_name = #{clusterName,jdbcType=VARCHAR},
-      comment = #{comment,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER}
+      `comment` = #{comment,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER}
     where cluster_id = #{clusterId,jdbcType=INTEGER}
   </update>
 </mapper>

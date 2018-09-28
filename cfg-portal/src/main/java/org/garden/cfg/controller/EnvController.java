@@ -6,6 +6,7 @@ import java.util.List;
 import org.garden.cfg.controller.obj.EnvInfo;
 import org.garden.cfg.core.repository.entity.CfgEnv;
 import org.garden.cfg.service.ManagerService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,8 @@ public class EnvController {
 		List<CfgEnv> envs = managerService.findEnvs();
 		List<EnvInfo> infos = new ArrayList<>();
 		for(CfgEnv env:envs) {
-			EnvInfo info = new EnvInfo(env);
+			EnvInfo info = new EnvInfo();
+			BeanUtils.copyProperties(env, info);
 			infos.add(info);
 		}
 		return infos;

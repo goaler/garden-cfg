@@ -5,17 +5,16 @@
 	<meta charset="utf-8">
 	<title>CFG配置中心</title>
 	<link rel="stylesheet" href="../css/animate.css">
-	<link rel="stylesheet" href="../css/layui.css">
 
 	<link rel="stylesheet" href="../css/common-style.css">
 	<link rel="stylesheet" href="../css/app-detail.css">
 </head>
 
 <body>
+	<div style="line-height:60px;background-color: #00C1DE;height:60px;color:#fff;">
+		<a style="margin-left:50px;text-decoration:none" href="homePage.html"><span style="font-size: 25px;font-weight:bold">主页</span></a>
+	</div>
 	<div id="body-panel">
-		<div>
-			<h1>主页</h1>
-		</div>
 		<div>
 			<div id="info" class="info-panel" v-cloak>
 				<transition name="custom-classes-transition" enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
@@ -28,7 +27,7 @@
 				</transition>
 				<transition name="custom-classes-transition" enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
 					<div v-show="show" class="info-item">
-						<div class="item-title">所属环境</div>
+						<div class="item-title">所属环境<img style="margin-right:5px;width: 26px;height: 26px;background-color:paleturquoise" src="/img/plus-white.png"/></div>
 						<select v-model="currentEnv">
 							<option v-for="env in envs" v-bind:value="env.envCode">{{ env.envName }}({{env.envCode}})</option>
 						</select>
@@ -38,7 +37,8 @@
 					<div v-show="show" class="info-item">
 						<div class="item-title">所属集群</div>
 						<select v-model="currentCluster">
-							<option v-for="cluster in clusters" v-bind:value="cluster.clusterCode">{{ cluster.clusterName }}({{cluster.clusterCode}})
+							<option v-for="cluster in clusters" v-bind:value="cluster.clusterCode">{{ cluster.clusterName
+								}}({{cluster.clusterCode}})
 							</option>
 						</select>
 					</div>
@@ -47,7 +47,7 @@
 			<div id="config" class="config-panel" v-cloak>
 				<h4>配置管理</h4>
 				<doc-config v-for="doc in docs" :doc="doc"></doc-config>
-				
+
 			</div>
 		</div>
 	</div>
@@ -60,21 +60,21 @@
 				<div class="dlg-content">
 					<div class="ct-line">
 						<label>Key : </label>
-						<input type="text">
+						<input v-model="p.key" type="text">
 						<span style="font-weight: bold; color:red;font-size: 18px;">*</span>
 					</div>
 					<div class="ct-line">
 						<label>Value : </label>
-						<input type="text">
+						<input v-model="p.value" type="text">
 						<span style="font-weight: bold; color:red;font-size: 18px;">*</span>
 					</div>
 					<div class="ct-line">
 						<label>注释 : </label>
-						<input type="text">
+						<input v-model="p.comment" type="text">
 					</div>
 				</div>
 				<div class="dlg-foot">
-					<button class="btn">提交</button>
+					<button class="btn" @click="ensure()">提交</button>
 					<button class="btn" @click="cancel()">取消</button>
 				</div>
 			</div>
@@ -88,29 +88,35 @@
 	<template id="table-editor">
 		<div>
 			<div>
-				<button @click="addProp()" class="btn" style="float: right;">新增配置</button>
+				<button @click="showAddPropDlg()" class="btn" style="float: right;">新增配置</button>
 			</div>
-			<table class="table-editor">
-				<thead>
-					<th style="width:10%">状态</th>
-					<th style="width:20%">Key</th>
-					<th style="width:20%">Value</th>
-					<th style="width:30%">备注</th>
-					<th style="width:15%">操作</th>
-				</thead>
-				<tbody>
-					<tr v-for="p in value">
-						<td>{{p.status}}</td>
-						<td>{{p.key}}</td>
-						<td>{{p.value}}</td>
-						<td>{{p.comment}}</td>
-						<td></td>
-					</tr>
-				</tbody>
-				<tfoot>
-				</tfoot>
-			</table>
-			<prop-dialog :dlgdisplay.sync="dialogDisplay"></prop-dialog>
+			<div style="width:100%;max-height:600px;overflow:auto;">
+				<table class="table-editor">
+					<thead>
+						<th style="width:10%">状态</th>
+						<th style="width:20%">Key</th>
+						<th style="width:20%">Value</th>
+						<th style="width:30%">备注</th>
+						<th style="width:15%">操作</th>
+					</thead>
+					<tbody>
+						<tr v-for="p in docProps">
+							<td>{{p.status}}</td>
+							<td>{{p.key}}</td>
+							<td>{{p.value}}</td>
+							<td>{{p.comment}}</td>
+							<td>
+								<button @click="deleteProp(p.propId)">删除</button>
+								<button @click="showUpdatePropDlg(p)">修改</button>
+							</td>
+						</tr>
+					</tbody>
+					<tfoot>
+					</tfoot>
+				</table>
+			</div>
+			<prop-dialog :dlgdisplay.sync="addPropDialogDisplay" @ensure-click="addProp"></prop-dialog>
+			<prop-dialog :dlgdisplay.sync="updatePropDialogDisplay" @ensure-click="updateProp" :prop="currentUpdateProp"></prop-dialog>
 		</div>
 	</template>
 	<template id="doc-config">
@@ -124,7 +130,7 @@
 					<text-editor v-model="content"></text-editor>
 				</div>
 				<div v-show="currentPanel == 'table'">
-					<table-editor v-model="docProps"></table-editor>
+					<table-editor :doc="doc" :doc-props="docProps"></table-editor>
 				</div>
 			</div>
 		</div>
@@ -182,20 +188,63 @@
 		/* table编辑框 */
 		Vue.component('table-editor', {
 			props: {
+				doc: Object,
 				/* 存放属性列表 */
-				value: Array
+				docProps: Array
 			},
 			data: function () {
 				return {
-					dialogDisplay: false
+					addPropDialogDisplay: false,
+					updatePropDialogDisplay: false,
+					currentUpdateProp: null
 				}
 			},
 			mounted: function () {
 
 			},
 			methods: {
-				addProp: function () {
-					this.dialogDisplay = true
+				showAddPropDlg: function () {
+					this.addPropDialogDisplay = true
+				},
+				addProp: function (p) {
+					var vm = this
+					axios
+						.post('/doc/props/' + this.doc.docId, [p])
+						.then(resp => {
+							if (resp.data == true) {
+								alert("配置项添加成功！！！")
+							}
+							vm.$parent.fetchDocProps()
+						})
+				},
+				deleteProp: function (propId) {
+					var vm = this
+					axios
+						.delete(
+							'/doc/props/' + this.doc.docId, {
+								data: [propId]
+							})
+						.then(resp => {
+							if (resp.data == true) {
+								alert("配置项删除成功！！！")
+							}
+							vm.$parent.fetchDocProps()
+						})
+				},
+				showUpdatePropDlg: function (prop) {
+					this.currentUpdateProp = prop
+					this.updatePropDialogDisplay = true
+				},
+				updateProp: function (p) {
+					var vm = this
+					axios
+						.put('/doc/props/' + this.doc.docId, [p])
+						.then(resp => {
+							if (resp.data == true) {
+								alert("配置项修改成功！！！")
+							}
+							vm.$parent.fetchDocProps()
+						})
 				}
 			},
 			watch: {
@@ -219,11 +268,11 @@
 				}
 			},
 			mounted: function () {
-				this.fetchDocProps(this.doc.docId)
+				this.fetchDocProps()
 			},
 			methods: {
-				fetchDocProps: function (docId) {
-					var url = '/doc/props/' + docId
+				fetchDocProps: function () {
+					var url = '/doc/props/' + this.doc.docId
 					axios
 						.get(url)
 						.then(resp => {
@@ -253,23 +302,38 @@
 		/* 弹框 */
 		Vue.component('prop-dialog', {
 			template: '#prop-dialog',
-			props:{
+			props: {
 				dlgdisplay: {
 					require: true,
 					type: Boolean
-				}
+				},
+				prop: Object
 			},
 			data: function () {
 				return {
-					
+					p: {
+						key: null,
+						value: null,
+						comment: null
+					}
 				}
 			},
 			methods: {
-				cancel: function(){
-					this.$emit('update:dlgdisplay',false)
+				cancel: function () {
+					this.$emit('update:dlgdisplay', false)
+				},
+				ensure: function () {
+					this.$emit('update:dlgdisplay', false)
+					this.$emit('ensure-click', this.p)
 				}
 			},
-			created: function () {}
+			watch: {
+				prop: function (newVal, oldVal) {
+					if (newVal) {
+						this.p = newVal
+					}
+				}
+			},
 		})
 	</script>
 	<script src="../js/app-detail.js">

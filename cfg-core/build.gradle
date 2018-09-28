@@ -2,7 +2,7 @@ dependencies {
     compile(
 
 		//spring
- 		[group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.0.4.RELEASE'],
+ 		[group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.0.4.RELEASE'],
  
     	//日志
 		//[group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'],

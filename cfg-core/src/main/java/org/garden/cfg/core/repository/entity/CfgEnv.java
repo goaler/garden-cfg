@@ -1,5 +1,7 @@
 package org.garden.cfg.core.repository.entity;
 
+import java.util.Date;
+
 public class CfgEnv {
     private Integer envId;
 
@@ -10,6 +12,14 @@ public class CfgEnv {
     private String comment;
 
     private Integer status;
+
+    private String createUserCode;
+
+    private Date createTime;
+
+    private String updateUserCode;
+
+    private Date updateTime;
 
     public Integer getEnvId() {
         return envId;
@@ -49,5 +59,37 @@ public class CfgEnv {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getCreateUserCode() {
+        return createUserCode;
+    }
+
+    public void setCreateUserCode(String createUserCode) {
+        this.createUserCode = createUserCode;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getUpdateUserCode() {
+        return updateUserCode;
+    }
+
+    public void setUpdateUserCode(String updateUserCode) {
+        this.updateUserCode = updateUserCode;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

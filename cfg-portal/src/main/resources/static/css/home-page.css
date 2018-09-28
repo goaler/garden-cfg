@@ -1,4 +1,12 @@
-@import "theme.css";
+:root {
+	--border-color: #bebcbc;
+}
+
+
+
+
+
+
 .item-table {
 	width: 100%;
 	display: table;
@@ -9,9 +17,9 @@
 	width: 20%;
 	text-align: center;
 	vertical-align: middle;
-	color: var(--wordColor);
-	background-color: var(--panel1);
-	border: solid 1px var(--border1);
+	color: #fff;
+	background-color: #373D41;
+	border: solid 1px var(--border-color);
 }
 
 .item-default {
@@ -19,7 +27,7 @@
 	width: 20%;
 	text-align: center;
 	vertical-align: middle;
-	border: solid 1px var(--border1);
+	border: solid 1px var(--border-color);
 	border-radius: 25px;
 	margin: 10px;
 	float: left;
@@ -27,5 +35,5 @@
 }
 
 .item-default:hover {
-	background-color: var(--hover1);
+	background-color: #608ebe;
 }

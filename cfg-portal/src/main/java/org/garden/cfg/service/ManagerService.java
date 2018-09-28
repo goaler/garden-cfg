@@ -1,8 +1,10 @@
 package org.garden.cfg.service;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.garden.cfg.controller.obj.PropInfo;
 import org.garden.cfg.core.exception.DataException;
 import org.garden.cfg.core.repository.CfgDao;
 import org.garden.cfg.core.repository.entity.CfgApp;
@@ -12,16 +14,19 @@ import org.garden.cfg.core.repository.entity.CfgDocExample;
 import org.garden.cfg.core.repository.entity.CfgEnv;
 import org.garden.cfg.core.repository.entity.CfgEnvExample;
 import org.garden.cfg.core.repository.entity.CfgItem;
+import org.garden.cfg.core.repository.entity.CfgItemExample;
 import org.garden.cfg.core.repository.entity.CfgUser;
 import org.garden.cfg.core.repository.entity.CfgUserExample;
 import org.garden.cfg.core.repository.mapper.CfgAppMapper;
 import org.garden.cfg.core.repository.mapper.CfgDocMapper;
 import org.garden.cfg.core.repository.mapper.CfgEnvMapper;
+import org.garden.cfg.core.repository.mapper.CfgItemMapper;
 import org.garden.cfg.core.repository.mapper.CfgUserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 @Service
@@ -40,6 +45,9 @@ public class ManagerService {
 
 	@Autowired
 	private CfgDocMapper cfgDocMapper;
+	
+	@Autowired
+	private CfgItemMapper cfgItemMapper;
 
 	@Autowired
 	private CfgDao cfgDao;
@@ -86,8 +94,92 @@ public class ManagerService {
 		return docs;
 	}
 
+	/**
+	 * 获取文档所有配置项
+	 * 
+	 * @param docId
+	 * @return
+	 */
 	public List<CfgItem> getDocProps(String docId) {
 		return cfgDao.getDocProps(docId);
 	}
 
+	/**
+	 * 文档末尾添加配置项
+	 * 
+	 * @param docId
+	 * @param props
+	 * @return
+	 */
+	public boolean addDocProps(String docId, List<PropInfo> props) {
+		CfgDoc doc = getDocById(docId);
+		return addGroupProps(doc.getGroupId(), props);
+	}
+
+	private CfgDoc getDocById(String docId) {
+		CfgDocExample example = new CfgDocExample();
+		example.createCriteria().andStatusEqualTo(1).andDocIdEqualTo(Integer.parseInt(docId));
+		List<CfgDoc> docs = cfgDocMapper.selectByExample(example);
+		if (CollectionUtils.isEmpty(docs)) {
+			String msg = MessageFormat.format("无文档（{0}）相关信息", docId);
+			log.warn(msg);
+			throw new DataException(msg);
+		}
+		return docs.get(0);
+	}
+
+	/**
+	 * 配置组末尾添加配置项
+	 * 
+	 * @param groupId
+	 * @param props
+	 * @return
+	 */
+	public boolean addGroupProps(int groupId, List<PropInfo> props) {
+
+		Integer lastPosition = cfgDao.getLastPosition(groupId);
+		if (lastPosition == null) {
+			lastPosition = -1;
+		}
+		List<CfgItem> items = new ArrayList<>();
+		for (PropInfo prop : props) {
+			CfgItem item = new CfgItem();
+			item.setGroupId(groupId);
+			item.setKey(prop.getKey());
+			item.setValue(prop.getValue());
+			item.setComment(prop.getComment());
+			item.setText(prop.getText());
+			item.setPosition(++lastPosition);
+
+			items.add(item);
+		}
+		cfgDao.addProps(items);
+		return true;
+	}
+
+	public boolean deleteDocProps(String docId, List<Integer> propIds) {
+
+		CfgItemExample example = new CfgItemExample();
+		example.createCriteria().andItemIdIn(propIds);
+		cfgItemMapper.deleteByExample(example);
+		return true;
+	}
+
+	@Transactional
+	public boolean updateDocProps(String docId, List<PropInfo> props) {
+		for(PropInfo p: props) {
+			CfgItemExample example = new CfgItemExample();
+			example.createCriteria().andStatusEqualTo(1).andItemIdEqualTo(p.getPropId());
+			CfgItem item = new CfgItem();
+			item.setKey(p.getKey());
+			item.setValue(p.getValue());
+			item.setComment(p.getComment());
+			int num = cfgItemMapper.updateByExampleSelective(item, example);
+			if (num != 1) {
+				throw new DataException(MessageFormat.format("配置项{0}更新异常,更新记录数{1}", p.getPropId(), num));
+			}
+		}
+		
+		return true;
+	}
 }
