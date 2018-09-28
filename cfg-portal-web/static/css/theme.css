@@ -1,0 +1,19 @@
+:root {
+	--mbg: #f1f2f7;
+
+	--panel1: #a1eeea;
+	--wordColor: #000;
+	--border1: #bebcbc;
+	--hover1: #608ebe;
+
+	--panel2: #bbf4f8;
+	--border2: #ddd;
+
+	--panel3: #ddfafc;
+	--hover2: #a1c6ee;
+
+	--tbTh: #a1eeea;
+	--tbBorder: #ddd;
+	--tbColor: #666;
+	--tbHover: #a1c6ee;
+}
