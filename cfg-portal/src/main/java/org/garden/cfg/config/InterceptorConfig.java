@@ -3,7 +3,7 @@ package org.garden.cfg.config;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.garden.cfg.intecepter.AuthIntecepter;
+import org.garden.cfg.intecepter.DisAuthIntecepter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -21,7 +21,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 		patterns.add("/cfg/login");
 		patterns.add("/cfg/logout");
 		patterns.add("/error");
-		registry.addInterceptor(new AuthIntecepter()).excludePathPatterns(patterns);
+		registry.addInterceptor(new DisAuthIntecepter()).excludePathPatterns(patterns);
 		WebMvcConfigurer.super.addInterceptors(registry);
 	}
 	

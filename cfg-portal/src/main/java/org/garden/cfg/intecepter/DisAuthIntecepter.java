@@ -9,7 +9,7 @@ import org.garden.cfg.constant.CfgSysConstant;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-public class AuthIntecepter extends HandlerInterceptorAdapter {
+public class DisAuthIntecepter extends HandlerInterceptorAdapter {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
