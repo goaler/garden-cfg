@@ -16,10 +16,10 @@ public class ConfigHeaderFilter extends OncePerRequestFilter{
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		response.setHeader("Access-Control-Allow-Origin", "http://localhost:8081");
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, OPTIONS");
-		response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept");
-		response.setHeader("Access-Control-Allow-Credentials","true"); //是否支持cookie跨域
+		response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, cfg-token");
+//		response.setHeader("Access-Control-Allow-Credentials","true"); //是否支持cookie跨域
 		filterChain.doFilter(request, response);
 	}
 

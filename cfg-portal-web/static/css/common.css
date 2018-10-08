@@ -1,12 +1,29 @@
-@import "theme.css";
+:root {
+	--mbg: #f1f2f7;
+	--btn-bg: #EBEBEC;
+	--panel-bg: #ebf2f9;
+	--border-color: #ddd;
+	--hover-color: #a1c6ee;
+}
 
 body {
 	background: var(--mbg);
-}
-#body-panel {
-	padding: 20px 40px;
+	margin: 0;
 }
 
 [v-cloak] {
 	display: none;
+}
+
+.btn {
+	padding: 8px 15px;
+	border: solid 1px var(--border-color);
+	margin: 10px;
+	background-color: var(--btn-bg);
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.btn:hover {
+	background-color: var(--hover-color);
 }

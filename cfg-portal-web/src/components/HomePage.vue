@@ -1,7 +1,9 @@
 <template>
-    <div>
-
-		<section id="own-apps" class="item-table">
+  <div style="display:flex;">
+    <left-nav>
+      
+    </left-nav>
+		<section id="own-apps" class="item-table" style="flex:1">
 			<aside class="item-title">
 				<h3>我的项目</h3>
 			</aside>
@@ -15,6 +17,8 @@
 	</div>
 </template>
 <script>
+import LeftNav from './LeftNav'
+
 export default {
   data: function() {
     return {
@@ -31,14 +35,35 @@ export default {
       });
     },
     visitAppDetail: function(appCode) {
-      window.open("/page/appDetail.html?appCode=" + appCode);
+      // this.$router.push({
+      //   name: "appConfig",
+      //   query: {
+      //     appCode: appCode
+      //   }
+      // });
+      const {href} = this.$router.resolve(
+        {
+          name:'appConfig',
+          query:{
+            appCode: appCode
+          }
+        }
+      )
+      window.open(href, "_blank");
     }
+  },
+  components:{
+    LeftNav
   }
 };
 </script>
 <style>
+:root {
+	--border-color: #bebcbc;
+}
+
 .item-table {
-  width: 100%;
+  width: 100%; 
   display: table;
 }
 
@@ -47,9 +72,9 @@ export default {
   width: 20%;
   text-align: center;
   vertical-align: middle;
-  color: var(--wordColor);
-  background-color: var(--panel1);
-  border: solid 1px var(--border1);
+  color: #fff;
+  background-color: #373D41;
+  border: solid 1px var(--border-color);
 }
 
 .item-default {
@@ -57,7 +82,7 @@ export default {
   width: 20%;
   text-align: center;
   vertical-align: middle;
-  border: solid 1px var(--border1);
+  border: solid 1px var(--border-color);
   border-radius: 25px;
   margin: 10px;
   float: left;
@@ -65,7 +90,7 @@ export default {
 }
 
 .item-default:hover {
-  background-color: var(--hover1);
+  background-color: #608ebe;
 }
 </style>
 

@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import {setToken} from '../utils/common'
+
 export default {
   data: function() {
     return {
@@ -29,10 +31,11 @@ export default {
   methods: {
     login: function() {
       this.axios.post("/cfg/login", this.$data).then(resp => {
-        if (resp.data == true) {
-          this.$router.push("/");
+        if (resp.data) {
+          setToken(resp.data)
+          this.$router.push("/")
         } else {
-          this.tips = "账号或密码错误！";
+          this.tips = "账号或密码错误！"
         }
       });
     }

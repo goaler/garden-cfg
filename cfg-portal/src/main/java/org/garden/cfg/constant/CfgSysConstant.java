@@ -3,14 +3,18 @@ package org.garden.cfg.constant;
 public class CfgSysConstant {
 	
 	/**
-	 * session中保持userCode的key
+	 * 请求投中token对应的key
 	 */
-	public static final String user_code_key  = "userCode";
+	public static final String	key_token = "cfg-token";
+	/**
+	 * 保持userCode的key
+	 */
+	public static final String key_user_code  = "userCode";
 	
 	/**
 	 * request请求头中表示请求来源
 	 */
-	public static final String req_source_key = "req-source";
+	public static final String key_req_source = "req-source";
 	
 	/**
 	 * request请求头中表示请求来自axios

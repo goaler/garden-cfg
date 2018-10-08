@@ -17,7 +17,7 @@ public class ExpiredMap<K, V> implements Map<K, V> {
 	/**
 	 * 默认过期时间（单位：毫秒）
 	 */
-	private long defaultExpireTime = 60000;
+	private long defaultExpireTime = 360000;
 
 	private Map<K, V> map = new ConcurrentHashMap<K, V>();
 

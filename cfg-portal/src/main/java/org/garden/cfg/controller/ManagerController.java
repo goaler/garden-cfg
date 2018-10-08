@@ -1,9 +1,12 @@
 package org.garden.cfg.controller;
 
+import java.util.UUID;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.garden.cfg.constant.CfgSysConstant;
 import org.garden.cfg.controller.obj.LoginReq;
+import org.garden.cfg.core.util.SysUtils;
 import org.garden.cfg.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -24,21 +27,22 @@ public class ManagerController {
 	private HttpServletRequest request;
 	
 	@PostMapping("login")
-	public boolean login(@RequestBody LoginReq req) {
+	public String login(@RequestBody LoginReq req) {
 		if (StringUtils.isEmpty(req.getUserCode()) || StringUtils.isEmpty(req.getPassword())) {
-			return false;
+			return null;
 		}
 		boolean flag = managerService.login(req.getUserCode(), req.getPassword());
 		if (flag) {
-			request.getSession().setAttribute(CfgSysConstant.user_code_key, req.getUserCode());
-			return true;
+			String token = UUID.randomUUID().toString();
+			SysUtils.getUserInfos().put(token, req.getUserCode());
+			return token;
 		}
-		return false;
+		return null;
 	}
 	
 	@GetMapping("logout")
 	public boolean loginOut() {
-		request.getSession().removeAttribute(CfgSysConstant.user_code_key);
+		SysUtils.getUserInfos().remove(request.getHeader(CfgSysConstant.key_token));
 		return true;
 	}
 	

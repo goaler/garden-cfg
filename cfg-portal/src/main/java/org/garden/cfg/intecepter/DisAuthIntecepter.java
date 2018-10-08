@@ -6,7 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.garden.cfg.constant.CfgSysConstant;
+import org.garden.cfg.core.util.SysUtils;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class DisAuthIntecepter extends HandlerInterceptorAdapter {
@@ -19,12 +21,17 @@ public class DisAuthIntecepter extends HandlerInterceptorAdapter {
 		}
 
 		// 判断用户是否登录
-		Object userCode = request.getSession().getAttribute(CfgSysConstant.user_code_key);
-		if (userCode == null) {
+		String token = request.getHeader(CfgSysConstant.key_token);
+		if (StringUtils.isEmpty(token)) {
 			handleUnauth(request, response);
 			return false;
 		}
-		request.setAttribute(CfgSysConstant.user_code_key, userCode);
+		String userCode = SysUtils.getUserInfos().get(token);
+		if (StringUtils.isEmpty(userCode)) {
+			handleUnauth(request, response);
+			return false;
+		}
+		request.setAttribute(CfgSysConstant.key_user_code, userCode);
 
 		return true;
 	}
@@ -39,7 +46,7 @@ public class DisAuthIntecepter extends HandlerInterceptorAdapter {
 	 */
 	private void handleUnauth(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// 如果未登录
-		String req_source = request.getHeader(CfgSysConstant.req_source_key);
+		String req_source = request.getHeader(CfgSysConstant.key_req_source);
 		if (CfgSysConstant.req_source_axios.equals(req_source)) {
 			response.setStatus(HttpStatus.UNAUTHORIZED.value());
 		} else {

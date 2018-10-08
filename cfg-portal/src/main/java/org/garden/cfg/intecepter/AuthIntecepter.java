@@ -10,6 +10,12 @@ import org.garden.cfg.constant.CfgSysConstant;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+/**
+ * session中保持登录信息
+ * @author goaler
+ *
+ */
+@Deprecated
 public class AuthIntecepter extends HandlerInterceptorAdapter {
 
 	@Override
@@ -17,12 +23,12 @@ public class AuthIntecepter extends HandlerInterceptorAdapter {
 			throws Exception {
 
 		// 判断用户是否登录
-		Object userCode = request.getSession().getAttribute(CfgSysConstant.user_code_key);
+		Object userCode = request.getSession().getAttribute(CfgSysConstant.key_user_code);
 		if (userCode == null) {
 			handleUnauth(request, response);
 			return false;
 		}
-		request.setAttribute(CfgSysConstant.user_code_key, userCode);
+		request.setAttribute(CfgSysConstant.key_user_code, userCode);
 
 		return true;
 	}
@@ -36,7 +42,7 @@ public class AuthIntecepter extends HandlerInterceptorAdapter {
 	 */
 	private void handleUnauth(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// 如果未登录
-		String req_source = request.getHeader(CfgSysConstant.req_source_key);
+		String req_source = request.getHeader(CfgSysConstant.key_req_source);
 		if (CfgSysConstant.req_source_axios.equals(req_source)) {
 			response.setStatus(HttpStatus.UNAUTHORIZED.value());
 		} else {
