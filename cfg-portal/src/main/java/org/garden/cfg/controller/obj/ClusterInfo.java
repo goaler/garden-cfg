@@ -11,6 +11,8 @@ public class ClusterInfo {
 
 	private String comment;
 
+	private Integer status;
+
 	public ClusterInfo() {
 	}
 
@@ -19,6 +21,7 @@ public class ClusterInfo {
 		this.clusterCode = cluster.getClusterCode();
 		this.clusterName = cluster.getClusterName();
 		this.comment = cluster.getComment();
+		this.status = cluster.getStatus();
 	}
 
 	public Integer getClusterId() {
@@ -53,10 +56,18 @@ public class ClusterInfo {
 		this.comment = comment;
 	}
 
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "ClusterInfo [clusterId=" + clusterId + ", clusterCode=" + clusterCode + ", clusterName=" + clusterName
-				+ ", comment=" + comment + "]";
+				+ ", comment=" + comment + ", status=" + status + "]";
 	}
 
 }

@@ -1,8 +1,5 @@
 <template>
-  <div style="display:flex;">
-    <left-nav>
-      
-    </left-nav>
+  <div style="display:flex;">  
 		<section id="own-apps" class="item-table" style="flex:1">
 			<aside class="item-title">
 				<h3>我的项目</h3>
@@ -17,8 +14,6 @@
 	</div>
 </template>
 <script>
-import LeftNav from './LeftNav'
-
 export default {
   data: function() {
     return {
@@ -41,29 +36,26 @@ export default {
       //     appCode: appCode
       //   }
       // });
-      const {href} = this.$router.resolve(
-        {
-          name:'appConfig',
-          query:{
-            appCode: appCode
-          }
+      const { href } = this.$router.resolve({
+        name: "appConfig",
+        query: {
+          appCode: appCode
         }
-      )
+      });
       window.open(href, "_blank");
     }
   },
-  components:{
-    LeftNav
+  components: {
   }
 };
 </script>
 <style>
 :root {
-	--border-color: #bebcbc;
+  --border-color: #bebcbc;
 }
 
 .item-table {
-  width: 100%; 
+  width: 100%;
   display: table;
 }
 
@@ -73,7 +65,7 @@ export default {
   text-align: center;
   vertical-align: middle;
   color: #fff;
-  background-color: #373D41;
+  background-color: #373d41;
   border: solid 1px var(--border-color);
 }
 

@@ -16,7 +16,7 @@ public class ClusterService {
 	
 	public List<CfgCluster> findClusters() {
 		CfgClusterExample example = new CfgClusterExample();
-		example.createCriteria().andStatusEqualTo(1);
+		example.createCriteria();
 		List<CfgCluster> clusters = cfgClusterMapper.selectByExample(example);
 		return clusters;
 	}

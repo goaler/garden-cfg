@@ -1,8 +1,5 @@
 <template>
   <div>
-    <div style="line-height:60px;background-color: #00C1DE;height:60px;color:#fff;">
-		  <router-link to="/" style="margin-left:50px;text-decoration:none"><span style="font-size: 25px;font-weight:bold">主页</span></router-link>
-	  </div>
     	<div class="info-panel" v-cloak>
 				<transition name="custom-classes-transition" enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
 					<div v-show="show" class="info-item">
