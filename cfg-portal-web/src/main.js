@@ -13,6 +13,9 @@ import 'element-ui/lib/theme-chalk/index.css'
 import axios from './utils/request'
 Vue.prototype.axios = axios
 
+import util from './utils/util'
+Vue.prototype.util = util
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

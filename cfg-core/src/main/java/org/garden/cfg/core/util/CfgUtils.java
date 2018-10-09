@@ -1,6 +1,6 @@
 package org.garden.cfg.core.util;
 
-public class SysUtils {
+public class CfgUtils {
 	
 	private static ExpiredMap<String, String> userInfoMap = new ExpiredMap<>();
 	

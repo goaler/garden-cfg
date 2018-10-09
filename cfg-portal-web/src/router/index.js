@@ -5,6 +5,7 @@ import HomePage from '../views/HomePage'
 import appPage from '../views/AppPage'
 import appConfig from '../views/AppConfig/AppConfig'
 import clusterPage from '../views/cluster/cluster'
+import envPage from '../views/env/env'
 
 Vue.use(Router)
 
@@ -33,6 +34,11 @@ export default new Router({
           path: '/clusterPage',
           name: 'clusterPage',
           component: clusterPage
+        },
+        {
+          path: '/envPage',
+          name: 'envPage',
+          component: envPage
         }
       ]
     },

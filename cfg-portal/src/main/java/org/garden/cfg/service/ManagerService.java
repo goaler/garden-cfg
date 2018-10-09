@@ -179,7 +179,6 @@ public class ManagerService {
 				throw new DataException(MessageFormat.format("配置项{0}更新异常,更新记录数{1}", p.getPropId(), num));
 			}
 		}
-		
 		return true;
 	}
 }

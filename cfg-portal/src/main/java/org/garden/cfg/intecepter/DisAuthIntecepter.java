@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.garden.cfg.constant.CfgSysConstant;
-import org.garden.cfg.core.util.SysUtils;
+import org.garden.cfg.core.util.CfgUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -26,7 +26,7 @@ public class DisAuthIntecepter extends HandlerInterceptorAdapter {
 			handleUnauth(request, response);
 			return false;
 		}
-		String userCode = SysUtils.getUserInfos().get(token);
+		String userCode = CfgUtils.getUserInfos().get(token);
 		if (StringUtils.isEmpty(userCode)) {
 			handleUnauth(request, response);
 			return false;
