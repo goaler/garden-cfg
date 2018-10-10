@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80011
 File Encoding         : 65001
 
-Date: 2018-09-19 17:39:52
+Date: 2018-10-10 13:15:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -49,6 +49,10 @@ CREATE TABLE `cfg_cluster` (
   `cluster_name` varchar(45) NOT NULL COMMENT '集群名称',
   `comment` varchar(255) DEFAULT NULL COMMENT '描述',
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '状态:0-删除,1-正常',
+  `create_user_code` varchar(255) NOT NULL COMMENT '创建人',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_user_code` varchar(255) NOT NULL COMMENT '修改人',
+  `update_time` datetime NOT NULL COMMENT '修改时间',
   PRIMARY KEY (`cluster_id`),
   UNIQUE KEY `un_idx_cluster_code` (`cluster_code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='集群';
@@ -56,7 +60,7 @@ CREATE TABLE `cfg_cluster` (
 -- ----------------------------
 -- Records of cfg_cluster
 -- ----------------------------
-INSERT INTO `cfg_cluster` VALUES ('1', 'default', '默认集群', '默认集群', '1');
+INSERT INTO `cfg_cluster` VALUES ('1', 'default', '默认集群', '默认集群', '1', 'admin', '2018-10-10 10:44:57', 'admin', '2018-10-10 10:45:02');
 
 -- ----------------------------
 -- Table structure for cfg_doc
@@ -143,7 +147,7 @@ CREATE TABLE `cfg_item` (
   `text` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '原始内容',
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '状态:0-删除,1-正常',
   PRIMARY KEY (`item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='配置项';
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='配置项';
 
 -- ----------------------------
 -- Records of cfg_item
@@ -151,7 +155,7 @@ CREATE TABLE `cfg_item` (
 INSERT INTO `cfg_item` VALUES ('2', '1', 'age', '25', '年龄', '2', 'age=25', '1');
 INSERT INTO `cfg_item` VALUES ('33', '1', 'sex', '男', '性别', '3', null, '1');
 INSERT INTO `cfg_item` VALUES ('35', '1', 'description', '帅不帅', '描述', '3', null, '1');
-INSERT INTO `cfg_item` VALUES ('36', '1', 'status', '0', '状态', '3', null, '1');
+INSERT INTO `cfg_item` VALUES ('36', '1', 'status', '1', '状态', '3', null, '1');
 
 -- ----------------------------
 -- Table structure for cfg_user
