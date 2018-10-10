@@ -5,9 +5,9 @@
 				<h3>我的项目</h3>
 			</aside>
 			<aside>
-				<div  :key="app.code" v-for="app in appList" class="item-default" v-on:click="visitAppDetail(app.code)">
-					<h4 style="margin-bottom: 0;">{{app.name}}</h4>
-					<h6 style="margin-top: 0;">{{app.code}}</h6>
+				<div  :key="app.appCode" v-for="app in appList" class="item-default" v-on:click="visitAppDetail(app.appCode)">
+					<h4 style="margin-bottom: 0;">{{app.appName}}</h4>
+					<h6 style="margin-top: 0;">{{app.appCode}}</h6>
 				</div>
 			</aside>
 		</section>

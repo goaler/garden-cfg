@@ -4,8 +4,8 @@
 				<transition name="custom-classes-transition" enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
 					<div v-show="show" class="info-item">
 						<div class="info-item-title">项目信息</div>
-						<div v-bind:title="app.name">项目名称：{{app.name}}</div>
-						<div v-bind:title="app.code">项目编号：{{app.code}}</div>
+						<div v-bind:title="app.appName">项目名称：{{app.appName}}</div>
+						<div v-bind:title="app.appCode">项目编号：{{app.appCode}}</div>
 						<div v-bind:title="app.comment">项目描述：{{app.comment}}</div>
 					</div>
 				</transition>
@@ -29,7 +29,7 @@
 			</div>
     <div class="config-panel" v-cloak>
 				<h4>配置管理</h4>
-				<doc-config v-for="doc in docs" :key="doc.id" :doc="doc"></doc-config>
+				<doc-config v-for="doc in docs" :key="doc.docId" :doc="doc"></doc-config>
 			</div>
   </div>
 </template>
@@ -101,8 +101,8 @@ export default {
       });
     },
      fetchDocs: function () {
-            if (this.app.code && this.currentEnv && this.currentCluster) {
-                var url = '/app/docs?appCode=' + this.app.code + '&envCode=' + this.currentEnv + '&clusterCode=' + this.currentCluster
+            if (this.app.appCode && this.currentEnv && this.currentCluster) {
+                var url = '/app/docs?appCode=' + this.app.appCode + '&envCode=' + this.currentEnv + '&clusterCode=' + this.currentCluster
                 this.axios
                     .get(url)
                     .then(resp => {

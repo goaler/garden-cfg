@@ -1,6 +1,6 @@
 package org.garden.cfg.controller.obj;
 
-import org.garden.cfg.core.repository.entity.CfgCluster;
+import java.util.Date;
 
 public class ClusterInfo {
 	private Integer clusterId;
@@ -12,17 +12,15 @@ public class ClusterInfo {
 	private String comment;
 
 	private Integer status;
+	
+	private String createUserCode;
 
-	public ClusterInfo() {
-	}
+    private Date createTime;
 
-	public ClusterInfo(CfgCluster cluster) {
-		this.clusterId = cluster.getClusterId();
-		this.clusterCode = cluster.getClusterCode();
-		this.clusterName = cluster.getClusterName();
-		this.comment = cluster.getComment();
-		this.status = cluster.getStatus();
-	}
+    private String updateUserCode;
+
+    private Date updateTime;
+
 
 	public Integer getClusterId() {
 		return clusterId;
@@ -64,10 +62,43 @@ public class ClusterInfo {
 		this.status = status;
 	}
 
+	public String getCreateUserCode() {
+		return createUserCode;
+	}
+
+	public void setCreateUserCode(String createUserCode) {
+		this.createUserCode = createUserCode;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public String getUpdateUserCode() {
+		return updateUserCode;
+	}
+
+	public void setUpdateUserCode(String updateUserCode) {
+		this.updateUserCode = updateUserCode;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
 	@Override
 	public String toString() {
 		return "ClusterInfo [clusterId=" + clusterId + ", clusterCode=" + clusterCode + ", clusterName=" + clusterName
-				+ ", comment=" + comment + ", status=" + status + "]";
+				+ ", comment=" + comment + ", status=" + status + ", createUserCode=" + createUserCode + ", createTime="
+				+ createTime + ", updateUserCode=" + updateUserCode + ", updateTime=" + updateTime + "]";
 	}
 
 }

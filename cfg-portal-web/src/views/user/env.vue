@@ -2,12 +2,12 @@
     <div>
         <el-table :data="tableData" border style="width: 100%">
             <el-table-column
-            prop="clusterCode"
-            label="集群编号">
+            prop="envCode"
+            label="环境编号">
             </el-table-column>
             <el-table-column
-            prop="clusterName"
-            label="集群名称">
+            prop="envName"
+            label="环境名称">
             </el-table-column>
             <el-table-column
             prop="comment"
@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     loadList: function() {
-      this.axios.get("/cluster/list").then(resp => {
+      this.axios.get("/env/list").then(resp => {
         this.tableData = resp.data;
       });
     },

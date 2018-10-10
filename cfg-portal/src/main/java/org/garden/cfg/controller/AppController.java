@@ -8,6 +8,7 @@ import org.garden.cfg.controller.obj.DocInfo;
 import org.garden.cfg.core.repository.entity.CfgApp;
 import org.garden.cfg.core.repository.entity.CfgDoc;
 import org.garden.cfg.service.ManagerService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
@@ -25,18 +26,21 @@ public class AppController {
 	public AppInfo getAppInfo(String appCode) {
 		
 		CfgApp app = managerService.getApp(appCode);
-		AppInfo info = new AppInfo(app);
+		AppInfo info = new AppInfo();
+		BeanUtils.copyProperties(app, info);
 		return info;
 	}
 	
 	@GetMapping("list")
 	public List<AppInfo> getOwnAppList(@RequestAttribute String userCode){
-		List<AppInfo> list = new ArrayList<>();
+		List<AppInfo> infos = new ArrayList<>();
 		List<CfgApp> apps = managerService.getOwnAppList(userCode);
 		for(CfgApp app:apps) {
-			list.add(new AppInfo(app));
+			AppInfo info = new AppInfo();
+			BeanUtils.copyProperties(app, info);
+			infos.add(info);
 		}
-		return list;
+		return infos;
 	}
 	
 	@GetMapping("docs")

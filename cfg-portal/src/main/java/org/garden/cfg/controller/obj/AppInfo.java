@@ -1,46 +1,33 @@
 package org.garden.cfg.controller.obj;
 
-import org.garden.cfg.core.repository.entity.CfgApp;
-
 public class AppInfo {
-	private Integer id;
-	private String name;
-	private String code;
+	private Integer appId;
+	private String appCode;
+	private String appName;
 	private String comment;
-	
-	public AppInfo() {
-		
-	}
-	
-	public AppInfo(CfgApp app) {
-		this.id = app.getAppId();
-		this.name = app.getAppName();
-		this.code = app.getAppCode();
-		this.comment = app.getComment();
+
+	public Integer getAppId() {
+		return appId;
 	}
 
-	public Integer getId() {
-		return id;
+	public void setAppId(Integer appId) {
+		this.appId = appId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public String getAppCode() {
+		return appCode;
 	}
 
-	public String getName() {
-		return name;
+	public void setAppCode(String appCode) {
+		this.appCode = appCode;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getAppName() {
+		return appName;
 	}
 
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
+	public void setAppName(String appName) {
+		this.appName = appName;
 	}
 
 	public String getComment() {
@@ -53,7 +40,8 @@ public class AppInfo {
 
 	@Override
 	public String toString() {
-		return "AppInfo [id=" + id + ", name=" + name + ", code=" + code + ", comment=" + comment + "]";
+		return "AppInfo [appId=" + appId + ", appCode=" + appCode + ", appName=" + appName + ", comment=" + comment
+				+ "]";
 	}
 
 }
