@@ -1,6 +1,13 @@
 <template>
     <div>
-        <el-table :data="tableData" border style="width: 100%">
+        <el-table :data="tableData" 
+          border 
+          stripe
+          style="width: 100%">
+            <el-table-column
+              type="index"
+              width="50">
+            </el-table-column>
             <el-table-column
             prop="envCode"
             label="环境编号">

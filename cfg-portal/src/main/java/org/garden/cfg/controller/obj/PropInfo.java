@@ -1,10 +1,12 @@
 package org.garden.cfg.controller.obj;
 
-import org.garden.cfg.core.repository.entity.CfgItem;
+import java.util.Date;
 
 public class PropInfo {
-	
-	private Integer propId;
+
+	private Integer itemId;
+
+	private Integer docId;
 
 	private String key;
 
@@ -18,26 +20,28 @@ public class PropInfo {
 
 	private Integer status;
 
-	public PropInfo() {
+	private String createUserCode;
 
+	private Date createTime;
+
+	private String updateUserCode;
+
+	private Date updateTime;
+
+	public Integer getItemId() {
+		return itemId;
 	}
 
-	public PropInfo(CfgItem p) {
-		this.propId = p.getItemId();
-		this.key = p.getKey();
-		this.value = p.getValue();
-		this.comment = p.getComment();
-		this.position = p.getPosition();
-		this.text = p.getText();
-		this.status = p.getStatus();
+	public void setItemId(Integer itemId) {
+		this.itemId = itemId;
 	}
 
-	public Integer getPropId() {
-		return propId;
+	public Integer getDocId() {
+		return docId;
 	}
 
-	public void setPropId(Integer propId) {
-		this.propId = propId;
+	public void setDocId(Integer docId) {
+		this.docId = docId;
 	}
 
 	public String getKey() {
@@ -88,10 +92,44 @@ public class PropInfo {
 		this.status = status;
 	}
 
+	public String getCreateUserCode() {
+		return createUserCode;
+	}
+
+	public void setCreateUserCode(String createUserCode) {
+		this.createUserCode = createUserCode;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public String getUpdateUserCode() {
+		return updateUserCode;
+	}
+
+	public void setUpdateUserCode(String updateUserCode) {
+		this.updateUserCode = updateUserCode;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
 	@Override
 	public String toString() {
-		return "PropInfo [key=" + key + ", value=" + value + ", comment=" + comment + ", position=" + position
-				+ ", text=" + text + ", status=" + status + "]";
+		return "PropInfo [itemId=" + itemId + ", docId=" + docId + ", key=" + key + ", value=" + value + ", comment="
+				+ comment + ", position=" + position + ", text=" + text + ", status=" + status + ", createUserCode="
+				+ createUserCode + ", createTime=" + createTime + ", updateUserCode=" + updateUserCode + ", updateTime="
+				+ updateTime + "]";
 	}
 
 }

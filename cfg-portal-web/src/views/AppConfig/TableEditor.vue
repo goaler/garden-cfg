@@ -6,20 +6,28 @@
 			<div style="width:100%;max-height:600px;overflow:auto;">
 				<table class="table-editor">
 					<thead>
-						<th style="width:10%">状态</th>
-						<th style="width:20%">Key</th>
-						<th style="width:20%">Value</th>
-						<th style="width:30%">备注</th>
-						<th style="width:15%">操作</th>
+						<th >状态</th>
+						<th >Key</th>
+						<th >Value</th>
+						<th >备注</th>
+            <th >创建人</th>
+            <th >创建时间</th>
+            <th >修改人</th>
+            <th >修改时间</th>
+						<th >操作</th>
 					</thead>
 					<tbody>
-						<tr v-for="p in docProps" :key="p.propId">
+						<tr v-for="p in docProps" :key="p.itemId">
 							<td>{{p.status}}</td>
 							<td>{{p.key}}</td>
 							<td>{{p.value}}</td>
 							<td>{{p.comment}}</td>
+              <td>{{p.createUserCode}}</td>
+              <td>{{p.createTime | formatDateStr}}</td>
+              <td>{{p.updateUserCode}}</td>
+              <td>{{p.updateTime | formatDateStr}}</td>
 							<td>
-								<button @click="deleteProp(p.propId)">删除</button>
+								<button @click="deleteProp(p.itemId)">删除</button>
 								<button @click="showUpdatePropDlg(p)">修改</button>
 							</td>
 						</tr>
@@ -62,11 +70,11 @@ export default {
         vm.$parent.fetchDocProps();
       });
     },
-    deleteProp: function(propId) {
+    deleteProp: function(itemId) {
       var vm = this;
       this.axios
         .delete("/doc/props/" + this.doc.docId, {
-          data: [propId]
+          data: [itemId]
         })
         .then(resp => {
           if (resp.data == true) {

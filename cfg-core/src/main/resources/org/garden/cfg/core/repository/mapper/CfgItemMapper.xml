@@ -10,6 +10,10 @@
     <result column="position" jdbcType="INTEGER" property="position" />
     <result column="text" jdbcType="VARCHAR" property="text" />
     <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_user_code" jdbcType="VARCHAR" property="createUserCode" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user_code" jdbcType="VARCHAR" property="updateUserCode" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,7 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    item_id, doc_id, `key`, `value`, `comment`, `position`, `text`, `status`
+    item_id, doc_id, `key`, `value`, `comment`, `position`, `text`, `status`, create_user_code, 
+    create_time, update_user_code, update_time
   </sql>
   <select id="selectByExample" parameterType="org.garden.cfg.core.repository.entity.CfgItemExample" resultMap="BaseResultMap">
     select
@@ -108,10 +113,12 @@
     </selectKey>
     insert into cfg_item (doc_id, `key`, `value`, 
       `comment`, `position`, `text`, 
-      `status`)
+      `status`, create_user_code, create_time, 
+      update_user_code, update_time)
     values (#{docId,jdbcType=INTEGER}, #{key,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
       #{comment,jdbcType=VARCHAR}, #{position,jdbcType=INTEGER}, #{text,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER})
+      #{status,jdbcType=INTEGER}, #{createUserCode,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateUserCode,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="org.garden.cfg.core.repository.entity.CfgItem">
     <selectKey keyProperty="itemId" order="AFTER" resultType="java.lang.Integer">
@@ -140,6 +147,18 @@
       <if test="status != null">
         `status`,
       </if>
+      <if test="createUserCode != null">
+        create_user_code,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUserCode != null">
+        update_user_code,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="docId != null">
@@ -162,6 +181,18 @@
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createUserCode != null">
+        #{createUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserCode != null">
+        #{updateUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -198,6 +229,18 @@
       <if test="record.status != null">
         `status` = #{record.status,jdbcType=INTEGER},
       </if>
+      <if test="record.createUserCode != null">
+        create_user_code = #{record.createUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateUserCode != null">
+        update_user_code = #{record.updateUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -212,7 +255,11 @@
       `comment` = #{record.comment,jdbcType=VARCHAR},
       `position` = #{record.position,jdbcType=INTEGER},
       `text` = #{record.text,jdbcType=VARCHAR},
-      `status` = #{record.status,jdbcType=INTEGER}
+      `status` = #{record.status,jdbcType=INTEGER},
+      create_user_code = #{record.createUserCode,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_user_code = #{record.updateUserCode,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -241,6 +288,18 @@
       <if test="status != null">
         `status` = #{status,jdbcType=INTEGER},
       </if>
+      <if test="createUserCode != null">
+        create_user_code = #{createUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserCode != null">
+        update_user_code = #{updateUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where item_id = #{itemId,jdbcType=INTEGER}
   </update>
@@ -252,7 +311,11 @@
       `comment` = #{comment,jdbcType=VARCHAR},
       `position` = #{position,jdbcType=INTEGER},
       `text` = #{text,jdbcType=VARCHAR},
-      `status` = #{status,jdbcType=INTEGER}
+      `status` = #{status,jdbcType=INTEGER},
+      create_user_code = #{createUserCode,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user_code = #{updateUserCode,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
     where item_id = #{itemId,jdbcType=INTEGER}
   </update>
 </mapper>

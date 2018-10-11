@@ -16,6 +16,10 @@ Vue.prototype.axios = axios
 import util from './utils/util'
 Vue.prototype.util = util
 
+Vue.filter('formatDateStr', function (dateStr) {
+  return util.formatDateStr(dateStr)
+})
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

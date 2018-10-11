@@ -2,6 +2,7 @@ package org.garden.cfg.service;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.garden.cfg.controller.obj.PropInfo;
@@ -110,12 +111,15 @@ public class ManagerService {
 
 	/**
 	 * 文档末尾添加配置项
+	 * @param userCode 
 	 * 
 	 * @param docId
 	 * @param props
 	 * @return
 	 */
-	public boolean addDocProps(Integer docId, List<PropInfo> props) {
+	public boolean addDocProps(String userCode, Integer docId, List<PropInfo> props) {
+		Date now = new Date();
+		
 		Integer lastPosition = cfgDao.getLastPosition(docId);
 		if (lastPosition == null) {
 			lastPosition = -1;
@@ -129,7 +133,11 @@ public class ManagerService {
 			item.setComment(prop.getComment());
 			item.setText(prop.getText());
 			item.setPosition(++lastPosition);
-
+			item.setCreateUserCode(userCode);
+			item.setCreateTime(now);
+			item.setUpdateUserCode(userCode);
+			item.setUpdateTime(now);
+			
 			items.add(item);
 		}
 		cfgDao.addProps(items);
@@ -157,17 +165,19 @@ public class ManagerService {
 	}
 
 	@Transactional
-	public boolean updateDocProps(Integer docId, List<PropInfo> props) {
+	public boolean updateDocProps(String userCode, Integer docId, List<PropInfo> props) {
 		for(PropInfo p: props) {
 			CfgItemExample example = new CfgItemExample();
-			example.createCriteria().andStatusEqualTo(1).andDocIdEqualTo(docId).andItemIdEqualTo(p.getPropId());
+			example.createCriteria().andStatusEqualTo(1).andDocIdEqualTo(docId).andItemIdEqualTo(p.getItemId());
 			CfgItem item = new CfgItem();
 			item.setKey(p.getKey());
 			item.setValue(p.getValue());
 			item.setComment(p.getComment());
+			item.setUpdateUserCode(userCode);
+			item.setUpdateTime(new Date());
 			int num = cfgItemMapper.updateByExampleSelective(item, example);
 			if (num != 1) {
-				throw new DataException(MessageFormat.format("配置项{0}更新异常,更新记录数{1}", p.getPropId(), num));
+				throw new DataException(MessageFormat.format("配置项{0}更新异常,更新记录数{1}", p.getItemId(), num));
 			}
 		}
 		return true;

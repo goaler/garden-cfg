@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80011
 File Encoding         : 65001
 
-Date: 2018-10-11 15:29:42
+Date: 2018-10-11 17:05:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,6 +25,10 @@ CREATE TABLE `cfg_app` (
   `app_name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '应用名称',
   `comment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '描述',
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '状态:0-删除,1-正常',
+  `create_user_code` varchar(255) NOT NULL COMMENT '创建人',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_user_code` varchar(255) NOT NULL COMMENT '修改人',
+  `update_time` datetime NOT NULL COMMENT '修改时间',
   PRIMARY KEY (`app_id`),
   UNIQUE KEY `un_idx_app_code` (`app_code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='应用';
@@ -32,12 +36,12 @@ CREATE TABLE `cfg_app` (
 -- ----------------------------
 -- Records of cfg_app
 -- ----------------------------
-INSERT INTO `cfg_app` VALUES ('1', 'test', '测试应用', '测试应用', '1');
-INSERT INTO `cfg_app` VALUES ('2', 'test2', '测试应用2', null, '1');
-INSERT INTO `cfg_app` VALUES ('5', 'test3', '测试应用3', '测试应用3', '1');
-INSERT INTO `cfg_app` VALUES ('6', 'test4', '测试应用4', '测试应用4', '1');
-INSERT INTO `cfg_app` VALUES ('7', 'test5', '测试应用5', '测试应用5', '1');
-INSERT INTO `cfg_app` VALUES ('8', 'app_all', '所有应用', '所有应用', '1');
+INSERT INTO `cfg_app` VALUES ('1', 'test', '测试应用', '测试应用', '1', 'admin', '2018-10-11 15:33:29', 'admin', '2018-10-11 15:33:46');
+INSERT INTO `cfg_app` VALUES ('2', 'test2', '测试应用2', null, '1', 'admin', '2018-10-11 15:33:32', 'admin', '2018-10-11 15:33:49');
+INSERT INTO `cfg_app` VALUES ('5', 'test3', '测试应用3', '测试应用3', '1', 'admin', '2018-10-11 15:33:35', 'admin', '2018-10-11 15:33:51');
+INSERT INTO `cfg_app` VALUES ('6', 'test4', '测试应用4', '测试应用4', '1', 'admin', '2018-10-11 15:33:38', 'admin', '2018-10-11 15:33:54');
+INSERT INTO `cfg_app` VALUES ('7', 'test5', '测试应用5', '测试应用5', '1', 'admin', '2018-10-11 15:33:40', 'admin', '2018-10-11 15:33:56');
+INSERT INTO `cfg_app` VALUES ('8', 'app_all', '所有应用', '所有应用', '1', 'admin', '2018-10-11 15:33:42', 'admin', '2018-10-11 15:33:59');
 
 -- ----------------------------
 -- Table structure for cfg_cluster
@@ -131,17 +135,20 @@ CREATE TABLE `cfg_item` (
   `position` int(11) NOT NULL COMMENT '位置',
   `text` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '原始内容',
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '状态:0-删除,1-正常',
+  `create_user_code` varchar(255) NOT NULL COMMENT '创建人',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_user_code` varchar(255) NOT NULL COMMENT '修改人',
+  `update_time` datetime NOT NULL COMMENT '修改时间',
   PRIMARY KEY (`item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='配置项';
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='配置项';
 
 -- ----------------------------
 -- Records of cfg_item
 -- ----------------------------
-INSERT INTO `cfg_item` VALUES ('2', '1', 'age', '24', '年龄', '2', 'age=25', '1');
-INSERT INTO `cfg_item` VALUES ('33', '1', 'sex', '男', '性别', '3', null, '1');
-INSERT INTO `cfg_item` VALUES ('35', '1', 'description', '帅不帅', '描述', '3', null, '1');
-INSERT INTO `cfg_item` VALUES ('36', '1', 'status', '1', '状态', '3', null, '1');
-INSERT INTO `cfg_item` VALUES ('38', '1', 'name', 'yy', '名字', '4', null, '1');
+INSERT INTO `cfg_item` VALUES ('2', '1', 'age', '24', '年龄', '2', 'age=25', '1', 'admin', '2018-10-11 15:42:11', 'admin', '2018-10-11 15:42:24');
+INSERT INTO `cfg_item` VALUES ('33', '1', 'sex', '男', '性别', '3', null, '1', 'admin', '2018-10-11 15:42:15', 'admin', '2018-10-11 15:42:27');
+INSERT INTO `cfg_item` VALUES ('35', '1', 'description', '帅不帅', '描述', '3', null, '1', 'admin', '2018-10-11 15:42:17', 'admin', '2018-10-11 15:42:30');
+INSERT INTO `cfg_item` VALUES ('36', '1', 'status', '1', '状态', '3', null, '1', 'admin', '2018-10-11 15:42:21', 'admin', '2018-10-11 15:42:32');
 
 -- ----------------------------
 -- Table structure for cfg_user

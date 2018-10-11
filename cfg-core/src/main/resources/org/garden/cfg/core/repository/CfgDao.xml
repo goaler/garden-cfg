@@ -69,7 +69,11 @@
 			`value`,
 			`comment`,
 			`position`,
-			`text`
+			`text`,
+			`create_user_code`,
+			`create_time`,
+			`update_user_code`,
+			`update_time`
 		)
 		VALUES
 			<foreach collection ="props" item="item" separator =",">
@@ -79,7 +83,11 @@
 				#{item.value},
 				#{item.comment},
 				#{item.position},
-				#{item.text}
+				#{item.text},
+				#{item.createUserCode},
+				#{item.createTime},
+				#{item.updateUserCode},
+				#{item.updateTime}
 				)
 			</foreach >
 	</insert>
