@@ -11,7 +11,7 @@ public class CfgDoc {
 
     private String clusterCode;
 
-    private Integer groupId;
+    private Integer type;
 
     private String comment;
 
@@ -57,12 +57,12 @@ public class CfgDoc {
         this.clusterCode = clusterCode;
     }
 
-    public Integer getGroupId() {
-        return groupId;
+    public Integer getType() {
+        return type;
     }
 
-    public void setGroupId(Integer groupId) {
-        this.groupId = groupId;
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public String getComment() {

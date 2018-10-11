@@ -17,6 +17,6 @@ public interface CfgDao {
 
 	public void addProps(@Param("props") List<CfgItem> props);
 
-	public Integer getLastPosition(@Param("groupId") int groupId);
+	public Integer getLastPosition(@Param("docId") Integer docId);
 
 }

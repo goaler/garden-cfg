@@ -164,63 +164,63 @@ public class CfgItemExample {
             return (Criteria) this;
         }
 
-        public Criteria andGroupIdIsNull() {
-            addCriterion("group_id is null");
+        public Criteria andDocIdIsNull() {
+            addCriterion("doc_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andGroupIdIsNotNull() {
-            addCriterion("group_id is not null");
+        public Criteria andDocIdIsNotNull() {
+            addCriterion("doc_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andGroupIdEqualTo(Integer value) {
-            addCriterion("group_id =", value, "groupId");
+        public Criteria andDocIdEqualTo(Integer value) {
+            addCriterion("doc_id =", value, "docId");
             return (Criteria) this;
         }
 
-        public Criteria andGroupIdNotEqualTo(Integer value) {
-            addCriterion("group_id <>", value, "groupId");
+        public Criteria andDocIdNotEqualTo(Integer value) {
+            addCriterion("doc_id <>", value, "docId");
             return (Criteria) this;
         }
 
-        public Criteria andGroupIdGreaterThan(Integer value) {
-            addCriterion("group_id >", value, "groupId");
+        public Criteria andDocIdGreaterThan(Integer value) {
+            addCriterion("doc_id >", value, "docId");
             return (Criteria) this;
         }
 
-        public Criteria andGroupIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("group_id >=", value, "groupId");
+        public Criteria andDocIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("doc_id >=", value, "docId");
             return (Criteria) this;
         }
 
-        public Criteria andGroupIdLessThan(Integer value) {
-            addCriterion("group_id <", value, "groupId");
+        public Criteria andDocIdLessThan(Integer value) {
+            addCriterion("doc_id <", value, "docId");
             return (Criteria) this;
         }
 
-        public Criteria andGroupIdLessThanOrEqualTo(Integer value) {
-            addCriterion("group_id <=", value, "groupId");
+        public Criteria andDocIdLessThanOrEqualTo(Integer value) {
+            addCriterion("doc_id <=", value, "docId");
             return (Criteria) this;
         }
 
-        public Criteria andGroupIdIn(List<Integer> values) {
-            addCriterion("group_id in", values, "groupId");
+        public Criteria andDocIdIn(List<Integer> values) {
+            addCriterion("doc_id in", values, "docId");
             return (Criteria) this;
         }
 
-        public Criteria andGroupIdNotIn(List<Integer> values) {
-            addCriterion("group_id not in", values, "groupId");
+        public Criteria andDocIdNotIn(List<Integer> values) {
+            addCriterion("doc_id not in", values, "docId");
             return (Criteria) this;
         }
 
-        public Criteria andGroupIdBetween(Integer value1, Integer value2) {
-            addCriterion("group_id between", value1, value2, "groupId");
+        public Criteria andDocIdBetween(Integer value1, Integer value2) {
+            addCriterion("doc_id between", value1, value2, "docId");
             return (Criteria) this;
         }
 
-        public Criteria andGroupIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("group_id not between", value1, value2, "groupId");
+        public Criteria andDocIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("doc_id not between", value1, value2, "docId");
             return (Criteria) this;
         }
 

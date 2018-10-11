@@ -100,8 +100,12 @@ public class ManagerService {
 	 * @param docId
 	 * @return
 	 */
-	public List<CfgItem> getDocProps(String docId) {
-		return cfgDao.getDocProps(docId);
+	public List<CfgItem> getDocProps(Integer docId) {
+		
+		CfgItemExample example = new CfgItemExample();
+		example.createCriteria().andDocIdEqualTo(docId);
+		example.setOrderByClause("position, item_id  ASC");
+		return cfgItemMapper.selectByExample(example);
 	}
 
 	/**
@@ -111,40 +115,15 @@ public class ManagerService {
 	 * @param props
 	 * @return
 	 */
-	public boolean addDocProps(String docId, List<PropInfo> props) {
-		CfgDoc doc = getDocById(docId);
-		return addGroupProps(doc.getGroupId(), props);
-	}
-
-	private CfgDoc getDocById(String docId) {
-		CfgDocExample example = new CfgDocExample();
-		example.createCriteria().andStatusEqualTo(1).andDocIdEqualTo(Integer.parseInt(docId));
-		List<CfgDoc> docs = cfgDocMapper.selectByExample(example);
-		if (CollectionUtils.isEmpty(docs)) {
-			String msg = MessageFormat.format("无文档（{0}）相关信息", docId);
-			log.warn(msg);
-			throw new DataException(msg);
-		}
-		return docs.get(0);
-	}
-
-	/**
-	 * 配置组末尾添加配置项
-	 * 
-	 * @param groupId
-	 * @param props
-	 * @return
-	 */
-	public boolean addGroupProps(int groupId, List<PropInfo> props) {
-
-		Integer lastPosition = cfgDao.getLastPosition(groupId);
+	public boolean addDocProps(Integer docId, List<PropInfo> props) {
+		Integer lastPosition = cfgDao.getLastPosition(docId);
 		if (lastPosition == null) {
 			lastPosition = -1;
 		}
 		List<CfgItem> items = new ArrayList<>();
 		for (PropInfo prop : props) {
 			CfgItem item = new CfgItem();
-			item.setGroupId(groupId);
+			item.setDocId(docId);
 			item.setKey(prop.getKey());
 			item.setValue(prop.getValue());
 			item.setComment(prop.getComment());
@@ -157,19 +136,31 @@ public class ManagerService {
 		return true;
 	}
 
-	public boolean deleteDocProps(String docId, List<Integer> propIds) {
+	public CfgDoc getDocById(Integer docId) {
+		CfgDocExample example = new CfgDocExample();
+		example.createCriteria().andStatusEqualTo(1).andDocIdEqualTo(docId);
+		List<CfgDoc> docs = cfgDocMapper.selectByExample(example);
+		if (CollectionUtils.isEmpty(docs)) {
+			String msg = MessageFormat.format("无文档（{0}）相关信息", docId);
+			log.warn(msg);
+			throw new DataException(msg);
+		}
+		return docs.get(0);
+	}
+
+	public boolean deleteDocProps(Integer docId, List<Integer> propIds) {
 
 		CfgItemExample example = new CfgItemExample();
-		example.createCriteria().andItemIdIn(propIds);
+		example.createCriteria().andDocIdEqualTo(docId).andItemIdIn(propIds);
 		cfgItemMapper.deleteByExample(example);
 		return true;
 	}
 
 	@Transactional
-	public boolean updateDocProps(String docId, List<PropInfo> props) {
+	public boolean updateDocProps(Integer docId, List<PropInfo> props) {
 		for(PropInfo p: props) {
 			CfgItemExample example = new CfgItemExample();
-			example.createCriteria().andStatusEqualTo(1).andItemIdEqualTo(p.getPropId());
+			example.createCriteria().andStatusEqualTo(1).andDocIdEqualTo(docId).andItemIdEqualTo(p.getPropId());
 			CfgItem item = new CfgItem();
 			item.setKey(p.getKey());
 			item.setValue(p.getValue());

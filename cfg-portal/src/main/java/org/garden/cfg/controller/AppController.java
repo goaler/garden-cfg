@@ -46,11 +46,13 @@ public class AppController {
 	@GetMapping("docs")
 	public List<DocInfo> findDocs(String appCode, String envCode, String clusterCode){
 		List<CfgDoc> docs = managerService.findDocs(appCode, envCode, clusterCode);
-		List<DocInfo> rets = new ArrayList<>();
+		List<DocInfo> infos = new ArrayList<>();
 		for(CfgDoc doc:docs) {
-			rets.add(new DocInfo(doc));
+			DocInfo info = new DocInfo();
+			BeanUtils.copyProperties(doc, info);
+			infos.add(info);
 		}
-		return rets; 
+		return infos; 
 	}
 	
 }

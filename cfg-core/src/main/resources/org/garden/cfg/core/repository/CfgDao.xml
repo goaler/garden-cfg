@@ -55,8 +55,7 @@
 		FROM
 			cfg_item t
 		WHERE
-			t.`status` = 1
-		AND t.group_id = #{groupId}
+			t.doc_id = #{docId}
 	</select>
 	
 	<insert id="addProps" parameterType="java.util.List">
@@ -65,7 +64,7 @@
          </selectKey >
  
 		INSERT INTO `garden_cfg`.`cfg_item` (
-			`group_id`,
+			`doc_id`,
 			`key`,
 			`value`,
 			`comment`,
@@ -75,7 +74,7 @@
 		VALUES
 			<foreach collection ="props" item="item" separator =",">
 				(
-				#{item.groupId},
+				#{item.docId},
 				#{item.key},
 				#{item.value},
 				#{item.comment},

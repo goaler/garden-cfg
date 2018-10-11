@@ -7,7 +7,7 @@
     <result column="app_code" jdbcType="VARCHAR" property="appCode" />
     <result column="env_code" jdbcType="VARCHAR" property="envCode" />
     <result column="cluster_code" jdbcType="VARCHAR" property="clusterCode" />
-    <result column="group_id" jdbcType="INTEGER" property="groupId" />
+    <result column="type" jdbcType="INTEGER" property="type" />
     <result column="comment" jdbcType="VARCHAR" property="comment" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    doc_id, doc_name, app_code, env_code, cluster_code, group_id, `comment`, `status`
+    doc_id, doc_name, app_code, env_code, cluster_code, `type`, `comment`, `status`
   </sql>
   <select id="selectByExample" parameterType="org.garden.cfg.core.repository.entity.CfgDocExample" resultMap="BaseResultMap">
     select
@@ -107,10 +107,10 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into cfg_doc (doc_name, app_code, env_code, 
-      cluster_code, group_id, `comment`, 
+      cluster_code, `type`, `comment`, 
       `status`)
     values (#{docName,jdbcType=VARCHAR}, #{appCode,jdbcType=VARCHAR}, #{envCode,jdbcType=VARCHAR}, 
-      #{clusterCode,jdbcType=VARCHAR}, #{groupId,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}, 
+      #{clusterCode,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="org.garden.cfg.core.repository.entity.CfgDoc">
@@ -131,8 +131,8 @@
       <if test="clusterCode != null">
         cluster_code,
       </if>
-      <if test="groupId != null">
-        group_id,
+      <if test="type != null">
+        `type`,
       </if>
       <if test="comment != null">
         `comment`,
@@ -154,8 +154,8 @@
       <if test="clusterCode != null">
         #{clusterCode,jdbcType=VARCHAR},
       </if>
-      <if test="groupId != null">
-        #{groupId,jdbcType=INTEGER},
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
       </if>
       <if test="comment != null">
         #{comment,jdbcType=VARCHAR},
@@ -189,8 +189,8 @@
       <if test="record.clusterCode != null">
         cluster_code = #{record.clusterCode,jdbcType=VARCHAR},
       </if>
-      <if test="record.groupId != null">
-        group_id = #{record.groupId,jdbcType=INTEGER},
+      <if test="record.type != null">
+        `type` = #{record.type,jdbcType=INTEGER},
       </if>
       <if test="record.comment != null">
         `comment` = #{record.comment,jdbcType=VARCHAR},
@@ -210,7 +210,7 @@
       app_code = #{record.appCode,jdbcType=VARCHAR},
       env_code = #{record.envCode,jdbcType=VARCHAR},
       cluster_code = #{record.clusterCode,jdbcType=VARCHAR},
-      group_id = #{record.groupId,jdbcType=INTEGER},
+      `type` = #{record.type,jdbcType=INTEGER},
       `comment` = #{record.comment,jdbcType=VARCHAR},
       `status` = #{record.status,jdbcType=INTEGER}
     <if test="_parameter != null">
@@ -232,8 +232,8 @@
       <if test="clusterCode != null">
         cluster_code = #{clusterCode,jdbcType=VARCHAR},
       </if>
-      <if test="groupId != null">
-        group_id = #{groupId,jdbcType=INTEGER},
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
       </if>
       <if test="comment != null">
         `comment` = #{comment,jdbcType=VARCHAR},
@@ -250,7 +250,7 @@
       app_code = #{appCode,jdbcType=VARCHAR},
       env_code = #{envCode,jdbcType=VARCHAR},
       cluster_code = #{clusterCode,jdbcType=VARCHAR},
-      group_id = #{groupId,jdbcType=INTEGER},
+      `type` = #{type,jdbcType=INTEGER},
       `comment` = #{comment,jdbcType=VARCHAR},
       `status` = #{status,jdbcType=INTEGER}
     where doc_id = #{docId,jdbcType=INTEGER}

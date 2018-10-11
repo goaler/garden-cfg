@@ -3,7 +3,7 @@ package org.garden.cfg.core.repository.entity;
 public class CfgItem {
     private Integer itemId;
 
-    private Integer groupId;
+    private Integer docId;
 
     private String key;
 
@@ -25,12 +25,12 @@ public class CfgItem {
         this.itemId = itemId;
     }
 
-    public Integer getGroupId() {
-        return groupId;
+    public Integer getDocId() {
+        return docId;
     }
 
-    public void setGroupId(Integer groupId) {
-        this.groupId = groupId;
+    public void setDocId(Integer docId) {
+        this.docId = docId;
     }
 
     public String getKey() {

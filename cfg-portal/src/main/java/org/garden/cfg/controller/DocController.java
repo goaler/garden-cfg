@@ -24,7 +24,7 @@ public class DocController {
 	private ManagerService managerService;
 
 	@GetMapping("/props/{docId}")
-	public List<PropInfo> getDocProps(@PathVariable String docId) {
+	public List<PropInfo> getDocProps(@PathVariable Integer docId) {
 		List<CfgItem> props = managerService.getDocProps(docId);
 		List<PropInfo> rets = new ArrayList<>();
 		for (CfgItem p : props) {
@@ -35,17 +35,17 @@ public class DocController {
 	}
 	
 	@PostMapping("/props/{docId}")
-	public boolean addProps(@PathVariable String docId, @RequestBody List<PropInfo> props) {
+	public boolean addProps(@PathVariable Integer docId, @RequestBody List<PropInfo> props) {
 		return managerService.addDocProps(docId, props);
 	}
 	
 	@DeleteMapping("/props/{docId}")
-	public boolean deleteProps(@PathVariable String docId, @RequestBody List<Integer> propIds) {
+	public boolean deleteProps(@PathVariable Integer docId, @RequestBody List<Integer> propIds) {
 		return managerService.deleteDocProps(docId, propIds);
 	}
 	
 	@PutMapping("/props/{docId}")
-	public boolean updateProps(@PathVariable String docId, @RequestBody List<PropInfo> props) {
+	public boolean updateProps(@PathVariable Integer docId, @RequestBody List<PropInfo> props) {
 		return managerService.updateDocProps(docId, props);
 	}
 
