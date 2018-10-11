@@ -5,6 +5,12 @@
 				<h3>我的项目</h3>
 			</aside>
 			<aside>
+        <div class="item-default item-btn" v-on:click="showAddAppDetail()">
+					<div style="margin-top:10px">
+            <img src="/static/img/plus-white.png" class="plusImg">
+					</div>
+          <h4 style="margin-top: 0;color:#fff">创 建 项 目</h4>
+				</div>
 				<div  :key="app.appCode" v-for="app in appList" class="item-default" v-on:click="visitAppDetail(app.appCode)">
 					<h4 style="margin-bottom: 0;">{{app.appName}}</h4>
 					<h6 style="margin-top: 0;">{{app.appCode}}</h6>
@@ -71,7 +77,8 @@ export default {
 
 .item-default {
   display: table-cell;
-  width: 20%;
+  width: 200px;
+  height: 90px;
   text-align: center;
   vertical-align: middle;
   border: solid 1px var(--border-color);
@@ -79,6 +86,16 @@ export default {
   margin: 10px;
   float: left;
   cursor: pointer;
+}
+
+.item-btn {
+  background-color: #373d41;
+}
+
+.plusImg {
+  margin: auto; 
+  height: 40px;
+  width: 40px;
 }
 
 .item-default:hover {

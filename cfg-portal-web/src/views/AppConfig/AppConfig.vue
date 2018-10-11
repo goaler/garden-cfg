@@ -29,7 +29,9 @@
 			</div>
     <div class="config-panel" v-cloak>
 				<h4>配置管理</h4>
-				<doc-config v-for="doc in docs" :key="doc.docId" :doc="doc"></doc-config>
+        <el-collapse>
+				  <doc-config v-for="doc in docs" :key="doc.docId" :doc="doc"></doc-config>
+        </el-collapse>
 			</div>
   </div>
 </template>

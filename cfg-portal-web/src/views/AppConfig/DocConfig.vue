@@ -1,17 +1,22 @@
 <template>
 		<div class="doc-config">
-			<ul class="menu">
-				<li @click="currentPanel = 'table'" :class="['menu-item', currentPanel=='table'?'menu-item-cur':'']">列表</li>
-				<li @click="currentPanel = 'text'" :class="['menu-item', currentPanel=='text'?'menu-item-cur':'']">文本</li>
-			</ul>
-			<div class="tab-panel">
-				<div v-show="currentPanel == 'text'">
-					<text-editor v-model="content"></text-editor>
-				</div>
-				<div v-show="currentPanel == 'table'">
-					<table-editor :doc="doc" :doc-props="docProps"></table-editor>
-				</div>
-			</div>
+      <el-collapse-item>
+        <template slot="title">
+            文档：{{doc.docName}}
+        </template>
+        <ul class="menu">
+          <li @click="currentPanel = 'table'" :class="['menu-item', currentPanel=='table'?'menu-item-cur':'']">列表</li>
+          <li @click="currentPanel = 'text'" :class="['menu-item', currentPanel=='text'?'menu-item-cur':'']">文本</li>
+        </ul>
+        <div class="tab-panel">
+          <div v-show="currentPanel == 'text'">
+            <text-editor v-model="content"></text-editor>
+          </div>
+          <div v-show="currentPanel == 'table'">
+            <table-editor :doc="doc" :doc-props="docProps"></table-editor>
+          </div>
+        </div>
+      </el-collapse-item>
 		</div>
 </template>
 <script>
@@ -76,7 +81,7 @@ export default {
 .doc-config {
   background-color: var(--panel-bg);
   margin: 20px 0px;
-  padding: 20px 10px;
+  /* padding: 20px 20px; */
   border: solid 1px var(--border-color);
   border-radius: 25px;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
