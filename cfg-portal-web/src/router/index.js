@@ -2,10 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '../views/Login'
 import HomePage from '../views/HomePage'
-import appPage from '../views/AppPage'
+import appPage from '../views/app/App'
 import appConfig from '../views/AppConfig/AppConfig'
-import clusterPage from '../views/cluster/cluster'
-import envPage from '../views/env/env'
+import clusterPage from '../views/cluster/Cluster'
+import envPage from '../views/env/Env'
+import createAppPage from '../views/app/CreateApp'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ export default new Router({
       path: '/appConfig',
       name: 'appConfig',
       component: appConfig
+    },
+    {
+      path: '/createApp',
+      name: 'createApp',
+      component: createAppPage
     }
   ]
 })

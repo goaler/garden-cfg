@@ -5,7 +5,7 @@
 				<h3>我的项目</h3>
 			</aside>
 			<aside>
-        <div class="item-default item-btn" v-on:click="showAddAppDetail()">
+        <div class="item-default item-btn" v-on:click="showCreateApp()">
 					<div style="margin-top:10px">
             <img src="/static/img/plus-white.png" class="plusImg">
 					</div>
@@ -47,6 +47,12 @@ export default {
         query: {
           appCode: appCode
         }
+      });
+      window.open(href, "_blank");
+    },
+    showCreateApp: function(){
+      const { href } = this.$router.resolve({
+        name: "createApp"
       });
       window.open(href, "_blank");
     }

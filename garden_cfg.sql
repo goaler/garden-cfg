@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80011
 File Encoding         : 65001
 
-Date: 2018-10-11 17:05:29
+Date: 2018-10-12 18:02:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -87,9 +87,9 @@ CREATE TABLE `cfg_doc` (
 -- Records of cfg_doc
 -- ----------------------------
 INSERT INTO `cfg_doc` VALUES ('1', 'default', 'test', 'dev', 'default', '1', null, '1');
-INSERT INTO `cfg_doc` VALUES ('2', 'default', 'test2', 'dev', 'default', null, null, '1');
-INSERT INTO `cfg_doc` VALUES ('3', 'default', 'test3', 'test', 'default', null, null, '1');
-INSERT INTO `cfg_doc` VALUES ('4', 'default', 'test4', 'test', 'default', null, null, '1');
+INSERT INTO `cfg_doc` VALUES ('2', 'default', 'test', 'dev', 'default', null, null, '1');
+INSERT INTO `cfg_doc` VALUES ('3', 'default', 'test', 'test', 'default', null, null, '1');
+INSERT INTO `cfg_doc` VALUES ('4', 'default', 'test', 'test', 'default', null, null, '1');
 INSERT INTO `cfg_doc` VALUES ('5', 'default', 'test5', 'test', 'default', null, null, '1');
 INSERT INTO `cfg_doc` VALUES ('6', 'default', 'test5', 'dev', 'default', null, null, '1');
 INSERT INTO `cfg_doc` VALUES ('7', 'default', 'test4', 'dev', 'default', null, null, '1');
