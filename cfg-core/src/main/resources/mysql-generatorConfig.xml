@@ -51,10 +51,6 @@
 			<generatedKey column="env_id" sqlStatement="MySql" identity="true" />
 		</table>
 		
-		<table schema="garden_cfg" tableName="cfg_group">
-			<generatedKey column="group_id" sqlStatement="MySql" identity="true" />
-		</table>
-		
 		<table schema="garden_cfg" tableName="cfg_item">
 			<generatedKey column="item_id" sqlStatement="MySql" identity="true" />
 		</table>
@@ -63,8 +59,40 @@
 			<generatedKey column="user_id" sqlStatement="MySql" identity="true" />
 		</table>
 		
+		<table schema="garden_cfg" tableName="cfg_department">
+			<generatedKey column="dept_id" sqlStatement="MySql" identity="true" />
+		</table>
+		
+		<table schema="garden_cfg" tableName="cfg_role">
+			<generatedKey column="role_id" sqlStatement="MySql" identity="true" />
+		</table>
+		
 		<table schema="garden_cfg" tableName="cfg_user_hold">
 			<generatedKey column="hold_id" sqlStatement="MySql" identity="true" />
+		</table>
+		
+		<table schema="garden_cfg" tableName="cfg_user_role">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
+		
+		<table schema="garden_cfg" tableName="cfg_role_cluster">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
+		
+		<table schema="garden_cfg" tableName="cfg_role_env">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
+		
+		<table schema="garden_cfg" tableName="cfg_dept_app">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
+		
+		<table schema="garden_cfg" tableName="cfg_dept_user">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
+		
+		<table schema="garden_cfg" tableName="cfg_dept_role">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
 		</table>
 
 	</context>
