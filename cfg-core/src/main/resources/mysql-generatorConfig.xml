@@ -67,8 +67,8 @@
 			<generatedKey column="role_id" sqlStatement="MySql" identity="true" />
 		</table>
 		
-		<table schema="garden_cfg" tableName="cfg_user_hold">
-			<generatedKey column="hold_id" sqlStatement="MySql" identity="true" />
+		<table schema="garden_cfg" tableName="cfg_user_app">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
 		</table>
 		
 		<table schema="garden_cfg" tableName="cfg_user_role">

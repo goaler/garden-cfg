@@ -3,14 +3,14 @@ package org.garden.cfg.core.repository.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CfgUserHoldExample {
+public class CfgUserAppExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public CfgUserHoldExample() {
+    public CfgUserAppExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -104,63 +104,63 @@ public class CfgUserHoldExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andHoldIdIsNull() {
-            addCriterion("hold_id is null");
+        public Criteria andIdIsNull() {
+            addCriterion("id is null");
             return (Criteria) this;
         }
 
-        public Criteria andHoldIdIsNotNull() {
-            addCriterion("hold_id is not null");
+        public Criteria andIdIsNotNull() {
+            addCriterion("id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andHoldIdEqualTo(Integer value) {
-            addCriterion("hold_id =", value, "holdId");
+        public Criteria andIdEqualTo(Integer value) {
+            addCriterion("id =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andHoldIdNotEqualTo(Integer value) {
-            addCriterion("hold_id <>", value, "holdId");
+        public Criteria andIdNotEqualTo(Integer value) {
+            addCriterion("id <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andHoldIdGreaterThan(Integer value) {
-            addCriterion("hold_id >", value, "holdId");
+        public Criteria andIdGreaterThan(Integer value) {
+            addCriterion("id >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andHoldIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("hold_id >=", value, "holdId");
+        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("id >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andHoldIdLessThan(Integer value) {
-            addCriterion("hold_id <", value, "holdId");
+        public Criteria andIdLessThan(Integer value) {
+            addCriterion("id <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andHoldIdLessThanOrEqualTo(Integer value) {
-            addCriterion("hold_id <=", value, "holdId");
+        public Criteria andIdLessThanOrEqualTo(Integer value) {
+            addCriterion("id <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andHoldIdIn(List<Integer> values) {
-            addCriterion("hold_id in", values, "holdId");
+        public Criteria andIdIn(List<Integer> values) {
+            addCriterion("id in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andHoldIdNotIn(List<Integer> values) {
-            addCriterion("hold_id not in", values, "holdId");
+        public Criteria andIdNotIn(List<Integer> values) {
+            addCriterion("id not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andHoldIdBetween(Integer value1, Integer value2) {
-            addCriterion("hold_id between", value1, value2, "holdId");
+        public Criteria andIdBetween(Integer value1, Integer value2) {
+            addCriterion("id between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andHoldIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("hold_id not between", value1, value2, "holdId");
+        public Criteria andIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("id not between", value1, value2, "id");
             return (Criteria) this;
         }
 
@@ -234,63 +234,73 @@ public class CfgUserHoldExample {
             return (Criteria) this;
         }
 
-        public Criteria andDocIdIsNull() {
-            addCriterion("doc_id is null");
+        public Criteria andAppCodeIsNull() {
+            addCriterion("app_code is null");
             return (Criteria) this;
         }
 
-        public Criteria andDocIdIsNotNull() {
-            addCriterion("doc_id is not null");
+        public Criteria andAppCodeIsNotNull() {
+            addCriterion("app_code is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDocIdEqualTo(Integer value) {
-            addCriterion("doc_id =", value, "docId");
+        public Criteria andAppCodeEqualTo(String value) {
+            addCriterion("app_code =", value, "appCode");
             return (Criteria) this;
         }
 
-        public Criteria andDocIdNotEqualTo(Integer value) {
-            addCriterion("doc_id <>", value, "docId");
+        public Criteria andAppCodeNotEqualTo(String value) {
+            addCriterion("app_code <>", value, "appCode");
             return (Criteria) this;
         }
 
-        public Criteria andDocIdGreaterThan(Integer value) {
-            addCriterion("doc_id >", value, "docId");
+        public Criteria andAppCodeGreaterThan(String value) {
+            addCriterion("app_code >", value, "appCode");
             return (Criteria) this;
         }
 
-        public Criteria andDocIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("doc_id >=", value, "docId");
+        public Criteria andAppCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("app_code >=", value, "appCode");
             return (Criteria) this;
         }
 
-        public Criteria andDocIdLessThan(Integer value) {
-            addCriterion("doc_id <", value, "docId");
+        public Criteria andAppCodeLessThan(String value) {
+            addCriterion("app_code <", value, "appCode");
             return (Criteria) this;
         }
 
-        public Criteria andDocIdLessThanOrEqualTo(Integer value) {
-            addCriterion("doc_id <=", value, "docId");
+        public Criteria andAppCodeLessThanOrEqualTo(String value) {
+            addCriterion("app_code <=", value, "appCode");
             return (Criteria) this;
         }
 
-        public Criteria andDocIdIn(List<Integer> values) {
-            addCriterion("doc_id in", values, "docId");
+        public Criteria andAppCodeLike(String value) {
+            addCriterion("app_code like", value, "appCode");
             return (Criteria) this;
         }
 
-        public Criteria andDocIdNotIn(List<Integer> values) {
-            addCriterion("doc_id not in", values, "docId");
+        public Criteria andAppCodeNotLike(String value) {
+            addCriterion("app_code not like", value, "appCode");
             return (Criteria) this;
         }
 
-        public Criteria andDocIdBetween(Integer value1, Integer value2) {
-            addCriterion("doc_id between", value1, value2, "docId");
+        public Criteria andAppCodeIn(List<String> values) {
+            addCriterion("app_code in", values, "appCode");
             return (Criteria) this;
         }
 
-        public Criteria andDocIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("doc_id not between", value1, value2, "docId");
+        public Criteria andAppCodeNotIn(List<String> values) {
+            addCriterion("app_code not in", values, "appCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAppCodeBetween(String value1, String value2) {
+            addCriterion("app_code between", value1, value2, "appCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAppCodeNotBetween(String value1, String value2) {
+            addCriterion("app_code not between", value1, value2, "appCode");
             return (Criteria) this;
         }
 

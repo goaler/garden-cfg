@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.garden.cfg.core.repository.mapper.CfgUserHoldMapper">
-  <resultMap id="BaseResultMap" type="org.garden.cfg.core.repository.entity.CfgUserHold">
-    <id column="hold_id" jdbcType="INTEGER" property="holdId" />
+<mapper namespace="org.garden.cfg.core.repository.mapper.CfgUserAppMapper">
+  <resultMap id="BaseResultMap" type="org.garden.cfg.core.repository.entity.CfgUserApp">
+    <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_code" jdbcType="VARCHAR" property="userCode" />
-    <result column="doc_id" jdbcType="INTEGER" property="docId" />
+    <result column="app_code" jdbcType="VARCHAR" property="appCode" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -66,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    hold_id, user_code, doc_id, `status`
+    id, user_code, app_code, `status`
   </sql>
-  <select id="selectByExample" parameterType="org.garden.cfg.core.repository.entity.CfgUserHoldExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="org.garden.cfg.core.repository.entity.CfgUserAppExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from cfg_user_hold
+    from cfg_user_app
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -85,39 +85,39 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from cfg_user_hold
-    where hold_id = #{holdId,jdbcType=INTEGER}
+    from cfg_user_app
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from cfg_user_hold
-    where hold_id = #{holdId,jdbcType=INTEGER}
+    delete from cfg_user_app
+    where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="org.garden.cfg.core.repository.entity.CfgUserHoldExample">
-    delete from cfg_user_hold
+  <delete id="deleteByExample" parameterType="org.garden.cfg.core.repository.entity.CfgUserAppExample">
+    delete from cfg_user_app
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="org.garden.cfg.core.repository.entity.CfgUserHold">
-    <selectKey keyProperty="holdId" order="AFTER" resultType="java.lang.Integer">
+  <insert id="insert" parameterType="org.garden.cfg.core.repository.entity.CfgUserApp">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into cfg_user_hold (user_code, doc_id, `status`
+    insert into cfg_user_app (user_code, app_code, `status`
       )
-    values (#{userCode,jdbcType=VARCHAR}, #{docId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}
+    values (#{userCode,jdbcType=VARCHAR}, #{appCode,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="org.garden.cfg.core.repository.entity.CfgUserHold">
-    <selectKey keyProperty="holdId" order="AFTER" resultType="java.lang.Integer">
+  <insert id="insertSelective" parameterType="org.garden.cfg.core.repository.entity.CfgUserApp">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into cfg_user_hold
+    insert into cfg_user_app
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userCode != null">
         user_code,
       </if>
-      <if test="docId != null">
-        doc_id,
+      <if test="appCode != null">
+        app_code,
       </if>
       <if test="status != null">
         `status`,
@@ -127,31 +127,31 @@
       <if test="userCode != null">
         #{userCode,jdbcType=VARCHAR},
       </if>
-      <if test="docId != null">
-        #{docId,jdbcType=INTEGER},
+      <if test="appCode != null">
+        #{appCode,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="org.garden.cfg.core.repository.entity.CfgUserHoldExample" resultType="java.lang.Long">
-    select count(*) from cfg_user_hold
+  <select id="countByExample" parameterType="org.garden.cfg.core.repository.entity.CfgUserAppExample" resultType="java.lang.Long">
+    select count(*) from cfg_user_app
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update cfg_user_hold
+    update cfg_user_app
     <set>
-      <if test="record.holdId != null">
-        hold_id = #{record.holdId,jdbcType=INTEGER},
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.userCode != null">
         user_code = #{record.userCode,jdbcType=VARCHAR},
       </if>
-      <if test="record.docId != null">
-        doc_id = #{record.docId,jdbcType=INTEGER},
+      <if test="record.appCode != null">
+        app_code = #{record.appCode,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null">
         `status` = #{record.status,jdbcType=INTEGER},
@@ -162,35 +162,35 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update cfg_user_hold
-    set hold_id = #{record.holdId,jdbcType=INTEGER},
+    update cfg_user_app
+    set id = #{record.id,jdbcType=INTEGER},
       user_code = #{record.userCode,jdbcType=VARCHAR},
-      doc_id = #{record.docId,jdbcType=INTEGER},
+      app_code = #{record.appCode,jdbcType=VARCHAR},
       `status` = #{record.status,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.garden.cfg.core.repository.entity.CfgUserHold">
-    update cfg_user_hold
+  <update id="updateByPrimaryKeySelective" parameterType="org.garden.cfg.core.repository.entity.CfgUserApp">
+    update cfg_user_app
     <set>
       <if test="userCode != null">
         user_code = #{userCode,jdbcType=VARCHAR},
       </if>
-      <if test="docId != null">
-        doc_id = #{docId,jdbcType=INTEGER},
+      <if test="appCode != null">
+        app_code = #{appCode,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         `status` = #{status,jdbcType=INTEGER},
       </if>
     </set>
-    where hold_id = #{holdId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.garden.cfg.core.repository.entity.CfgUserHold">
-    update cfg_user_hold
+  <update id="updateByPrimaryKey" parameterType="org.garden.cfg.core.repository.entity.CfgUserApp">
+    update cfg_user_app
     set user_code = #{userCode,jdbcType=VARCHAR},
-      doc_id = #{docId,jdbcType=INTEGER},
+      app_code = #{appCode,jdbcType=VARCHAR},
       `status` = #{status,jdbcType=INTEGER}
-    where hold_id = #{holdId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

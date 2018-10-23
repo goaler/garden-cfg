@@ -20,16 +20,12 @@
 		SELECT
 			a.*
 		FROM
-			cfg_user_hold uh
-		LEFT JOIN cfg_doc d ON uh.doc_id = d.doc_id
-		LEFT JOIN cfg_app a ON a.app_code = d.app_code
+			cfg_app a
+		LEFT JOIN cfg_user_app ua ON a.app_code = ua.app_code
 		WHERE
-			uh.`status` = 1
-		AND d.`status` = 1
-		AND a.`status` = 1
-		<if test="userCode != null">
-			AND uh.user_code = #{userCode}
-		</if>
+			a.`status` = 1
+		AND ua.`status` = 1
+		AND ua.user_code = #{userCode}
 		GROUP BY
 			a.app_code
 	</select>

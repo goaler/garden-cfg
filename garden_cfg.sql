@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 80011
+Source Server Version : 80012
 Source Host           : localhost:3306
 Source Database       : garden_cfg
 
 Target Server Type    : MYSQL
-Target Server Version : 80011
+Target Server Version : 80012
 File Encoding         : 65001
 
-Date: 2018-10-12 18:02:47
+Date: 2018-10-23 23:22:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -65,6 +65,75 @@ CREATE TABLE `cfg_cluster` (
 -- Records of cfg_cluster
 -- ----------------------------
 INSERT INTO `cfg_cluster` VALUES ('1', 'default', '默认集群', '默认集群', '1', 'admin', '2018-10-10 10:44:57', 'admin', '2018-10-10 10:45:02');
+
+-- ----------------------------
+-- Table structure for cfg_department
+-- ----------------------------
+DROP TABLE IF EXISTS `cfg_department`;
+CREATE TABLE `cfg_department` (
+  `dept_id` int(11) NOT NULL COMMENT '主键',
+  `dept_code` varchar(255) NOT NULL COMMENT '部门编号',
+  `dept_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '部门名称',
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '状态：0-禁用，1-启用',
+  `create_user_code` varchar(255) NOT NULL COMMENT '创建人',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_user_code` varchar(255) NOT NULL COMMENT '修改人',
+  `update_time` datetime NOT NULL COMMENT '修改时间',
+  `comment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '描述',
+  PRIMARY KEY (`dept_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Records of cfg_department
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for cfg_dept_app
+-- ----------------------------
+DROP TABLE IF EXISTS `cfg_dept_app`;
+CREATE TABLE `cfg_dept_app` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `dept_code` varchar(255) NOT NULL COMMENT '部门编号',
+  `app_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '应用编号',
+  `status` int(11) DEFAULT NULL COMMENT '状态',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Records of cfg_dept_app
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for cfg_dept_role
+-- ----------------------------
+DROP TABLE IF EXISTS `cfg_dept_role`;
+CREATE TABLE `cfg_dept_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `dept_code` varchar(255) NOT NULL COMMENT '部门编号',
+  `role_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '角色编号',
+  `status` int(11) DEFAULT NULL COMMENT '状态',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Records of cfg_dept_role
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for cfg_dept_user
+-- ----------------------------
+DROP TABLE IF EXISTS `cfg_dept_user`;
+CREATE TABLE `cfg_dept_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `dept_code` varchar(255) NOT NULL COMMENT '部门编号',
+  `user_code` varchar(255) NOT NULL COMMENT '用户编号',
+  `status` int(11) DEFAULT NULL COMMENT '状态',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Records of cfg_dept_user
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for cfg_doc
@@ -151,6 +220,59 @@ INSERT INTO `cfg_item` VALUES ('35', '1', 'description', '帅不帅', '描述', 
 INSERT INTO `cfg_item` VALUES ('36', '1', 'status', '1', '状态', '3', null, '1', 'admin', '2018-10-11 15:42:21', 'admin', '2018-10-11 15:42:32');
 
 -- ----------------------------
+-- Table structure for cfg_role
+-- ----------------------------
+DROP TABLE IF EXISTS `cfg_role`;
+CREATE TABLE `cfg_role` (
+  `role_id` int(11) NOT NULL COMMENT '主键',
+  `role_code` varchar(255) NOT NULL COMMENT '角色编号',
+  `role_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '角色名称',
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '状态：0-禁用，1-启用',
+  `comment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '描述',
+  `create_user_code` varchar(255) NOT NULL COMMENT '创建人',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_user_code` varchar(255) NOT NULL COMMENT '修改人',
+  `update_time` datetime NOT NULL COMMENT '修改时间',
+  PRIMARY KEY (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Records of cfg_role
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for cfg_role_cluster
+-- ----------------------------
+DROP TABLE IF EXISTS `cfg_role_cluster`;
+CREATE TABLE `cfg_role_cluster` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `cluster_code` varchar(255) NOT NULL COMMENT '集群编号',
+  `role_code` varchar(255) NOT NULL COMMENT '角色编号',
+  `status` int(11) DEFAULT NULL COMMENT '状态',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Records of cfg_role_cluster
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for cfg_role_env
+-- ----------------------------
+DROP TABLE IF EXISTS `cfg_role_env`;
+CREATE TABLE `cfg_role_env` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `env_code` varchar(255) NOT NULL COMMENT '环境编号',
+  `role_code` varchar(255) NOT NULL COMMENT '角色编号',
+  `status` int(11) DEFAULT NULL COMMENT '状态',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Records of cfg_role_env
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for cfg_user
 -- ----------------------------
 DROP TABLE IF EXISTS `cfg_user`;
@@ -170,23 +292,39 @@ INSERT INTO `cfg_user` VALUES ('2', 'u001', '用户1', '123', '1');
 INSERT INTO `cfg_user` VALUES ('3', 'admin', 'admin', 'admin', '1');
 
 -- ----------------------------
--- Table structure for cfg_user_hold
+-- Table structure for cfg_user_app
 -- ----------------------------
-DROP TABLE IF EXISTS `cfg_user_hold`;
-CREATE TABLE `cfg_user_hold` (
-  `hold_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `user_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '用户编码',
-  `doc_id` int(11) NOT NULL COMMENT '拥有',
+DROP TABLE IF EXISTS `cfg_user_app`;
+CREATE TABLE `cfg_user_app` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `user_code` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '用户编码',
+  `app_code` varchar(11) NOT NULL COMMENT '拥有',
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '状态:0-删除,1-正常',
-  PRIMARY KEY (`hold_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
--- Records of cfg_user_hold
+-- Records of cfg_user_app
 -- ----------------------------
-INSERT INTO `cfg_user_hold` VALUES ('2', 'u001', '2', '1');
-INSERT INTO `cfg_user_hold` VALUES ('3', 'u001', '3', '1');
-INSERT INTO `cfg_user_hold` VALUES ('4', 'u001', '4', '1');
-INSERT INTO `cfg_user_hold` VALUES ('5', 'u001', '5', '1');
-INSERT INTO `cfg_user_hold` VALUES ('6', 'u001', '10', '1');
-INSERT INTO `cfg_user_hold` VALUES ('7', 'admin', '1', '1');
+INSERT INTO `cfg_user_app` VALUES ('2', 'u001', '2', '1');
+INSERT INTO `cfg_user_app` VALUES ('3', 'u001', '3', '1');
+INSERT INTO `cfg_user_app` VALUES ('4', 'u001', '4', '1');
+INSERT INTO `cfg_user_app` VALUES ('5', 'u001', '5', '1');
+INSERT INTO `cfg_user_app` VALUES ('6', 'u001', '10', '1');
+INSERT INTO `cfg_user_app` VALUES ('7', 'admin', 'test', '1');
+
+-- ----------------------------
+-- Table structure for cfg_user_role
+-- ----------------------------
+DROP TABLE IF EXISTS `cfg_user_role`;
+CREATE TABLE `cfg_user_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `user_code` varchar(255) NOT NULL COMMENT '部门编号',
+  `role_code` varchar(255) NOT NULL COMMENT '用户编号',
+  `status` int(11) DEFAULT NULL COMMENT '状态',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Records of cfg_user_role
+-- ----------------------------
