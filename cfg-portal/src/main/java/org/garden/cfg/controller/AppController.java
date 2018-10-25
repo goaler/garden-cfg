@@ -34,7 +34,7 @@ public class AppController {
 	@GetMapping("list")
 	public List<AppInfo> getOwnAppList(@RequestAttribute String userCode){
 		List<AppInfo> infos = new ArrayList<>();
-		List<CfgApp> apps = managerService.getOwnAppList(userCode);
+		List<CfgApp> apps = managerService.getApps(userCode);
 		for(CfgApp app:apps) {
 			AppInfo info = new AppInfo();
 			BeanUtils.copyProperties(app, info);

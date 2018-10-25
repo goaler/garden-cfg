@@ -26,7 +26,7 @@ public class DisAuthIntecepter extends HandlerInterceptorAdapter {
 			handleUnauth(request, response);
 			return false;
 		}
-		String userCode = CfgUtils.getUserInfos().get(token);
+		String userCode = CfgUtils.getUserInfo(token);
 		if (StringUtils.isEmpty(userCode)) {
 			handleUnauth(request, response);
 			return false;

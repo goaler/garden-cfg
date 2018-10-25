@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80012
 File Encoding         : 65001
 
-Date: 2018-10-23 23:22:38
+Date: 2018-10-25 23:19:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -41,7 +41,6 @@ INSERT INTO `cfg_app` VALUES ('2', 'test2', '测试应用2', null, '1', 'admin',
 INSERT INTO `cfg_app` VALUES ('5', 'test3', '测试应用3', '测试应用3', '1', 'admin', '2018-10-11 15:33:35', 'admin', '2018-10-11 15:33:51');
 INSERT INTO `cfg_app` VALUES ('6', 'test4', '测试应用4', '测试应用4', '1', 'admin', '2018-10-11 15:33:38', 'admin', '2018-10-11 15:33:54');
 INSERT INTO `cfg_app` VALUES ('7', 'test5', '测试应用5', '测试应用5', '1', 'admin', '2018-10-11 15:33:40', 'admin', '2018-10-11 15:33:56');
-INSERT INTO `cfg_app` VALUES ('8', 'app_all', '所有应用', '所有应用', '1', 'admin', '2018-10-11 15:33:42', 'admin', '2018-10-11 15:33:59');
 
 -- ----------------------------
 -- Table structure for cfg_cluster

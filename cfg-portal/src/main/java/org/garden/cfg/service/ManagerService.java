@@ -63,7 +63,7 @@ public class ManagerService {
 		return true;
 	}
 
-	public List<CfgApp> getOwnAppList(String userCode) {
+	public List<CfgApp> getApps(String userCode) {
 		List<CfgApp> apps = cfgDao.getApps(userCode);
 		return apps;
 	}

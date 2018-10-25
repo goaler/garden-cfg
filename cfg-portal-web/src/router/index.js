@@ -1,5 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import {
+  getToken
+} from '../utils/common'
+
 import Login from '../views/Login'
 import HomePage from '../views/HomePage'
 import appPage from '../views/app/App'
@@ -10,7 +14,7 @@ import createAppPage from '../views/app/CreateApp'
 
 Vue.use(Router)
 
-export default new Router({
+var router = new Router({
   routes: [{
       path: '/login',
       name: 'login',
@@ -55,3 +59,16 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+    if (getToken()) {
+      next()
+    } else {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }//把要跳转的地址作为参数传到下一步
+      })
+    }
+})
+
+export default router

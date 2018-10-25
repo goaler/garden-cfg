@@ -34,7 +34,7 @@ public class ManagerController {
 		boolean flag = managerService.login(req.getUserCode(), req.getPassword());
 		if (flag) {
 			String token = UUID.randomUUID().toString();
-			CfgUtils.getUserInfos().put(token, req.getUserCode());
+			CfgUtils.putUserInfo(token, req.getUserCode());
 			return token;
 		}
 		return null;
